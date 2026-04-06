@@ -1,0 +1,31 @@
+{
+  "name": "grand-theft-aura-6",
+  "version": "1.0.0",
+  "description": "A slasher/parody horror game for Discord inspired by Grand Theft Auto",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "watch": "tsc -w"
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "game",
+    "horror",
+    "gta",
+    "slasher"
+  ],
+  "author": "Calid",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^14.14.1",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}

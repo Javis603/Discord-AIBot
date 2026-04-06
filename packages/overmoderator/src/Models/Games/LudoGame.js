@@ -1,0 +1,131 @@
+const mongoose = require('mongoose');
+
+const ludoGameSchema = new mongoose.Schema({
+  channelId: { type: String, required: true, index: true },
+  guildId: { type: String, required: true, index: true },
+  messageId: { type: String, unique: true },
+  players: [{
+    userId: { type: String, required: true },
+    color: { type: String, enum: ['red', 'blue', 'green', 'yellow'], required: true },
+    pieces: [{
+      position: { type: Number, default: -1 }, // -1 = home, 0-51 = board, 52-55 = finish
+      isHome: { type: Boolean, default: true },
+      isFinished: { type: Boolean, default: false }
+    }],
+    isActive: { type: Boolean, default: true },
+    order: { type: Number }
+  }],
+  currentPlayer: { type: Number, default: 0 },
+  diceValue: { type: Number, default: 0 },
+  status: { 
+    type: String, 
+    enum: ['waiting', 'playing', 'finished'], 
+    default: 'waiting' 
+  },
+  winner: { type: String, default: null },
+  turnExpiresAt: { type: Date },
+  createdAt: { type: Date, default: Date.now, expires: 86400 } // Auto-delete after 24h
+}, { timestamps: true });
+
+// Add indexes
+ludoGameSchema.index({ channelId: 1, status: 1 });
+ludoGameSchema.index({ 'players.userId': 1, status: 1 });
+
+// Static methods
+ludoGameSchema.statics.createNewGame = async function(channelId, guildId, userId) {
+  return this.create({
+    channelId,
+    guildId,
+    players: [{
+      userId,
+      color: 'red',
+      pieces: Array(4).fill().map(() => ({ position: -1, isHome: true, isFinished: false })),
+      order: 0
+    }],
+    status: 'waiting'
+  });
+};
+
+// Instance methods
+ludoGameSchema.methods.addPlayer = async function(userId, color) {
+  if (this.players.length >= 4) {
+    throw new Error('Game is full');
+  }
+  
+  if (this.players.some(p => p.userId === userId)) {
+    throw new Error('You are already in this game');
+  }
+  
+  if (this.players.some(p => p.color === color)) {
+    throw new Error('Color already taken');
+  }
+  
+  this.players.push({
+    userId,
+    color,
+    pieces: Array(4).fill().map(() => ({ position: -1, isHome: true, isFinished: false })),
+    order: this.players.length
+  });
+  
+  return this.save();
+};
+
+ludoGameSchema.methods.startGame = async function() {
+  if (this.players.length < 2) {
+    throw new Error('Need at least 2 players to start');
+  }
+  
+  this.status = 'playing';
+  this.currentPlayer = 0;
+  return this.save();
+};
+
+ludoGameSchema.methods.rollDice = async function() {
+  this.diceValue = Math.floor(Math.random() * 6) + 1;
+  this.turnExpiresAt = new Date(Date.now() + 60000); // 1 minute per turn
+  return this.save();
+};
+
+ludoGameSchema.methods.movePiece = async function(playerIndex, pieceIndex) {
+  // Implementation of move logic
+  // This is a simplified version - you'll need to implement full game rules
+  const player = this.players[playerIndex];
+  const piece = player.pieces[pieceIndex];
+  
+  if (piece.isFinished) {
+    throw new Error('This piece has already finished');
+  }
+  
+  if (this.diceValue === 6 && piece.isHome) {
+    // Move out of home
+    piece.isHome = false;
+    piece.position = 0;
+  } else if (!piece.isHome) {
+    // Move on the board
+    piece.position = (piece.position + this.diceValue) % 52;
+    
+    // Check for win condition
+    if (piece.position >= 52) {
+      piece.isFinished = true;
+      piece.position = 51 + (piece.position - 51);
+      
+      // Check if player has won
+      if (player.pieces.every(p => p.isFinished)) {
+        this.status = 'finished';
+        this.winner = player.userId;
+      }
+    }
+  } else {
+    throw new Error('Invalid move');
+  }
+  
+  // Switch to next player if not a 6
+  if (this.diceValue !== 6) {
+    this.currentPlayer = (this.currentPlayer + 1) % this.players.length;
+  }
+  
+  await this.save();
+  return this;
+};
+
+module.exports = mongoose.model('LudoGame', ludoGameSchema);

@@ -1,47 +1,31 @@
 {
   "name": "discord-aibot",
   "version": "1.0.0",
-  "description": "一個專為 Discord 設計的多功能 AI 助手",
-  "author": "Javis",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Javis603/Discord-AIBot"
-  },
-  "keywords": [
-    "discord",
-    "bot",
-    "ai",
-    "openai",
-    "chatbot",
-    "discord.js"
+  "private": true,
+  "packageManager": "pnpm@10.0.0",
+  "workspaces": [
+    "packages/*"
   ],
-  "main": "index.js",
   "scripts": {
-    "start": "node --no-warnings index.js",
-    "dev": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "pnpm -r run start",
+    "dev": "pnpm -r run dev",
+    "build": "pnpm -r run build",
+    "test": "pnpm -r run test",
+    "lint:md": "markdownlint \"**/*.md\" --ignore node_modules"
   },
   "dependencies": {
-    "@derockdev/discord-components-react": "^3.6.1",
-    "@tavily/core": "^0.0.2",
-    "ascii-table": "^0.0.9",
-    "axios": "^1.7.2",
-    "chokidar": "^3.6.0",
-    "deepl-node": "^1.11.0",
-    "discord.js": "^14.18.0",
-    "dotenv": "^16.3.1",
-    "form-data": "^4.0.2",
-    "glob": "^10.3.10",
-    "gpt-tokenizer": "^2.1.2",
-    "js-yaml": "^4.1.0",
-    "moment": "^2.29.4",
-    "moment-duration-format": "^2.3.2",
-    "mongoose": "^8.10.1",
-    "node-fetch": "^2.7.0",
-    "openai": "^4.85.3",
-    "pdf-parse": "^1.1.1",
-    "undici": "^7.3.0",
-    "validator": "^13.11.0"
+    "@discordjs/opus": "^0.10.0",
+    "@discordjs/voice": "^0.19.0",
+    "discord.js": "^14.25.1",
+    "dotenv": "^17.2.3",
+    "ffmpeg-static": "^5.3.0",
+    "mongodb": "^7.0.0",
+    "mongoose": "^7.0.0",
+    "rimraf": "^6.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
   }
 }

@@ -1,0 +1,98 @@
+version: '3.9'
+
+services:
+  discord-aibot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: discord-aibot
+    image: discord-aibot:latest
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: production
+      PYTHONUNBUFFERED: 1
+    volumes:
+      - ./logs:/app/logs
+    networks:
+      - discord-network
+    ports:
+      - "3000:3000"
+      - "8000:8000"
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000', (r) => {if (r.statusCode !== 200) throw new Error(r.statusCode)})"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+    develop:
+      watch:
+        - action: sync
+          path: ./src
+          target: /app/src
+        - action: rebuild
+          path: ./package.json
+
+  # Sequential Thinking MCP Server - self-sufficient reasoning sidecar
+  sequential-thinking-mcp:
+    build:
+      context: ./packages/sequential-thinking-mcp
+      dockerfile: Dockerfile
+    container_name: discord-aibot-mcp
+    image: sequential-thinking-mcp:latest
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+    environment:
+      DISCORD_BOT_TOKEN: ${DISCORD_TOKEN:-}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      WORKSPACE_ROOT: /workspace
+      NODE_ENV: production
+    volumes:
+      - mcp-sessions:/app/data
+      # Mount all bot source trees so MCP can scan/refactor
+      - ./:/workspace/discord-aibot:ro
+    networks:
+      - discord-network
+    healthcheck:
+      test: ["CMD-SHELL", "pgrep -f 'node dist/index.js' || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # Optional: MongoDB for data persistence
+  mongodb:
+    image: mongo:7-alpine
+    container_name: discord-aibot-db
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER:-admin}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD:-password}
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - discord-network
+    ports:
+      - "27017:27017"
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+networks:
+  discord-network:
+    driver: bridge
+
+volumes:
+  mongo-data:
+    driver: local
+  mcp-sessions:
+    driver: local

@@ -1,0 +1,80 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Dependencies (will be installed in container)
+node_modules
+
+# Development files
+.env
+.env.local
+.env.*.local
+*.log
+logs/
+*.md
+!README.md
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+.DS_Store
+
+# Test files
+tests/
+__tests__/
+*.test.js
+*.spec.js
+coverage/
+.nyc_output/
+jest.config.js
+jest.setup.js
+
+# Build artifacts
+dist/
+build/
+*.tgz
+
+# Docker files (not needed inside container)
+Dockerfile*
+docker-compose*.yml
+.dockerignore
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+.travis.yml
+
+# Documentation
+docs/
+*.md
+!package.json
+
+# Temporary files
+temp/
+tmp/
+*.tmp
+*.temp
+
+# Audio cache (will be mounted as volume)
+audio-cache/
+
+# Init scripts (mounted separately)
+init-db/
+
+# Config examples
+*.example
+*.sample
+
+# Editor configs
+.editorconfig
+.eslintrc*
+.prettierrc*
+tsconfig.json
+
+# Misc
+*.bak
+*.backup
+Thumbs.db

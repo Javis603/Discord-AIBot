@@ -1,0 +1,4 @@
+const user = await client.users.fetch(sniped.authorId).catch(() => null);
+const avatarURL = user
+    ? user.displayAvatarURL({ dynamic: true, size: 512 })
+    : "https://example.com/default-icon.png";

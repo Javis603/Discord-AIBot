@@ -1,0 +1,32 @@
+# Discord-AIBot - Production Ready
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Install runtime dependencies
+RUN apk add --no-cache ffmpeg opus ca-certificates
+
+# Create non-root user
+RUN addgroup botuser && adduser -D -G botuser botuser
+
+# Copy application
+COPY package*.json pnpm-lock.yaml ./
+COPY . .
+
+# Install dependencies only (no build, assume pre-built or TypeScript compiled)
+RUN npm install -g pnpm && \
+    pnpm install --prod --frozen-lockfile || npm install --prod
+
+ENV NODE_ENV=production \
+    NODE_OPTIONS="--enable-source-maps" \
+    LOG_LEVEL=info
+
+EXPOSE 3000 8000
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 \
+    CMD node -e "require('http').get('http://localhost:3000/health', (r) => {if (r.statusCode !== 200) throw new Error(r.statusCode)})" || exit 1
+
+USER botuser
+
+CMD ["pnpm", "start"]

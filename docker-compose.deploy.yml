@@ -1,0 +1,46 @@
+version: '3.9'
+
+services:
+  discord-aibot:
+    image: ${DOCKERHUB_USERNAME}/discord-aibot:latest
+    container_name: discord-aibot
+    restart: always
+    environment:
+      NODE_ENV: production
+      LOG_LEVEL: info
+      DISCORD_TOKEN: ${DISCORD_TOKEN}
+      MONGODB_URI: ${MONGODB_URI}
+    env_file:
+      - .env.prod.local
+    volumes:
+      - bot-data:/app/data
+      - bot-logs:/app/logs
+    ports:
+      - "3000:3000"
+      - "8000:8000"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    networks:
+      - bot-network
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+        reservations:
+          cpus: '1'
+          memory: 1G
+
+volumes:
+  bot-data:
+    driver: local
+  bot-logs:
+    driver: local
+
+networks:
+  bot-network:
+    driver: bridge

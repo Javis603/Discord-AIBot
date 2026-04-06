@@ -1,0 +1,13 @@
+{
+  "name": "airhornbot",
+  "version": "1.0.0",
+  "description": "Airhorn bot for 13+ audience.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "discord.js": "^14.18.0",
+    "dotenv": "^16.3.1"
+  }
+}

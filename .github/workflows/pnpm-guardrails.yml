@@ -1,0 +1,44 @@
+name: PNPM Guardrails
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  guardrails:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          cache: "pnpm"
+
+      - name: Enable Corepack (pnpm)
+        run: |
+          corepack enable
+          corepack prepare pnpm@10.0.0 --activate
+          pnpm --version
+
+      - name: Fail on forbidden lockfiles
+        run: |
+          set -euo pipefail
+          forbidden=$(find . -type f \( -name "package-lock.json" -o -name "yarn.lock" -o -name "bun.lock" -o -name "bun.lockb" \) -not -path "./node_modules/*" || true)
+          if [ -n "$forbidden" ]; then
+            echo "Forbidden lockfiles found:"
+            echo "$forbidden"
+            exit 1
+          fi
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        run: pnpm -r run lint --if-present
+
+      - name: Test
+        run: pnpm -r run test --if-present
+
+      - name: Build
+        run: pnpm -r run build --if-present

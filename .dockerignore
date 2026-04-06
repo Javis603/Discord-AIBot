@@ -1,0 +1,17 @@
+node_modules
+npm-debug.log
+yarn-error.log
+dist
+build
+.git
+.gitignore
+.DS_Store
+.env.local
+.env.*.local
+*.md
+.vscode
+.idea
+coverage
+.next
+.vercel
+out

@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"path": "../../../airhornbot"
+		},
+		{
+			"path": "../../../calm-discord-bot"
+		},
+		{
+			"path": "../.."
+		},
+		{
+			"path": "../../../DeepSpeech"
+		},
+		{
+			"path": "../../../whisper"
+		}
+	]
+}

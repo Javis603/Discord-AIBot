@@ -1,0 +1,286 @@
+# ============================================================================
+# Overmoderator Discord Bot - Docker Compose Configuration
+# ============================================================================
+version: '3.8'
+
+services:
+  # ==========================================================================
+  # Discord Bot Service
+  # ==========================================================================
+  discord-bot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    image: overmoderator:latest
+    container_name: overmoderator-bot
+    restart: unless-stopped
+    depends_on:
+      mongodb:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      # Node environment
+      NODE_ENV: ${NODE_ENV:-production}
+      TZ: ${TZ:-UTC}
+      
+      # Database connections (override for Docker network)
+      MONGODB_URI: mongodb://mongodb:27017/overmoderator
+      REDIS_URL: redis://redis:6379
+      DATABASE_URL: postgresql://discord_bot:${DB_PASSWORD:-discord_bot_password}@postgres:5432/discord_bot
+      
+      # Discord configuration
+      DISCORD_BOT_TOKEN: ${DISCORD_BOT_TOKEN}
+      CLIENT_ID: ${CLIENT_ID:-}
+      DEVELOPER_ID: ${DEVELOPER_ID:-}
+      DEVELOPER_GUILD_ID: ${DEVELOPER_GUILD_ID:-}
+      PREFIX: ${PREFIX:-.}
+      BOT_LANG: ${BOT_LANG:-en-US}
+      
+      # Logging
+      LOG_CHANNEL: ${LOG_CHANNEL:-}
+      LOG_WEBHOOK_URL: ${LOG_WEBHOOK_URL:-}
+      
+      # AI Configuration
+      DEFAULT_MODEL: ${DEFAULT_MODEL:-}
+      DEFAULT_BASE_URL: ${DEFAULT_BASE_URL:-}
+      DEFAULT_API_KEY: ${DEFAULT_API_KEY:-}
+      
+      # Voice & TTS
+      VOICE_INPUT: ${VOICE_INPUT:-true}
+      VOICE_MODEL: ${VOICE_MODEL:-whisper-1}
+      TTS_ENABLED: ${TTS_ENABLED:-true}
+      TTS_DEFAULT_LANGUAGE: ${TTS_DEFAULT_LANGUAGE:-en-US}
+      
+      # Features
+      IMAGE_INPUT: ${IMAGE_INPUT:-true}
+      PDF_INPUT: ${PDF_INPUT:-true}
+      GENERATE_IMAGE: ${GENERATE_IMAGE:-true}
+      WEB_SEARCH: ${WEB_SEARCH:-false}
+      DEEP_THINKING: ${DEEP_THINKING:-false}
+    env_file:
+      - .env
+    networks:
+      - bot-network
+    volumes:
+      # Persist logs
+      - bot-logs:/app/logs
+      # Persist audio cache
+      - audio-cache:/app/audio-cache
+      # Temp files
+      - bot-temp:/app/temp
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: '1.0'
+        reservations:
+          memory: 512M
+          cpus: '0.5'
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ==========================================================================
+  # Sequential Thinking MCP Server - self-sufficient reasoning sidecar
+  # ==========================================================================
+  sequential-thinking-mcp:
+    build:
+      context: ../../sequential-thinking-mcp
+      dockerfile: Dockerfile
+    container_name: overmoderator-mcp
+    image: sequential-thinking-mcp:latest
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+    environment:
+      DISCORD_BOT_TOKEN: ${DISCORD_BOT_TOKEN:-}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      WORKSPACE_ROOT: /workspace
+      NODE_ENV: production
+    volumes:
+      - mcp-sessions:/app/data
+      - ./:/workspace/overmoderator:ro
+    networks:
+      - bot-network
+    healthcheck:
+      test: ["CMD-SHELL", "pgrep -f 'node dist/index.js' || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ==========================================================================
+  # MongoDB Database (Primary database for bot data)
+  # ==========================================================================
+  mongodb:
+    image: mongo:7
+    container_name: overmoderator-mongodb
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_DATABASE: overmoderator
+    volumes:
+      - mongodb-data:/data/db
+      - ./init-db/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    networks:
+      - bot-network
+    healthcheck:
+      test: ["CMD-SHELL", "mongosh --quiet --eval \"db.adminCommand('ping')\" >/dev/null 2>&1"]
+      interval: 10s
+      timeout: 20s
+      retries: 10
+      start_period: 30s
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+        reservations:
+          memory: 256M
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "2"
+
+  # ==========================================================================
+  # PostgreSQL Database (Optional - for structured data)
+  # ==========================================================================
+  postgres:
+    image: postgres:16-bookworm
+    container_name: overmoderator-postgres
+    restart: unless-stopped
+    profiles:
+      - postgres
+    environment:
+      POSTGRES_USER: discord_bot
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-discord_bot_password}
+      POSTGRES_DB: discord_bot
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./init-db:/docker-entrypoint-initdb.d:ro
+    networks:
+      - bot-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U discord_bot -d discord_bot"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+        reservations:
+          memory: 256M
+
+  # ==========================================================================
+  # Redis for caching and session management
+  # ==========================================================================
+  redis:
+    image: redis:7-alpine
+    container_name: overmoderator-redis
+    restart: unless-stopped
+    command: >
+      redis-server
+      --appendonly yes
+      --maxmemory 128mb
+      --maxmemory-policy allkeys-lru
+      --save 60 1
+      --loglevel warning
+    volumes:
+      - redis-data:/data
+    networks:
+      - bot-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+        reservations:
+          memory: 64M
+
+  # ==========================================================================
+  # Mongo Express - MongoDB Admin UI (Development only)
+  # ==========================================================================
+  mongo-express:
+    image: mongo-express:latest
+    container_name: overmoderator-mongo-express
+    restart: unless-stopped
+    profiles:
+      - dev
+    environment:
+      ME_CONFIG_MONGODB_SERVER: mongodb
+      ME_CONFIG_MONGODB_PORT: 27017
+      ME_CONFIG_BASICAUTH_USERNAME: ${MONGO_EXPRESS_USER:-admin}
+      ME_CONFIG_BASICAUTH_PASSWORD: ${MONGO_EXPRESS_PASS:-admin}
+    ports:
+      - "8081:8081"
+    networks:
+      - bot-network
+    depends_on:
+      mongodb:
+        condition: service_healthy
+
+  # ==========================================================================
+  # pgAdmin - PostgreSQL Admin UI (Development only)
+  # ==========================================================================
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: overmoderator-pgadmin
+    restart: unless-stopped
+    profiles:
+      - dev
+      - postgres
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL:-admin@localhost}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD:-admin}
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    ports:
+      - "5050:80"
+    networks:
+      - bot-network
+    depends_on:
+      - postgres
+
+# ==========================================================================
+# Networks
+# ==========================================================================
+networks:
+  bot-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16
+
+# ==========================================================================
+# Volumes
+# ==========================================================================
+volumes:
+  mongodb-data:
+    driver: local
+  postgres-data:
+    driver: local
+  redis-data:
+    driver: local
+  bot-logs:
+    driver: local
+  audio-cache:
+    driver: local
+  bot-temp:
+    driver: local
+  mcp-sessions:
+    driver: local

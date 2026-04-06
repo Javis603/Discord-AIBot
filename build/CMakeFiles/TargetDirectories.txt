@@ -1,0 +1,6 @@
+/Users/kthlke/Documents/GitHub/Discord-AIBot/build/CMakeFiles/lint.dir
+/Users/kthlke/Documents/GitHub/Discord-AIBot/build/CMakeFiles/test.dir
+/Users/kthlke/Documents/GitHub/Discord-AIBot/build/CMakeFiles/forcetest.dir
+/Users/kthlke/Documents/GitHub/Discord-AIBot/build/CMakeFiles/docs.dir
+/Users/kthlke/Documents/GitHub/Discord-AIBot/build/CMakeFiles/edit_cache.dir
+/Users/kthlke/Documents/GitHub/Discord-AIBot/build/CMakeFiles/rebuild_cache.dir

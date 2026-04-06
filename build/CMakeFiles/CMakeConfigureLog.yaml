@@ -1,0 +1,3276 @@
+
+---
+events:
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeDetermineSystem.cmake:12 (find_program)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_UNAME"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "uname"
+    candidate_directories:
+      - "/opt/anaconda3/bin/"
+      - "/opt/anaconda3/condabin/"
+      - "/usr/local/bin/"
+      - "/usr/local/sbin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.12/bin/"
+      - "/usr/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/usr/local/go/bin/"
+      - "/usr/local/share/dotnet/"
+      - "/Users/kthlke/.dotnet/tools/"
+    searched_directories:
+      - "/opt/anaconda3/bin/uname"
+      - "/opt/anaconda3/condabin/uname"
+      - "/usr/local/bin/uname"
+      - "/usr/local/sbin/uname"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/uname"
+      - "/Library/Frameworks/Python.framework/Versions/3.12/bin/uname"
+    found: "/usr/bin/uname"
+    search_context:
+      ENV{PATH}:
+        - "/opt/anaconda3/bin"
+        - "/opt/anaconda3/condabin"
+        - "/usr/local/bin"
+        - "/usr/local/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/usr/local/go/bin"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeDetermineSystem.cmake:212 (message)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      The system is: Darwin - 21.6.0 - x86_64
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeUnixFindMake.cmake:5 (find_program)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_MAKE_PROGRAM"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "gmake"
+      - "make"
+      - "smake"
+    candidate_directories:
+      - "/opt/anaconda3/bin/"
+      - "/opt/anaconda3/condabin/"
+      - "/usr/local/bin/"
+      - "/usr/local/sbin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.12/bin/"
+      - "/usr/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/usr/local/go/bin/"
+      - "/usr/local/share/dotnet/"
+      - "/Users/kthlke/.dotnet/tools/"
+    searched_directories:
+      - "/opt/anaconda3/bin/gmake"
+      - "/opt/anaconda3/condabin/gmake"
+      - "/usr/local/bin/gmake"
+      - "/usr/local/sbin/gmake"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/gmake"
+      - "/Library/Frameworks/Python.framework/Versions/3.12/bin/gmake"
+      - "/usr/bin/gmake"
+      - "/bin/gmake"
+      - "/usr/sbin/gmake"
+      - "/sbin/gmake"
+      - "/usr/local/go/bin/gmake"
+      - "/usr/local/share/dotnet/gmake"
+      - "/Users/kthlke/.dotnet/tools/gmake"
+      - "/opt/anaconda3/bin/make"
+      - "/opt/anaconda3/condabin/make"
+      - "/usr/local/bin/make"
+      - "/usr/local/sbin/make"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/make"
+      - "/Library/Frameworks/Python.framework/Versions/3.12/bin/make"
+    found: "/usr/bin/make"
+    search_context:
+      ENV{PATH}:
+        - "/opt/anaconda3/bin"
+        - "/opt/anaconda3/condabin"
+        - "/usr/local/bin"
+        - "/usr/local/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/usr/local/go/bin"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCompilerId.cmake:462 (find_file)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCompilerId.cmake:500 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCCompilerId.c.in"
+    candidate_directories:
+      - "/usr/local/share/cmake/Modules/"
+    found: "/usr/local/share/cmake/Modules/CMakeCCompilerId.c.in"
+    search_context:
+      ENV{PATH}:
+        - "/opt/anaconda3/bin"
+        - "/opt/anaconda3/condabin"
+        - "/usr/local/bin"
+        - "/usr/local/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/usr/local/go/bin"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: /usr/bin/clang 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+      
+      The C compiler identification is AppleClang, found in:
+        /Users/kthlke/Documents/GitHub/Discord-AIBot/build/CMakeFiles/4.2.0/CompilerIdC/a.out
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCompilerId.cmake:290 (message)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Detecting C compiler apple sysroot: "/usr/bin/clang" "-E" "apple-sdk.c"
+        # 1 "apple-sdk.c"
+        # 1 "<built-in>" 1
+        # 1 "<built-in>" 3
+        # 370 "<built-in>" 3
+        # 1 "<command line>" 1
+        # 1 "<built-in>" 2
+        # 1 "apple-sdk.c" 2
+        # 1 "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/AvailabilityMacros.h" 1 3 4
+        # 242 "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/AvailabilityMacros.h" 3 4
+        # 1 "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/Availability.h" 1 3 4
+        # 165 "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/Availability.h" 3 4
+        # 1 "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/AvailabilityVersions.h" 1 3 4
+        # 166 "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/Availability.h" 2 3 4
+        # 1 "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/AvailabilityInternal.h" 1 3 4
+        # 167 "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/Availability.h" 2 3 4
+        # 243 "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/AvailabilityMacros.h" 2 3 4
+        # 2 "apple-sdk.c" 2
+        
+        
+      Found apple sysroot: /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_AR"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "ar"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/opt/anaconda3/bin/"
+      - "/opt/anaconda3/condabin/"
+      - "/usr/local/bin/"
+      - "/usr/local/sbin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.12/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/usr/local/go/bin/"
+      - "/usr/local/share/dotnet/"
+      - "/Users/kthlke/.dotnet/tools/"
+    found: "/usr/bin/ar"
+    search_context:
+      ENV{PATH}:
+        - "/opt/anaconda3/bin"
+        - "/opt/anaconda3/condabin"
+        - "/usr/local/bin"
+        - "/usr/local/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/usr/local/go/bin"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_RANLIB"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "ranlib"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/opt/anaconda3/bin/"
+      - "/opt/anaconda3/condabin/"
+      - "/usr/local/bin/"
+      - "/usr/local/sbin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.12/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/usr/local/go/bin/"
+      - "/usr/local/share/dotnet/"
+      - "/Users/kthlke/.dotnet/tools/"
+    found: "/usr/bin/ranlib"
+    search_context:
+      ENV{PATH}:
+        - "/opt/anaconda3/bin"
+        - "/opt/anaconda3/condabin"
+        - "/usr/local/bin"
+        - "/usr/local/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/usr/local/go/bin"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_STRIP"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "strip"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/opt/anaconda3/bin/"
+      - "/opt/anaconda3/condabin/"
+      - "/usr/local/bin/"
+      - "/usr/local/sbin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.12/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/usr/local/go/bin/"
+      - "/usr/local/share/dotnet/"
+      - "/Users/kthlke/.dotnet/tools/"
+    found: "/usr/bin/strip"
+    search_context:
+      ENV{PATH}:
+        - "/opt/anaconda3/bin"
+        - "/opt/anaconda3/condabin"
+        - "/usr/local/bin"
+        - "/usr/local/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/usr/local/go/bin"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_LINKER"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "ld"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/opt/anaconda3/bin/"
+      - "/opt/anaconda3/condabin/"
+      - "/usr/local/bin/"
+      - "/usr/local/sbin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.12/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/usr/local/go/bin/"
+      - "/usr/local/share/dotnet/"
+      - "/Users/kthlke/.dotnet/tools/"
+    found: "/usr/bin/ld"
+    search_context:
+      ENV{PATH}:
+        - "/opt/anaconda3/bin"
+        - "/opt/anaconda3/condabin"
+        - "/usr/local/bin"
+        - "/usr/local/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/usr/local/go/bin"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_NM"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "nm"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/opt/anaconda3/bin/"
+      - "/opt/anaconda3/condabin/"
+      - "/usr/local/bin/"
+      - "/usr/local/sbin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.12/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/usr/local/go/bin/"
+      - "/usr/local/share/dotnet/"
+      - "/Users/kthlke/.dotnet/tools/"
+    found: "/usr/bin/nm"
+    search_context:
+      ENV{PATH}:
+        - "/opt/anaconda3/bin"
+        - "/opt/anaconda3/condabin"
+        - "/usr/local/bin"
+        - "/usr/local/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/usr/local/go/bin"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_OBJDUMP"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "objdump"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/opt/anaconda3/bin/"
+      - "/opt/anaconda3/condabin/"
+      - "/usr/local/bin/"
+      - "/usr/local/sbin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.12/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/usr/local/go/bin/"
+      - "/usr/local/share/dotnet/"
+      - "/Users/kthlke/.dotnet/tools/"
+    found: "/usr/bin/objdump"
+    search_context:
+      ENV{PATH}:
+        - "/opt/anaconda3/bin"
+        - "/opt/anaconda3/condabin"
+        - "/usr/local/bin"
+        - "/usr/local/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/usr/local/go/bin"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_OBJCOPY"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "objcopy"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/opt/anaconda3/bin/"
+      - "/opt/anaconda3/condabin/"
+      - "/usr/local/bin/"
+      - "/usr/local/sbin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.12/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/usr/local/go/bin/"
+      - "/usr/local/share/dotnet/"
+      - "/Users/kthlke/.dotnet/tools/"
+    searched_directories:
+      - "/usr/bin/objcopy"
+      - "/opt/anaconda3/bin/objcopy"
+      - "/opt/anaconda3/condabin/objcopy"
+      - "/usr/local/bin/objcopy"
+      - "/usr/local/sbin/objcopy"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/objcopy"
+      - "/Library/Frameworks/Python.framework/Versions/3.12/bin/objcopy"
+      - "/bin/objcopy"
+      - "/usr/sbin/objcopy"
+      - "/sbin/objcopy"
+      - "/usr/local/go/bin/objcopy"
+      - "/usr/local/share/dotnet/objcopy"
+      - "/Users/kthlke/.dotnet/tools/objcopy"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "/opt/anaconda3/bin"
+        - "/opt/anaconda3/condabin"
+        - "/usr/local/bin"
+        - "/usr/local/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/usr/local/go/bin"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_READELF"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "readelf"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/opt/anaconda3/bin/"
+      - "/opt/anaconda3/condabin/"
+      - "/usr/local/bin/"
+      - "/usr/local/sbin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.12/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/usr/local/go/bin/"
+      - "/usr/local/share/dotnet/"
+      - "/Users/kthlke/.dotnet/tools/"
+    searched_directories:
+      - "/usr/bin/readelf"
+      - "/opt/anaconda3/bin/readelf"
+      - "/opt/anaconda3/condabin/readelf"
+      - "/usr/local/bin/readelf"
+      - "/usr/local/sbin/readelf"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/readelf"
+      - "/Library/Frameworks/Python.framework/Versions/3.12/bin/readelf"
+      - "/bin/readelf"
+      - "/usr/sbin/readelf"
+      - "/sbin/readelf"
+      - "/usr/local/go/bin/readelf"
+      - "/usr/local/share/dotnet/readelf"
+      - "/Users/kthlke/.dotnet/tools/readelf"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "/opt/anaconda3/bin"
+        - "/opt/anaconda3/condabin"
+        - "/usr/local/bin"
+        - "/usr/local/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/usr/local/go/bin"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_DLLTOOL"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "dlltool"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/opt/anaconda3/bin/"
+      - "/opt/anaconda3/condabin/"
+      - "/usr/local/bin/"
+      - "/usr/local/sbin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.12/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/usr/local/go/bin/"
+      - "/usr/local/share/dotnet/"
+      - "/Users/kthlke/.dotnet/tools/"
+    searched_directories:
+      - "/usr/bin/dlltool"
+      - "/opt/anaconda3/bin/dlltool"
+      - "/opt/anaconda3/condabin/dlltool"
+      - "/usr/local/bin/dlltool"
+      - "/usr/local/sbin/dlltool"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/dlltool"
+      - "/Library/Frameworks/Python.framework/Versions/3.12/bin/dlltool"
+      - "/bin/dlltool"
+      - "/usr/sbin/dlltool"
+      - "/sbin/dlltool"
+      - "/usr/local/go/bin/dlltool"
+      - "/usr/local/share/dotnet/dlltool"
+      - "/Users/kthlke/.dotnet/tools/dlltool"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "/opt/anaconda3/bin"
+        - "/opt/anaconda3/condabin"
+        - "/usr/local/bin"
+        - "/usr/local/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/usr/local/go/bin"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_ADDR2LINE"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "addr2line"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/opt/anaconda3/bin/"
+      - "/opt/anaconda3/condabin/"
+      - "/usr/local/bin/"
+      - "/usr/local/sbin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.12/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/usr/local/go/bin/"
+      - "/usr/local/share/dotnet/"
+      - "/Users/kthlke/.dotnet/tools/"
+    searched_directories:
+      - "/usr/bin/addr2line"
+      - "/opt/anaconda3/bin/addr2line"
+      - "/opt/anaconda3/condabin/addr2line"
+      - "/usr/local/bin/addr2line"
+      - "/usr/local/sbin/addr2line"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/addr2line"
+      - "/Library/Frameworks/Python.framework/Versions/3.12/bin/addr2line"
+      - "/bin/addr2line"
+      - "/usr/sbin/addr2line"
+      - "/sbin/addr2line"
+      - "/usr/local/go/bin/addr2line"
+      - "/usr/local/share/dotnet/addr2line"
+      - "/Users/kthlke/.dotnet/tools/addr2line"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "/opt/anaconda3/bin"
+        - "/opt/anaconda3/condabin"
+        - "/usr/local/bin"
+        - "/usr/local/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/usr/local/go/bin"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_TAPI"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "tapi"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/opt/anaconda3/bin/"
+      - "/opt/anaconda3/condabin/"
+      - "/usr/local/bin/"
+      - "/usr/local/sbin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.12/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/usr/local/go/bin/"
+      - "/usr/local/share/dotnet/"
+      - "/Users/kthlke/.dotnet/tools/"
+    searched_directories:
+      - "/usr/bin/tapi"
+    found: "/opt/anaconda3/bin/tapi"
+    search_context:
+      ENV{PATH}:
+        - "/opt/anaconda3/bin"
+        - "/opt/anaconda3/condabin"
+        - "/usr/local/bin"
+        - "/usr/local/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/usr/local/go/bin"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCompilerId.cmake:462 (find_file)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCompilerId.cmake:500 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCXXCompilerId.cpp.in"
+    candidate_directories:
+      - "/usr/local/share/cmake/Modules/"
+    found: "/usr/local/share/cmake/Modules/CMakeCXXCompilerId.cpp.in"
+    search_context:
+      ENV{PATH}:
+        - "/opt/anaconda3/bin"
+        - "/opt/anaconda3/condabin"
+        - "/usr/local/bin"
+        - "/usr/local/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/usr/local/go/bin"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: /usr/bin/clang++ 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+      
+      The CXX compiler identification is AppleClang, found in:
+        /Users/kthlke/Documents/GitHub/Discord-AIBot/build/CMakeFiles/4.2.0/CompilerIdCXX/a.out
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCompilerId.cmake:290 (message)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Detecting CXX compiler apple sysroot: "/usr/bin/clang++" "-E" "apple-sdk.cpp"
+        # 1 "apple-sdk.cpp"
+        # 1 "<built-in>" 1
+        # 1 "<built-in>" 3
+        # 384 "<built-in>" 3
+        # 1 "<command line>" 1
+        # 1 "<built-in>" 2
+        # 1 "apple-sdk.cpp" 2
+        # 1 "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/AvailabilityMacros.h" 1 3 4
+        # 242 "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/AvailabilityMacros.h" 3 4
+        # 1 "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/Availability.h" 1 3 4
+        # 165 "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/Availability.h" 3 4
+        # 1 "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/AvailabilityVersions.h" 1 3 4
+        # 166 "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/Availability.h" 2 3 4
+        # 1 "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/AvailabilityInternal.h" 1 3 4
+        # 167 "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/Availability.h" 2 3 4
+        # 243 "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/AvailabilityMacros.h" 2 3 4
+        # 2 "apple-sdk.cpp" 2
+        
+        
+      Found apple sysroot: /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/Platform/Darwin.cmake:76 (find_program)"
+      - "/usr/local/share/cmake/Modules/CMakeSystemSpecificInformation.cmake:32 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_INSTALL_NAME_TOOL"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "install_name_tool"
+    candidate_directories:
+      - "/opt/anaconda3/bin/"
+      - "/opt/anaconda3/condabin/"
+      - "/usr/local/bin/"
+      - "/usr/local/sbin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.12/bin/"
+      - "/usr/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/usr/local/go/bin/"
+      - "/usr/local/share/dotnet/"
+      - "/Users/kthlke/.dotnet/tools/"
+    found: "/opt/anaconda3/bin/install_name_tool"
+    search_context:
+      ENV{PATH}:
+        - "/opt/anaconda3/bin"
+        - "/opt/anaconda3/condabin"
+        - "/usr/local/bin"
+        - "/usr/local/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/usr/local/go/bin"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:83 (try_compile)"
+      - "/usr/local/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "/Users/kthlke/Documents/GitHub/Discord-AIBot/build/CMakeFiles/CMakeScratch/TryCompile-aClBsu"
+      binary: "/Users/kthlke/Documents/GitHub/Discord-AIBot/build/CMakeFiles/CMakeScratch/TryCompile-aClBsu"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: ""
+      CMAKE_OSX_SYSROOT: ""
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/kthlke/Documents/GitHub/Discord-AIBot/build/CMakeFiles/CMakeScratch/TryCompile-aClBsu'
+        
+        Run Build Command(s): /usr/local/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_deb6e/fast
+        /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_deb6e.dir/build.make CMakeFiles/cmTC_deb6e.dir/build
+        Building C object CMakeFiles/cmTC_deb6e.dir/CMakeCCompilerABI.c.o
+        /usr/bin/clang   -v -Wl,-v -MD -MT CMakeFiles/cmTC_deb6e.dir/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_deb6e.dir/CMakeCCompilerABI.c.o.d -o CMakeFiles/cmTC_deb6e.dir/CMakeCCompilerABI.c.o -c /usr/local/share/cmake/Modules/CMakeCCompilerABI.c
+        Apple clang version 14.0.0 (clang-1400.0.29.202)
+        Target: x86_64-apple-darwin21.6.0
+        Thread model: posix
+        InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+        clang: warning: -Wl,-v: 'linker' input unused [-Wunused-command-line-argument]
+         "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple x86_64-apple-macosx12.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -mframe-pointer=all -fno-strict-return -fno-rounding-math -funwind-tables=2 -target-sdk-version=13.1 -fvisibility-inlines-hidden-static-local-var -target-cpu penryn -tune-cpu generic -debugger-tuning=lldb -target-linker-version 820.1 -v -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0 -dependency-file CMakeFiles/cmTC_deb6e.dir/CMakeCCompilerABI.c.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_deb6e.dir/CMakeCCompilerABI.c.o -sys-header-deps -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -I/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include -internal-externc-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Library/Developer/CommandLineTools/usr/include -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -Wno-cast-function-type -Wno-bitwise-instead-of-logical -fdebug-compilation-dir=/Users/kthlke/Documents/GitHub/Discord-AIBot/build/CMakeFiles/CMakeScratch/TryCompile-aClBsu -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fmax-type-align=16 -fcommon -clang-vendor-feature=+messageToSelfInClassMethodIdReturnType -clang-vendor-feature=+disableInferNewAvailabilityFromInit -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -mllvm -disable-aligned-alloc-awareness=1 -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_deb6e.dir/CMakeCCompilerABI.c.o -x c /usr/local/share/cmake/Modules/CMakeCCompilerABI.c
+        clang -cc1 version 14.0.0 (clang-1400.0.29.202) default target x86_64-apple-darwin21.6.0
+        ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include"
+        ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/Library/Frameworks"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /usr/local/include
+         /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include
+         /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include
+         /Library/Developer/CommandLineTools/usr/include
+         /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks (framework directory)
+        End of search list.
+        Linking C executable cmTC_deb6e
+        /usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_deb6e.dir/link.txt --verbose=1
+        Apple clang version 14.0.0 (clang-1400.0.29.202)
+        Target: x86_64-apple-darwin21.6.0
+        Thread model: posix
+        InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+         "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -lto_library /Library/Developer/CommandLineTools/usr/lib/libLTO.dylib -dynamic -arch x86_64 -platform_version macos 12.0.0 13.1 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -o cmTC_deb6e -L/usr/local/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_deb6e.dir/CMakeCCompilerABI.c.o -lSystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/lib/darwin/libclang_rt.osx.a
+        @(#)PROGRAM:ld  PROJECT:ld64-820.1
+        BUILD 20:07:01 Nov  7 2022
+        configured to support archs: armv6 armv7 armv7s arm64 arm64e arm64_32 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em
+        Library search paths:
+        	/usr/local/lib
+        	/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib
+        Framework search paths:
+        	/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/
+        /usr/bin/clang -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_deb6e.dir/CMakeCCompilerABI.c.o -o cmTC_deb6e
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:122 (message)"
+      - "/usr/local/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Effective list of requested architectures (possibly empty)  : ""
+      Effective list of architectures found in the ABI info binary: "x86_64"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:217 (message)"
+      - "/usr/local/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed C implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [/usr/local/include]
+          add: [/Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include]
+          add: [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include]
+          add: [/Library/Developer/CommandLineTools/usr/include]
+        end of search list found
+        collapse include dir [/usr/local/include] ==> [/usr/local/include]
+        collapse include dir [/Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include] ==> [/Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include]
+        collapse include dir [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include] ==> [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include]
+        collapse include dir [/Library/Developer/CommandLineTools/usr/include] ==> [/Library/Developer/CommandLineTools/usr/include]
+        implicit include dirs: [/usr/local/include;/Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include;/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include;/Library/Developer/CommandLineTools/usr/include]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:253 (message)"
+      - "/usr/local/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed C implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|"|[0-9]+>[ 	-]*Build:[ 	0-9]+ ms[ 	]*)?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)))("|,| |$)]
+        ignore line: [Change Dir: '/Users/kthlke/Documents/GitHub/Discord-AIBot/build/CMakeFiles/CMakeScratch/TryCompile-aClBsu']
+        ignore line: []
+        ignore line: [Run Build Command(s): /usr/local/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_deb6e/fast]
+        ignore line: [/Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_deb6e.dir/build.make CMakeFiles/cmTC_deb6e.dir/build]
+        ignore line: [Building C object CMakeFiles/cmTC_deb6e.dir/CMakeCCompilerABI.c.o]
+        ignore line: [/usr/bin/clang   -v -Wl -v -MD -MT CMakeFiles/cmTC_deb6e.dir/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_deb6e.dir/CMakeCCompilerABI.c.o.d -o CMakeFiles/cmTC_deb6e.dir/CMakeCCompilerABI.c.o -c /usr/local/share/cmake/Modules/CMakeCCompilerABI.c]
+        ignore line: [Apple clang version 14.0.0 (clang-1400.0.29.202)]
+        ignore line: [Target: x86_64-apple-darwin21.6.0]
+        ignore line: [Thread model: posix]
+        ignore line: [InstalledDir: /Library/Developer/CommandLineTools/usr/bin]
+        ignore line: [clang: warning: -Wl -v: 'linker' input unused [-Wunused-command-line-argument]]
+        ignore line: [ "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple x86_64-apple-macosx12.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -mframe-pointer=all -fno-strict-return -fno-rounding-math -funwind-tables=2 -target-sdk-version=13.1 -fvisibility-inlines-hidden-static-local-var -target-cpu penryn -tune-cpu generic -debugger-tuning=lldb -target-linker-version 820.1 -v -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0 -dependency-file CMakeFiles/cmTC_deb6e.dir/CMakeCCompilerABI.c.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_deb6e.dir/CMakeCCompilerABI.c.o -sys-header-deps -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -I/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include -internal-externc-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Library/Developer/CommandLineTools/usr/include -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -Wno-cast-function-type -Wno-bitwise-instead-of-logical -fdebug-compilation-dir=/Users/kthlke/Documents/GitHub/Discord-AIBot/build/CMakeFiles/CMakeScratch/TryCompile-aClBsu -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fmax-type-align=16 -fcommon -clang-vendor-feature=+messageToSelfInClassMethodIdReturnType -clang-vendor-feature=+disableInferNewAvailabilityFromInit -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -mllvm -disable-aligned-alloc-awareness=1 -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_deb6e.dir/CMakeCCompilerABI.c.o -x c /usr/local/share/cmake/Modules/CMakeCCompilerABI.c]
+        ignore line: [clang -cc1 version 14.0.0 (clang-1400.0.29.202) default target x86_64-apple-darwin21.6.0]
+        ignore line: [ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include"]
+        ignore line: [ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/Library/Frameworks"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /usr/local/include]
+        ignore line: [ /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include]
+        ignore line: [ /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include]
+        ignore line: [ /Library/Developer/CommandLineTools/usr/include]
+        ignore line: [ /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks (framework directory)]
+        ignore line: [End of search list.]
+        ignore line: [Linking C executable cmTC_deb6e]
+        ignore line: [/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_deb6e.dir/link.txt --verbose=1]
+        ignore line: [Apple clang version 14.0.0 (clang-1400.0.29.202)]
+        ignore line: [Target: x86_64-apple-darwin21.6.0]
+        ignore line: [Thread model: posix]
+        ignore line: [InstalledDir: /Library/Developer/CommandLineTools/usr/bin]
+        link line: [ "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -lto_library /Library/Developer/CommandLineTools/usr/lib/libLTO.dylib -dynamic -arch x86_64 -platform_version macos 12.0.0 13.1 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -o cmTC_deb6e -L/usr/local/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_deb6e.dir/CMakeCCompilerABI.c.o -lSystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/lib/darwin/libclang_rt.osx.a]
+          arg [/Library/Developer/CommandLineTools/usr/bin/ld] ==> ignore
+          arg [-demangle] ==> ignore
+          arg [-lto_library] ==> ignore, skip following value
+          arg [/Library/Developer/CommandLineTools/usr/lib/libLTO.dylib] ==> skip value of -lto_library
+          arg [-dynamic] ==> ignore
+          arg [-arch] ==> ignore
+          arg [x86_64] ==> ignore
+          arg [-platform_version] ==> ignore
+          arg [macos] ==> ignore
+          arg [12.0.0] ==> ignore
+          arg [13.1] ==> ignore
+          arg [-syslibroot] ==> ignore
+          arg [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk] ==> ignore
+          arg [-o] ==> ignore
+          arg [cmTC_deb6e] ==> ignore
+          arg [-L/usr/local/lib] ==> dir [/usr/local/lib]
+          arg [-search_paths_first] ==> ignore
+          arg [-headerpad_max_install_names] ==> ignore
+          arg [-v] ==> ignore
+          arg [CMakeFiles/cmTC_deb6e.dir/CMakeCCompilerABI.c.o] ==> ignore
+          arg [-lSystem] ==> lib [System]
+          arg [/Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/lib/darwin/libclang_rt.osx.a] ==> lib [/Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/lib/darwin/libclang_rt.osx.a]
+        linker tool for 'C': /Library/Developer/CommandLineTools/usr/bin/ld
+        Library search paths: [;/usr/local/lib;/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib]
+        Framework search paths: [;/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/]
+        remove lib [System]
+        remove lib [/Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/lib/darwin/libclang_rt.osx.a]
+        collapse library dir [/usr/local/lib] ==> [/usr/local/lib]
+        collapse library dir [/usr/local/lib] ==> [/usr/local/lib]
+        collapse library dir [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib] ==> [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib]
+        collapse framework dir [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/] ==> [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks]
+        implicit libs: []
+        implicit objs: []
+        implicit dirs: [/usr/local/lib;/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib]
+        implicit fwks: [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/Internal/CMakeDetermineLinkerId.cmake:38 (message)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:299 (cmake_determine_linker_id)"
+      - "/usr/local/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Running the C compiler's linker: "/Library/Developer/CommandLineTools/usr/bin/ld" "-v"
+      @(#)PROGRAM:ld  PROJECT:ld64-820.1
+      BUILD 20:07:01 Nov  7 2022
+      configured to support archs: armv6 armv7 armv7s arm64 arm64e arm64_32 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em
+      LTO support using: LLVM version 14.0.0, (clang-1400.0.29.202) (static support for 29, runtime is 29)
+      TAPI support using: Apple TAPI version 14.0.0 (tapi-1400.0.11)
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:83 (try_compile)"
+      - "/usr/local/share/cmake/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "/Users/kthlke/Documents/GitHub/Discord-AIBot/build/CMakeFiles/CMakeScratch/TryCompile-BT01Ko"
+      binary: "/Users/kthlke/Documents/GitHub/Discord-AIBot/build/CMakeFiles/CMakeScratch/TryCompile-BT01Ko"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_SCAN_FOR_MODULES: "OFF"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: ""
+      CMAKE_OSX_SYSROOT: ""
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/kthlke/Documents/GitHub/Discord-AIBot/build/CMakeFiles/CMakeScratch/TryCompile-BT01Ko'
+        
+        Run Build Command(s): /usr/local/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_bd449/fast
+        /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_bd449.dir/build.make CMakeFiles/cmTC_bd449.dir/build
+        Building CXX object CMakeFiles/cmTC_bd449.dir/CMakeCXXCompilerABI.cpp.o
+        /usr/bin/clang++   -v -Wl,-v -MD -MT CMakeFiles/cmTC_bd449.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_bd449.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_bd449.dir/CMakeCXXCompilerABI.cpp.o -c /usr/local/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+        Apple clang version 14.0.0 (clang-1400.0.29.202)
+        Target: x86_64-apple-darwin21.6.0
+        Thread model: posix
+        InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+        clang: warning: -Wl,-v: 'linker' input unused [-Wunused-command-line-argument]
+         "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple x86_64-apple-macosx12.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=all -fno-strict-return -fno-rounding-math -funwind-tables=2 -target-sdk-version=13.1 -fvisibility-inlines-hidden-static-local-var -target-cpu penryn -tune-cpu generic -debugger-tuning=lldb -target-linker-version 820.1 -v -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0 -dependency-file CMakeFiles/cmTC_bd449.dir/CMakeCXXCompilerABI.cpp.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_bd449.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -I/usr/local/include -stdlib=libc++ -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1 -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include -internal-externc-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Library/Developer/CommandLineTools/usr/include -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -Wno-cast-function-type -Wno-bitwise-instead-of-logical -fdeprecated-macro -fdebug-compilation-dir=/Users/kthlke/Documents/GitHub/Discord-AIBot/build/CMakeFiles/CMakeScratch/TryCompile-BT01Ko -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fno-cxx-modules -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+messageToSelfInClassMethodIdReturnType -clang-vendor-feature=+disableInferNewAvailabilityFromInit -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -mllvm -disable-aligned-alloc-awareness=1 -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_bd449.dir/CMakeCXXCompilerABI.cpp.o -x c++ /usr/local/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+        clang -cc1 version 14.0.0 (clang-1400.0.29.202) default target x86_64-apple-darwin21.6.0
+        ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include"
+        ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/Library/Frameworks"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /usr/local/include
+         /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1
+         /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include
+         /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include
+         /Library/Developer/CommandLineTools/usr/include
+         /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks (framework directory)
+        End of search list.
+        Linking CXX executable cmTC_bd449
+        /usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_bd449.dir/link.txt --verbose=1
+        Apple clang version 14.0.0 (clang-1400.0.29.202)
+        Target: x86_64-apple-darwin21.6.0
+        Thread model: posix
+        InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+         "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -lto_library /Library/Developer/CommandLineTools/usr/lib/libLTO.dylib -dynamic -arch x86_64 -platform_version macos 12.0.0 13.1 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -o cmTC_bd449 -L/usr/local/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_bd449.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/lib/darwin/libclang_rt.osx.a
+        @(#)PROGRAM:ld  PROJECT:ld64-820.1
+        BUILD 20:07:01 Nov  7 2022
+        configured to support archs: armv6 armv7 armv7s arm64 arm64e arm64_32 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em
+        Library search paths:
+        	/usr/local/lib
+        	/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib
+        Framework search paths:
+        	/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/
+        /usr/bin/clang++ -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_bd449.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_bd449
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:122 (message)"
+      - "/usr/local/share/cmake/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Effective list of requested architectures (possibly empty)  : ""
+      Effective list of architectures found in the ABI info binary: "x86_64"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:217 (message)"
+      - "/usr/local/share/cmake/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed CXX implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [/usr/local/include]
+          add: [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1]
+          add: [/Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include]
+          add: [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include]
+          add: [/Library/Developer/CommandLineTools/usr/include]
+        end of search list found
+        collapse include dir [/usr/local/include] ==> [/usr/local/include]
+        collapse include dir [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1] ==> [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1]
+        collapse include dir [/Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include] ==> [/Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include]
+        collapse include dir [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include] ==> [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include]
+        collapse include dir [/Library/Developer/CommandLineTools/usr/include] ==> [/Library/Developer/CommandLineTools/usr/include]
+        implicit include dirs: [/usr/local/include;/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1;/Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include;/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include;/Library/Developer/CommandLineTools/usr/include]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:253 (message)"
+      - "/usr/local/share/cmake/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed CXX implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|"|[0-9]+>[ 	-]*Build:[ 	0-9]+ ms[ 	]*)?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)))("|,| |$)]
+        ignore line: [Change Dir: '/Users/kthlke/Documents/GitHub/Discord-AIBot/build/CMakeFiles/CMakeScratch/TryCompile-BT01Ko']
+        ignore line: []
+        ignore line: [Run Build Command(s): /usr/local/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_bd449/fast]
+        ignore line: [/Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_bd449.dir/build.make CMakeFiles/cmTC_bd449.dir/build]
+        ignore line: [Building CXX object CMakeFiles/cmTC_bd449.dir/CMakeCXXCompilerABI.cpp.o]
+        ignore line: [/usr/bin/clang++   -v -Wl -v -MD -MT CMakeFiles/cmTC_bd449.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_bd449.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_bd449.dir/CMakeCXXCompilerABI.cpp.o -c /usr/local/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [Apple clang version 14.0.0 (clang-1400.0.29.202)]
+        ignore line: [Target: x86_64-apple-darwin21.6.0]
+        ignore line: [Thread model: posix]
+        ignore line: [InstalledDir: /Library/Developer/CommandLineTools/usr/bin]
+        ignore line: [clang: warning: -Wl -v: 'linker' input unused [-Wunused-command-line-argument]]
+        ignore line: [ "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple x86_64-apple-macosx12.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=all -fno-strict-return -fno-rounding-math -funwind-tables=2 -target-sdk-version=13.1 -fvisibility-inlines-hidden-static-local-var -target-cpu penryn -tune-cpu generic -debugger-tuning=lldb -target-linker-version 820.1 -v -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0 -dependency-file CMakeFiles/cmTC_bd449.dir/CMakeCXXCompilerABI.cpp.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_bd449.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -I/usr/local/include -stdlib=libc++ -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1 -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include -internal-externc-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Library/Developer/CommandLineTools/usr/include -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -Wno-cast-function-type -Wno-bitwise-instead-of-logical -fdeprecated-macro -fdebug-compilation-dir=/Users/kthlke/Documents/GitHub/Discord-AIBot/build/CMakeFiles/CMakeScratch/TryCompile-BT01Ko -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fno-cxx-modules -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+messageToSelfInClassMethodIdReturnType -clang-vendor-feature=+disableInferNewAvailabilityFromInit -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -mllvm -disable-aligned-alloc-awareness=1 -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_bd449.dir/CMakeCXXCompilerABI.cpp.o -x c++ /usr/local/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [clang -cc1 version 14.0.0 (clang-1400.0.29.202) default target x86_64-apple-darwin21.6.0]
+        ignore line: [ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include"]
+        ignore line: [ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/Library/Frameworks"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /usr/local/include]
+        ignore line: [ /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1]
+        ignore line: [ /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include]
+        ignore line: [ /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include]
+        ignore line: [ /Library/Developer/CommandLineTools/usr/include]
+        ignore line: [ /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks (framework directory)]
+        ignore line: [End of search list.]
+        ignore line: [Linking CXX executable cmTC_bd449]
+        ignore line: [/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_bd449.dir/link.txt --verbose=1]
+        ignore line: [Apple clang version 14.0.0 (clang-1400.0.29.202)]
+        ignore line: [Target: x86_64-apple-darwin21.6.0]
+        ignore line: [Thread model: posix]
+        ignore line: [InstalledDir: /Library/Developer/CommandLineTools/usr/bin]
+        link line: [ "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -lto_library /Library/Developer/CommandLineTools/usr/lib/libLTO.dylib -dynamic -arch x86_64 -platform_version macos 12.0.0 13.1 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -o cmTC_bd449 -L/usr/local/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_bd449.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/lib/darwin/libclang_rt.osx.a]
+          arg [/Library/Developer/CommandLineTools/usr/bin/ld] ==> ignore
+          arg [-demangle] ==> ignore
+          arg [-lto_library] ==> ignore, skip following value
+          arg [/Library/Developer/CommandLineTools/usr/lib/libLTO.dylib] ==> skip value of -lto_library
+          arg [-dynamic] ==> ignore
+          arg [-arch] ==> ignore
+          arg [x86_64] ==> ignore
+          arg [-platform_version] ==> ignore
+          arg [macos] ==> ignore
+          arg [12.0.0] ==> ignore
+          arg [13.1] ==> ignore
+          arg [-syslibroot] ==> ignore
+          arg [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk] ==> ignore
+          arg [-o] ==> ignore
+          arg [cmTC_bd449] ==> ignore
+          arg [-L/usr/local/lib] ==> dir [/usr/local/lib]
+          arg [-search_paths_first] ==> ignore
+          arg [-headerpad_max_install_names] ==> ignore
+          arg [-v] ==> ignore
+          arg [CMakeFiles/cmTC_bd449.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+          arg [-lc++] ==> lib [c++]
+          arg [-lSystem] ==> lib [System]
+          arg [/Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/lib/darwin/libclang_rt.osx.a] ==> lib [/Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/lib/darwin/libclang_rt.osx.a]
+        linker tool for 'CXX': /Library/Developer/CommandLineTools/usr/bin/ld
+        Library search paths: [;/usr/local/lib;/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib]
+        Framework search paths: [;/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/]
+        remove lib [System]
+        remove lib [/Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/lib/darwin/libclang_rt.osx.a]
+        collapse library dir [/usr/local/lib] ==> [/usr/local/lib]
+        collapse library dir [/usr/local/lib] ==> [/usr/local/lib]
+        collapse library dir [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib] ==> [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib]
+        collapse framework dir [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/] ==> [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks]
+        implicit libs: [c++]
+        implicit objs: []
+        implicit dirs: [/usr/local/lib;/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib]
+        implicit fwks: [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/Internal/CMakeDetermineLinkerId.cmake:38 (message)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:299 (cmake_determine_linker_id)"
+      - "/usr/local/share/cmake/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Running the CXX compiler's linker: "/Library/Developer/CommandLineTools/usr/bin/ld" "-v"
+      @(#)PROGRAM:ld  PROJECT:ld64-820.1
+      BUILD 20:07:01 Nov  7 2022
+      configured to support archs: armv6 armv7 armv7s arm64 arm64e arm64_32 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em
+      LTO support using: LLVM version 14.0.0, (clang-1400.0.29.202) (static support for 29, runtime is 29)
+      TAPI support using: Apple TAPI version 14.0.0 (tapi-1400.0.11)
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/FindPython/Support.cmake:2144 (find_program)"
+      - "/usr/local/share/cmake/Modules/FindPython.cmake:721 (include)"
+      - "CMakeLists.txt:96 (find_package)"
+    mode: "program"
+    variable: "_Python_EXECUTABLE"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: false
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "python3.15mu"
+      - "python3.15m"
+      - "python3.15u"
+      - "python3.15"
+      - "python3.15dmu"
+      - "python3.15dm"
+      - "python3.15du"
+      - "python3.15d"
+      - "python3"
+      - "python"
+    candidate_directories:
+      - "/opt/anaconda3/bin/"
+      - "/opt/anaconda3/Scripts/"
+      - "/opt/anaconda3/"
+    searched_directories:
+      - "/opt/anaconda3/bin/python3.15mu"
+      - "/opt/anaconda3/bin/python3.15m"
+      - "/opt/anaconda3/bin/python3.15u"
+      - "/opt/anaconda3/bin/python3.15"
+      - "/opt/anaconda3/bin/python3.15dmu"
+      - "/opt/anaconda3/bin/python3.15dm"
+      - "/opt/anaconda3/bin/python3.15du"
+      - "/opt/anaconda3/bin/python3.15d"
+      - "/opt/anaconda3/bin/python3"
+      - "/opt/anaconda3/bin/python"
+      - "/opt/anaconda3/Scripts/python3.15mu"
+      - "/opt/anaconda3/Scripts/python3.15m"
+      - "/opt/anaconda3/Scripts/python3.15u"
+      - "/opt/anaconda3/Scripts/python3.15"
+      - "/opt/anaconda3/Scripts/python3.15dmu"
+      - "/opt/anaconda3/Scripts/python3.15dm"
+      - "/opt/anaconda3/Scripts/python3.15du"
+      - "/opt/anaconda3/Scripts/python3.15d"
+      - "/opt/anaconda3/Scripts/python3"
+      - "/opt/anaconda3/Scripts/python"
+      - "/opt/anaconda3/python3.15mu"
+      - "/opt/anaconda3/python3.15m"
+      - "/opt/anaconda3/python3.15u"
+      - "/opt/anaconda3/python3.15"
+      - "/opt/anaconda3/python3.15dmu"
+      - "/opt/anaconda3/python3.15dm"
+      - "/opt/anaconda3/python3.15du"
+      - "/opt/anaconda3/python3.15d"
+      - "/opt/anaconda3/python3"
+      - "/opt/anaconda3/python"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "/opt/anaconda3/bin"
+        - "/opt/anaconda3/condabin"
+        - "/usr/local/bin"
+        - "/usr/local/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/usr/local/go/bin"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr"
+        - "/usr/local"
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/usr/local"
+        - "/usr/local"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+        - "/sw"
+        - "/opt/local"
+      CMAKE_SYSTEM_APPBUNDLE_PATH:
+        - "/Applications"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/FindPython/Support.cmake:2165 (find_program)"
+      - "/usr/local/share/cmake/Modules/FindPython.cmake:721 (include)"
+      - "CMakeLists.txt:96 (find_package)"
+    mode: "program"
+    variable: "_Python_EXECUTABLE"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: false
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "python3.14mu"
+      - "python3.14m"
+      - "python3.14u"
+      - "python3.14"
+      - "python3.14dmu"
+      - "python3.14dm"
+      - "python3.14du"
+      - "python3.14d"
+      - "python3"
+      - "python"
+    candidate_directories:
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/Scripts/"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/"
+    searched_directories:
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3.14mu"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3.14m"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3.14u"
+    found: "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3.14"
+    search_context:
+      ENV{PATH}:
+        - "/opt/anaconda3/bin"
+        - "/opt/anaconda3/condabin"
+        - "/usr/local/bin"
+        - "/usr/local/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/usr/local/go/bin"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr"
+        - "/usr/local"
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/usr/local"
+        - "/usr/local"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+        - "/sw"
+        - "/opt/local"
+      CMAKE_SYSTEM_APPBUNDLE_PATH:
+        - "/Applications"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/FindPython/Support.cmake:3201 (find_library)"
+      - "/usr/local/share/cmake/Modules/FindPython.cmake:721 (include)"
+      - "CMakeLists.txt:96 (find_package)"
+    mode: "library"
+    variable: "_Python_LIBRARY_RELEASE"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: false
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "python314"
+      - "python3.14"
+    candidate_directories:
+      - "/Library/Frameworks/Python.framework/Versions/3.14/lib/"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/config-3.14-darwin/"
+    searched_directories:
+      - "/Library/Frameworks/Python.framework/Versions/3.14/lib/"
+    found: "/Library/Frameworks/Python.framework/Versions/3.14/lib/libpython3.14.dylib"
+    search_context:
+      ENV{PATH}:
+        - "/opt/anaconda3/bin"
+        - "/opt/anaconda3/condabin"
+        - "/usr/local/bin"
+        - "/usr/local/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/usr/local/go/bin"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr"
+        - "/usr/local"
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/usr/local"
+        - "/usr/local"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+        - "/sw"
+        - "/opt/local"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+      CMAKE_SYSTEM_FRAMEWORK_PATH:
+        - "~/Library/Frameworks"
+        - "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/Library/Frameworks"
+        - "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/Network/Library/Frameworks"
+        - "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks"
+        - "/Library/Developer/CommandLineTools/Library/Frameworks"
+        - "/Library/Developer/CommandLineTools/Library/Frameworks"
+        - "/Library/Frameworks"
+        - "/Network/Library/Frameworks"
+        - "/System/Library/Frameworks"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/FindPython/Support.cmake:3716 (find_path)"
+      - "/usr/local/share/cmake/Modules/FindPython.cmake:721 (include)"
+      - "CMakeLists.txt:96 (find_package)"
+    mode: "path"
+    variable: "_Python_INCLUDE_DIR"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: false
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "Python.h"
+    candidate_directories:
+      - "/Library/Frameworks/Python.framework/Versions/3.14/include/python3.14/"
+    found: "/Library/Frameworks/Python.framework/Versions/3.14/include/python3.14/"
+    search_context:
+      ENV{PATH}:
+        - "/opt/anaconda3/bin"
+        - "/opt/anaconda3/condabin"
+        - "/usr/local/bin"
+        - "/usr/local/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/usr/local/go/bin"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr"
+        - "/usr/local"
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/usr/local"
+        - "/usr/local"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+        - "/sw"
+        - "/opt/local"
+      CMAKE_SYSTEM_INCLUDE_PATH:
+        - "/usr/include/X11"
+      CMAKE_SYSTEM_FRAMEWORK_PATH:
+        - "~/Library/Frameworks"
+        - "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/Library/Frameworks"
+        - "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/Network/Library/Frameworks"
+        - "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks"
+        - "/Library/Developer/CommandLineTools/Library/Frameworks"
+        - "/Library/Developer/CommandLineTools/Library/Frameworks"
+        - "/Library/Frameworks"
+        - "/Network/Library/Frameworks"
+        - "/System/Library/Frameworks"
+...
+
+---
+events:
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeDetermineSystem.cmake:12 (find_program)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_UNAME"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "uname"
+    candidate_directories:
+      - "/opt/anaconda3/bin/"
+      - "/opt/anaconda3/condabin/"
+      - "/usr/local/bin/"
+      - "/usr/local/sbin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.12/bin/"
+      - "/usr/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/usr/local/go/bin/"
+      - "/usr/local/share/dotnet/"
+      - "/Users/kthlke/.dotnet/tools/"
+    searched_directories:
+      - "/opt/anaconda3/bin/uname"
+      - "/opt/anaconda3/condabin/uname"
+      - "/usr/local/bin/uname"
+      - "/usr/local/sbin/uname"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/uname"
+      - "/Library/Frameworks/Python.framework/Versions/3.12/bin/uname"
+    found: "/usr/bin/uname"
+    search_context:
+      ENV{PATH}:
+        - "/opt/anaconda3/bin"
+        - "/opt/anaconda3/condabin"
+        - "/usr/local/bin"
+        - "/usr/local/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/usr/local/go/bin"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeDetermineSystem.cmake:212 (message)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      The system is: Darwin - 21.6.0 - x86_64
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeNinjaFindMake.cmake:5 (find_program)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_MAKE_PROGRAM"
+    description: "Program used to build from build.ninja files."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "ninja-build"
+      - "ninja"
+      - "samu"
+    candidate_directories:
+      - "/opt/anaconda3/bin/"
+      - "/opt/anaconda3/condabin/"
+      - "/usr/local/bin/"
+      - "/usr/local/sbin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.12/bin/"
+      - "/usr/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/usr/local/go/bin/"
+      - "/usr/local/share/dotnet/"
+      - "/Users/kthlke/.dotnet/tools/"
+    searched_directories:
+      - "/opt/anaconda3/bin/ninja-build"
+      - "/opt/anaconda3/bin/ninja"
+      - "/opt/anaconda3/bin/samu"
+      - "/opt/anaconda3/condabin/ninja-build"
+      - "/opt/anaconda3/condabin/ninja"
+      - "/opt/anaconda3/condabin/samu"
+      - "/usr/local/bin/ninja-build"
+    found: "/usr/local/bin/ninja"
+    search_context:
+      ENV{PATH}:
+        - "/opt/anaconda3/bin"
+        - "/opt/anaconda3/condabin"
+        - "/usr/local/bin"
+        - "/usr/local/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/usr/local/go/bin"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCompilerId.cmake:462 (find_file)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCompilerId.cmake:500 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCCompilerId.c.in"
+    candidate_directories:
+      - "/usr/local/share/cmake/Modules/"
+    found: "/usr/local/share/cmake/Modules/CMakeCCompilerId.c.in"
+    search_context:
+      ENV{PATH}:
+        - "/opt/anaconda3/bin"
+        - "/opt/anaconda3/condabin"
+        - "/usr/local/bin"
+        - "/usr/local/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/usr/local/go/bin"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: /usr/bin/clang 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+      
+      The C compiler identification is AppleClang, found in:
+        /Users/kthlke/Documents/GitHub/Discord-AIBot/build/CMakeFiles/4.2.0/CompilerIdC/a.out
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCompilerId.cmake:290 (message)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Detecting C compiler apple sysroot: "/usr/bin/clang" "-E" "apple-sdk.c"
+        # 1 "apple-sdk.c"
+        # 1 "<built-in>" 1
+        # 1 "<built-in>" 3
+        # 370 "<built-in>" 3
+        # 1 "<command line>" 1
+        # 1 "<built-in>" 2
+        # 1 "apple-sdk.c" 2
+        # 1 "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/AvailabilityMacros.h" 1 3 4
+        # 242 "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/AvailabilityMacros.h" 3 4
+        # 1 "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/Availability.h" 1 3 4
+        # 165 "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/Availability.h" 3 4
+        # 1 "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/AvailabilityVersions.h" 1 3 4
+        # 166 "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/Availability.h" 2 3 4
+        # 1 "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/AvailabilityInternal.h" 1 3 4
+        # 167 "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/Availability.h" 2 3 4
+        # 243 "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/AvailabilityMacros.h" 2 3 4
+        # 2 "apple-sdk.c" 2
+        
+        
+      Found apple sysroot: /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_AR"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "ar"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/opt/anaconda3/bin/"
+      - "/opt/anaconda3/condabin/"
+      - "/usr/local/bin/"
+      - "/usr/local/sbin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.12/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/usr/local/go/bin/"
+      - "/usr/local/share/dotnet/"
+      - "/Users/kthlke/.dotnet/tools/"
+    found: "/usr/bin/ar"
+    search_context:
+      ENV{PATH}:
+        - "/opt/anaconda3/bin"
+        - "/opt/anaconda3/condabin"
+        - "/usr/local/bin"
+        - "/usr/local/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/usr/local/go/bin"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_RANLIB"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "ranlib"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/opt/anaconda3/bin/"
+      - "/opt/anaconda3/condabin/"
+      - "/usr/local/bin/"
+      - "/usr/local/sbin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.12/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/usr/local/go/bin/"
+      - "/usr/local/share/dotnet/"
+      - "/Users/kthlke/.dotnet/tools/"
+    found: "/usr/bin/ranlib"
+    search_context:
+      ENV{PATH}:
+        - "/opt/anaconda3/bin"
+        - "/opt/anaconda3/condabin"
+        - "/usr/local/bin"
+        - "/usr/local/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/usr/local/go/bin"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_STRIP"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "strip"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/opt/anaconda3/bin/"
+      - "/opt/anaconda3/condabin/"
+      - "/usr/local/bin/"
+      - "/usr/local/sbin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.12/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/usr/local/go/bin/"
+      - "/usr/local/share/dotnet/"
+      - "/Users/kthlke/.dotnet/tools/"
+    found: "/usr/bin/strip"
+    search_context:
+      ENV{PATH}:
+        - "/opt/anaconda3/bin"
+        - "/opt/anaconda3/condabin"
+        - "/usr/local/bin"
+        - "/usr/local/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/usr/local/go/bin"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_LINKER"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "ld"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/opt/anaconda3/bin/"
+      - "/opt/anaconda3/condabin/"
+      - "/usr/local/bin/"
+      - "/usr/local/sbin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.12/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/usr/local/go/bin/"
+      - "/usr/local/share/dotnet/"
+      - "/Users/kthlke/.dotnet/tools/"
+    found: "/usr/bin/ld"
+    search_context:
+      ENV{PATH}:
+        - "/opt/anaconda3/bin"
+        - "/opt/anaconda3/condabin"
+        - "/usr/local/bin"
+        - "/usr/local/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/usr/local/go/bin"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_NM"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "nm"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/opt/anaconda3/bin/"
+      - "/opt/anaconda3/condabin/"
+      - "/usr/local/bin/"
+      - "/usr/local/sbin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.12/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/usr/local/go/bin/"
+      - "/usr/local/share/dotnet/"
+      - "/Users/kthlke/.dotnet/tools/"
+    found: "/usr/bin/nm"
+    search_context:
+      ENV{PATH}:
+        - "/opt/anaconda3/bin"
+        - "/opt/anaconda3/condabin"
+        - "/usr/local/bin"
+        - "/usr/local/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/usr/local/go/bin"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_OBJDUMP"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "objdump"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/opt/anaconda3/bin/"
+      - "/opt/anaconda3/condabin/"
+      - "/usr/local/bin/"
+      - "/usr/local/sbin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.12/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/usr/local/go/bin/"
+      - "/usr/local/share/dotnet/"
+      - "/Users/kthlke/.dotnet/tools/"
+    found: "/usr/bin/objdump"
+    search_context:
+      ENV{PATH}:
+        - "/opt/anaconda3/bin"
+        - "/opt/anaconda3/condabin"
+        - "/usr/local/bin"
+        - "/usr/local/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/usr/local/go/bin"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_OBJCOPY"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "objcopy"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/opt/anaconda3/bin/"
+      - "/opt/anaconda3/condabin/"
+      - "/usr/local/bin/"
+      - "/usr/local/sbin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.12/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/usr/local/go/bin/"
+      - "/usr/local/share/dotnet/"
+      - "/Users/kthlke/.dotnet/tools/"
+    searched_directories:
+      - "/usr/bin/objcopy"
+      - "/opt/anaconda3/bin/objcopy"
+      - "/opt/anaconda3/condabin/objcopy"
+      - "/usr/local/bin/objcopy"
+      - "/usr/local/sbin/objcopy"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/objcopy"
+      - "/Library/Frameworks/Python.framework/Versions/3.12/bin/objcopy"
+      - "/bin/objcopy"
+      - "/usr/sbin/objcopy"
+      - "/sbin/objcopy"
+      - "/usr/local/go/bin/objcopy"
+      - "/usr/local/share/dotnet/objcopy"
+      - "/Users/kthlke/.dotnet/tools/objcopy"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "/opt/anaconda3/bin"
+        - "/opt/anaconda3/condabin"
+        - "/usr/local/bin"
+        - "/usr/local/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/usr/local/go/bin"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_READELF"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "readelf"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/opt/anaconda3/bin/"
+      - "/opt/anaconda3/condabin/"
+      - "/usr/local/bin/"
+      - "/usr/local/sbin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.12/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/usr/local/go/bin/"
+      - "/usr/local/share/dotnet/"
+      - "/Users/kthlke/.dotnet/tools/"
+    searched_directories:
+      - "/usr/bin/readelf"
+      - "/opt/anaconda3/bin/readelf"
+      - "/opt/anaconda3/condabin/readelf"
+      - "/usr/local/bin/readelf"
+      - "/usr/local/sbin/readelf"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/readelf"
+      - "/Library/Frameworks/Python.framework/Versions/3.12/bin/readelf"
+      - "/bin/readelf"
+      - "/usr/sbin/readelf"
+      - "/sbin/readelf"
+      - "/usr/local/go/bin/readelf"
+      - "/usr/local/share/dotnet/readelf"
+      - "/Users/kthlke/.dotnet/tools/readelf"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "/opt/anaconda3/bin"
+        - "/opt/anaconda3/condabin"
+        - "/usr/local/bin"
+        - "/usr/local/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/usr/local/go/bin"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_DLLTOOL"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "dlltool"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/opt/anaconda3/bin/"
+      - "/opt/anaconda3/condabin/"
+      - "/usr/local/bin/"
+      - "/usr/local/sbin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.12/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/usr/local/go/bin/"
+      - "/usr/local/share/dotnet/"
+      - "/Users/kthlke/.dotnet/tools/"
+    searched_directories:
+      - "/usr/bin/dlltool"
+      - "/opt/anaconda3/bin/dlltool"
+      - "/opt/anaconda3/condabin/dlltool"
+      - "/usr/local/bin/dlltool"
+      - "/usr/local/sbin/dlltool"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/dlltool"
+      - "/Library/Frameworks/Python.framework/Versions/3.12/bin/dlltool"
+      - "/bin/dlltool"
+      - "/usr/sbin/dlltool"
+      - "/sbin/dlltool"
+      - "/usr/local/go/bin/dlltool"
+      - "/usr/local/share/dotnet/dlltool"
+      - "/Users/kthlke/.dotnet/tools/dlltool"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "/opt/anaconda3/bin"
+        - "/opt/anaconda3/condabin"
+        - "/usr/local/bin"
+        - "/usr/local/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/usr/local/go/bin"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_ADDR2LINE"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "addr2line"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/opt/anaconda3/bin/"
+      - "/opt/anaconda3/condabin/"
+      - "/usr/local/bin/"
+      - "/usr/local/sbin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.12/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/usr/local/go/bin/"
+      - "/usr/local/share/dotnet/"
+      - "/Users/kthlke/.dotnet/tools/"
+    searched_directories:
+      - "/usr/bin/addr2line"
+      - "/opt/anaconda3/bin/addr2line"
+      - "/opt/anaconda3/condabin/addr2line"
+      - "/usr/local/bin/addr2line"
+      - "/usr/local/sbin/addr2line"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/addr2line"
+      - "/Library/Frameworks/Python.framework/Versions/3.12/bin/addr2line"
+      - "/bin/addr2line"
+      - "/usr/sbin/addr2line"
+      - "/sbin/addr2line"
+      - "/usr/local/go/bin/addr2line"
+      - "/usr/local/share/dotnet/addr2line"
+      - "/Users/kthlke/.dotnet/tools/addr2line"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "/opt/anaconda3/bin"
+        - "/opt/anaconda3/condabin"
+        - "/usr/local/bin"
+        - "/usr/local/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/usr/local/go/bin"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_TAPI"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "tapi"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/opt/anaconda3/bin/"
+      - "/opt/anaconda3/condabin/"
+      - "/usr/local/bin/"
+      - "/usr/local/sbin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.12/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/usr/local/go/bin/"
+      - "/usr/local/share/dotnet/"
+      - "/Users/kthlke/.dotnet/tools/"
+    searched_directories:
+      - "/usr/bin/tapi"
+    found: "/opt/anaconda3/bin/tapi"
+    search_context:
+      ENV{PATH}:
+        - "/opt/anaconda3/bin"
+        - "/opt/anaconda3/condabin"
+        - "/usr/local/bin"
+        - "/usr/local/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/usr/local/go/bin"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCompilerId.cmake:462 (find_file)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCompilerId.cmake:500 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCXXCompilerId.cpp.in"
+    candidate_directories:
+      - "/usr/local/share/cmake/Modules/"
+    found: "/usr/local/share/cmake/Modules/CMakeCXXCompilerId.cpp.in"
+    search_context:
+      ENV{PATH}:
+        - "/opt/anaconda3/bin"
+        - "/opt/anaconda3/condabin"
+        - "/usr/local/bin"
+        - "/usr/local/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/usr/local/go/bin"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: /usr/bin/clang++ 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+      
+      The CXX compiler identification is AppleClang, found in:
+        /Users/kthlke/Documents/GitHub/Discord-AIBot/build/CMakeFiles/4.2.0/CompilerIdCXX/a.out
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCompilerId.cmake:290 (message)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Detecting CXX compiler apple sysroot: "/usr/bin/clang++" "-E" "apple-sdk.cpp"
+        # 1 "apple-sdk.cpp"
+        # 1 "<built-in>" 1
+        # 1 "<built-in>" 3
+        # 384 "<built-in>" 3
+        # 1 "<command line>" 1
+        # 1 "<built-in>" 2
+        # 1 "apple-sdk.cpp" 2
+        # 1 "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/AvailabilityMacros.h" 1 3 4
+        # 242 "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/AvailabilityMacros.h" 3 4
+        # 1 "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/Availability.h" 1 3 4
+        # 165 "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/Availability.h" 3 4
+        # 1 "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/AvailabilityVersions.h" 1 3 4
+        # 166 "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/Availability.h" 2 3 4
+        # 1 "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/AvailabilityInternal.h" 1 3 4
+        # 167 "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/Availability.h" 2 3 4
+        # 243 "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/AvailabilityMacros.h" 2 3 4
+        # 2 "apple-sdk.cpp" 2
+        
+        
+      Found apple sysroot: /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/Platform/Darwin.cmake:76 (find_program)"
+      - "/usr/local/share/cmake/Modules/CMakeSystemSpecificInformation.cmake:32 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_INSTALL_NAME_TOOL"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "install_name_tool"
+    candidate_directories:
+      - "/opt/anaconda3/bin/"
+      - "/opt/anaconda3/condabin/"
+      - "/usr/local/bin/"
+      - "/usr/local/sbin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.12/bin/"
+      - "/usr/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/usr/local/go/bin/"
+      - "/usr/local/share/dotnet/"
+      - "/Users/kthlke/.dotnet/tools/"
+    found: "/opt/anaconda3/bin/install_name_tool"
+    search_context:
+      ENV{PATH}:
+        - "/opt/anaconda3/bin"
+        - "/opt/anaconda3/condabin"
+        - "/usr/local/bin"
+        - "/usr/local/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/usr/local/go/bin"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:83 (try_compile)"
+      - "/usr/local/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "/Users/kthlke/Documents/GitHub/Discord-AIBot/build/CMakeFiles/CMakeScratch/TryCompile-MghtXb"
+      binary: "/Users/kthlke/Documents/GitHub/Discord-AIBot/build/CMakeFiles/CMakeScratch/TryCompile-MghtXb"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: ""
+      CMAKE_OSX_SYSROOT: ""
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/kthlke/Documents/GitHub/Discord-AIBot/build/CMakeFiles/CMakeScratch/TryCompile-MghtXb'
+        
+        Run Build Command(s): /usr/local/bin/ninja -v cmTC_6a152
+        [1/2] /usr/bin/clang   -v -Wl,-v -MD -MT CMakeFiles/cmTC_6a152.dir/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_6a152.dir/CMakeCCompilerABI.c.o.d -o CMakeFiles/cmTC_6a152.dir/CMakeCCompilerABI.c.o -c /usr/local/share/cmake/Modules/CMakeCCompilerABI.c
+        Apple clang version 14.0.0 (clang-1400.0.29.202)
+        Target: x86_64-apple-darwin21.6.0
+        Thread model: posix
+        InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+        clang: warning: -Wl,-v: 'linker' input unused [-Wunused-command-line-argument]
+         "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple x86_64-apple-macosx12.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -mframe-pointer=all -fno-strict-return -fno-rounding-math -funwind-tables=2 -target-sdk-version=13.1 -fvisibility-inlines-hidden-static-local-var -target-cpu penryn -tune-cpu generic -debugger-tuning=lldb -target-linker-version 820.1 -v -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0 -dependency-file CMakeFiles/cmTC_6a152.dir/CMakeCCompilerABI.c.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_6a152.dir/CMakeCCompilerABI.c.o -sys-header-deps -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -I/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include -internal-externc-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Library/Developer/CommandLineTools/usr/include -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -Wno-cast-function-type -Wno-bitwise-instead-of-logical -fdebug-compilation-dir=/Users/kthlke/Documents/GitHub/Discord-AIBot/build/CMakeFiles/CMakeScratch/TryCompile-MghtXb -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fmax-type-align=16 -fcommon -clang-vendor-feature=+messageToSelfInClassMethodIdReturnType -clang-vendor-feature=+disableInferNewAvailabilityFromInit -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -mllvm -disable-aligned-alloc-awareness=1 -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_6a152.dir/CMakeCCompilerABI.c.o -x c /usr/local/share/cmake/Modules/CMakeCCompilerABI.c
+        clang -cc1 version 14.0.0 (clang-1400.0.29.202) default target x86_64-apple-darwin21.6.0
+        ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include"
+        ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/Library/Frameworks"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /usr/local/include
+         /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include
+         /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include
+         /Library/Developer/CommandLineTools/usr/include
+         /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks (framework directory)
+        End of search list.
+        [2/2] : && /usr/bin/clang  -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_6a152.dir/CMakeCCompilerABI.c.o -o cmTC_6a152   && :
+        Apple clang version 14.0.0 (clang-1400.0.29.202)
+        Target: x86_64-apple-darwin21.6.0
+        Thread model: posix
+        InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+         "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -lto_library /Library/Developer/CommandLineTools/usr/lib/libLTO.dylib -dynamic -arch x86_64 -platform_version macos 12.0.0 13.1 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -o cmTC_6a152 -L/usr/local/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_6a152.dir/CMakeCCompilerABI.c.o -lSystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/lib/darwin/libclang_rt.osx.a
+        @(#)PROGRAM:ld  PROJECT:ld64-820.1
+        BUILD 20:07:01 Nov  7 2022
+        configured to support archs: armv6 armv7 armv7s arm64 arm64e arm64_32 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em
+        Library search paths:
+        	/usr/local/lib
+        	/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib
+        Framework search paths:
+        	/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:122 (message)"
+      - "/usr/local/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Effective list of requested architectures (possibly empty)  : ""
+      Effective list of architectures found in the ABI info binary: "x86_64"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:217 (message)"
+      - "/usr/local/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed C implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [/usr/local/include]
+          add: [/Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include]
+          add: [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include]
+          add: [/Library/Developer/CommandLineTools/usr/include]
+        end of search list found
+        collapse include dir [/usr/local/include] ==> [/usr/local/include]
+        collapse include dir [/Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include] ==> [/Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include]
+        collapse include dir [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include] ==> [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include]
+        collapse include dir [/Library/Developer/CommandLineTools/usr/include] ==> [/Library/Developer/CommandLineTools/usr/include]
+        implicit include dirs: [/usr/local/include;/Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include;/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include;/Library/Developer/CommandLineTools/usr/include]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:253 (message)"
+      - "/usr/local/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed C implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|"|[0-9]+>[ 	-]*Build:[ 	0-9]+ ms[ 	]*)?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)))("|,| |$)]
+        ignore line: [Change Dir: '/Users/kthlke/Documents/GitHub/Discord-AIBot/build/CMakeFiles/CMakeScratch/TryCompile-MghtXb']
+        ignore line: []
+        ignore line: [Run Build Command(s): /usr/local/bin/ninja -v cmTC_6a152]
+        ignore line: [[1/2] /usr/bin/clang   -v -Wl -v -MD -MT CMakeFiles/cmTC_6a152.dir/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_6a152.dir/CMakeCCompilerABI.c.o.d -o CMakeFiles/cmTC_6a152.dir/CMakeCCompilerABI.c.o -c /usr/local/share/cmake/Modules/CMakeCCompilerABI.c]
+        ignore line: [Apple clang version 14.0.0 (clang-1400.0.29.202)]
+        ignore line: [Target: x86_64-apple-darwin21.6.0]
+        ignore line: [Thread model: posix]
+        ignore line: [InstalledDir: /Library/Developer/CommandLineTools/usr/bin]
+        ignore line: [clang: warning: -Wl -v: 'linker' input unused [-Wunused-command-line-argument]]
+        ignore line: [ "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple x86_64-apple-macosx12.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -mframe-pointer=all -fno-strict-return -fno-rounding-math -funwind-tables=2 -target-sdk-version=13.1 -fvisibility-inlines-hidden-static-local-var -target-cpu penryn -tune-cpu generic -debugger-tuning=lldb -target-linker-version 820.1 -v -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0 -dependency-file CMakeFiles/cmTC_6a152.dir/CMakeCCompilerABI.c.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_6a152.dir/CMakeCCompilerABI.c.o -sys-header-deps -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -I/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include -internal-externc-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Library/Developer/CommandLineTools/usr/include -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -Wno-cast-function-type -Wno-bitwise-instead-of-logical -fdebug-compilation-dir=/Users/kthlke/Documents/GitHub/Discord-AIBot/build/CMakeFiles/CMakeScratch/TryCompile-MghtXb -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fmax-type-align=16 -fcommon -clang-vendor-feature=+messageToSelfInClassMethodIdReturnType -clang-vendor-feature=+disableInferNewAvailabilityFromInit -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -mllvm -disable-aligned-alloc-awareness=1 -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_6a152.dir/CMakeCCompilerABI.c.o -x c /usr/local/share/cmake/Modules/CMakeCCompilerABI.c]
+        ignore line: [clang -cc1 version 14.0.0 (clang-1400.0.29.202) default target x86_64-apple-darwin21.6.0]
+        ignore line: [ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include"]
+        ignore line: [ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/Library/Frameworks"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /usr/local/include]
+        ignore line: [ /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include]
+        ignore line: [ /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include]
+        ignore line: [ /Library/Developer/CommandLineTools/usr/include]
+        ignore line: [ /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks (framework directory)]
+        ignore line: [End of search list.]
+        ignore line: [[2/2] : && /usr/bin/clang  -Wl -search_paths_first -Wl -headerpad_max_install_names  -v -Wl -v CMakeFiles/cmTC_6a152.dir/CMakeCCompilerABI.c.o -o cmTC_6a152   && :]
+        ignore line: [Apple clang version 14.0.0 (clang-1400.0.29.202)]
+        ignore line: [Target: x86_64-apple-darwin21.6.0]
+        ignore line: [Thread model: posix]
+        ignore line: [InstalledDir: /Library/Developer/CommandLineTools/usr/bin]
+        link line: [ "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -lto_library /Library/Developer/CommandLineTools/usr/lib/libLTO.dylib -dynamic -arch x86_64 -platform_version macos 12.0.0 13.1 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -o cmTC_6a152 -L/usr/local/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_6a152.dir/CMakeCCompilerABI.c.o -lSystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/lib/darwin/libclang_rt.osx.a]
+          arg [/Library/Developer/CommandLineTools/usr/bin/ld] ==> ignore
+          arg [-demangle] ==> ignore
+          arg [-lto_library] ==> ignore, skip following value
+          arg [/Library/Developer/CommandLineTools/usr/lib/libLTO.dylib] ==> skip value of -lto_library
+          arg [-dynamic] ==> ignore
+          arg [-arch] ==> ignore
+          arg [x86_64] ==> ignore
+          arg [-platform_version] ==> ignore
+          arg [macos] ==> ignore
+          arg [12.0.0] ==> ignore
+          arg [13.1] ==> ignore
+          arg [-syslibroot] ==> ignore
+          arg [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk] ==> ignore
+          arg [-o] ==> ignore
+          arg [cmTC_6a152] ==> ignore
+          arg [-L/usr/local/lib] ==> dir [/usr/local/lib]
+          arg [-search_paths_first] ==> ignore
+          arg [-headerpad_max_install_names] ==> ignore
+          arg [-v] ==> ignore
+          arg [CMakeFiles/cmTC_6a152.dir/CMakeCCompilerABI.c.o] ==> ignore
+          arg [-lSystem] ==> lib [System]
+          arg [/Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/lib/darwin/libclang_rt.osx.a] ==> lib [/Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/lib/darwin/libclang_rt.osx.a]
+        linker tool for 'C': /Library/Developer/CommandLineTools/usr/bin/ld
+        Library search paths: [;/usr/local/lib;/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib]
+        Framework search paths: [;/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/]
+        remove lib [System]
+        remove lib [/Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/lib/darwin/libclang_rt.osx.a]
+        collapse library dir [/usr/local/lib] ==> [/usr/local/lib]
+        collapse library dir [/usr/local/lib] ==> [/usr/local/lib]
+        collapse library dir [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib] ==> [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib]
+        collapse framework dir [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/] ==> [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks]
+        implicit libs: []
+        implicit objs: []
+        implicit dirs: [/usr/local/lib;/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib]
+        implicit fwks: [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/Internal/CMakeDetermineLinkerId.cmake:38 (message)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:299 (cmake_determine_linker_id)"
+      - "/usr/local/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Running the C compiler's linker: "/Library/Developer/CommandLineTools/usr/bin/ld" "-v"
+      @(#)PROGRAM:ld  PROJECT:ld64-820.1
+      BUILD 20:07:01 Nov  7 2022
+      configured to support archs: armv6 armv7 armv7s arm64 arm64e arm64_32 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em
+      LTO support using: LLVM version 14.0.0, (clang-1400.0.29.202) (static support for 29, runtime is 29)
+      TAPI support using: Apple TAPI version 14.0.0 (tapi-1400.0.11)
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:83 (try_compile)"
+      - "/usr/local/share/cmake/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "/Users/kthlke/Documents/GitHub/Discord-AIBot/build/CMakeFiles/CMakeScratch/TryCompile-wGO18s"
+      binary: "/Users/kthlke/Documents/GitHub/Discord-AIBot/build/CMakeFiles/CMakeScratch/TryCompile-wGO18s"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_SCAN_FOR_MODULES: "OFF"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: ""
+      CMAKE_OSX_SYSROOT: ""
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/kthlke/Documents/GitHub/Discord-AIBot/build/CMakeFiles/CMakeScratch/TryCompile-wGO18s'
+        
+        Run Build Command(s): /usr/local/bin/ninja -v cmTC_93527
+        [1/2] /usr/bin/clang++   -v -Wl,-v -MD -MT CMakeFiles/cmTC_93527.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_93527.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_93527.dir/CMakeCXXCompilerABI.cpp.o -c /usr/local/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+        Apple clang version 14.0.0 (clang-1400.0.29.202)
+        Target: x86_64-apple-darwin21.6.0
+        Thread model: posix
+        InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+        clang: warning: -Wl,-v: 'linker' input unused [-Wunused-command-line-argument]
+         "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple x86_64-apple-macosx12.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=all -fno-strict-return -fno-rounding-math -funwind-tables=2 -target-sdk-version=13.1 -fvisibility-inlines-hidden-static-local-var -target-cpu penryn -tune-cpu generic -debugger-tuning=lldb -target-linker-version 820.1 -v -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0 -dependency-file CMakeFiles/cmTC_93527.dir/CMakeCXXCompilerABI.cpp.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_93527.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -I/usr/local/include -stdlib=libc++ -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1 -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include -internal-externc-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Library/Developer/CommandLineTools/usr/include -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -Wno-cast-function-type -Wno-bitwise-instead-of-logical -fdeprecated-macro -fdebug-compilation-dir=/Users/kthlke/Documents/GitHub/Discord-AIBot/build/CMakeFiles/CMakeScratch/TryCompile-wGO18s -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fno-cxx-modules -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+messageToSelfInClassMethodIdReturnType -clang-vendor-feature=+disableInferNewAvailabilityFromInit -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -mllvm -disable-aligned-alloc-awareness=1 -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_93527.dir/CMakeCXXCompilerABI.cpp.o -x c++ /usr/local/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+        clang -cc1 version 14.0.0 (clang-1400.0.29.202) default target x86_64-apple-darwin21.6.0
+        ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include"
+        ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/Library/Frameworks"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /usr/local/include
+         /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1
+         /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include
+         /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include
+         /Library/Developer/CommandLineTools/usr/include
+         /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks (framework directory)
+        End of search list.
+        [2/2] : && /usr/bin/clang++  -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_93527.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_93527   && :
+        Apple clang version 14.0.0 (clang-1400.0.29.202)
+        Target: x86_64-apple-darwin21.6.0
+        Thread model: posix
+        InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+         "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -lto_library /Library/Developer/CommandLineTools/usr/lib/libLTO.dylib -dynamic -arch x86_64 -platform_version macos 12.0.0 13.1 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -o cmTC_93527 -L/usr/local/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_93527.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/lib/darwin/libclang_rt.osx.a
+        @(#)PROGRAM:ld  PROJECT:ld64-820.1
+        BUILD 20:07:01 Nov  7 2022
+        configured to support archs: armv6 armv7 armv7s arm64 arm64e arm64_32 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em
+        Library search paths:
+        	/usr/local/lib
+        	/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib
+        Framework search paths:
+        	/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:122 (message)"
+      - "/usr/local/share/cmake/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Effective list of requested architectures (possibly empty)  : ""
+      Effective list of architectures found in the ABI info binary: "x86_64"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:217 (message)"
+      - "/usr/local/share/cmake/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed CXX implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [/usr/local/include]
+          add: [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1]
+          add: [/Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include]
+          add: [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include]
+          add: [/Library/Developer/CommandLineTools/usr/include]
+        end of search list found
+        collapse include dir [/usr/local/include] ==> [/usr/local/include]
+        collapse include dir [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1] ==> [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1]
+        collapse include dir [/Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include] ==> [/Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include]
+        collapse include dir [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include] ==> [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include]
+        collapse include dir [/Library/Developer/CommandLineTools/usr/include] ==> [/Library/Developer/CommandLineTools/usr/include]
+        implicit include dirs: [/usr/local/include;/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1;/Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include;/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include;/Library/Developer/CommandLineTools/usr/include]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:253 (message)"
+      - "/usr/local/share/cmake/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed CXX implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|"|[0-9]+>[ 	-]*Build:[ 	0-9]+ ms[ 	]*)?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)))("|,| |$)]
+        ignore line: [Change Dir: '/Users/kthlke/Documents/GitHub/Discord-AIBot/build/CMakeFiles/CMakeScratch/TryCompile-wGO18s']
+        ignore line: []
+        ignore line: [Run Build Command(s): /usr/local/bin/ninja -v cmTC_93527]
+        ignore line: [[1/2] /usr/bin/clang++   -v -Wl -v -MD -MT CMakeFiles/cmTC_93527.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_93527.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_93527.dir/CMakeCXXCompilerABI.cpp.o -c /usr/local/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [Apple clang version 14.0.0 (clang-1400.0.29.202)]
+        ignore line: [Target: x86_64-apple-darwin21.6.0]
+        ignore line: [Thread model: posix]
+        ignore line: [InstalledDir: /Library/Developer/CommandLineTools/usr/bin]
+        ignore line: [clang: warning: -Wl -v: 'linker' input unused [-Wunused-command-line-argument]]
+        ignore line: [ "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple x86_64-apple-macosx12.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=all -fno-strict-return -fno-rounding-math -funwind-tables=2 -target-sdk-version=13.1 -fvisibility-inlines-hidden-static-local-var -target-cpu penryn -tune-cpu generic -debugger-tuning=lldb -target-linker-version 820.1 -v -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0 -dependency-file CMakeFiles/cmTC_93527.dir/CMakeCXXCompilerABI.cpp.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_93527.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -I/usr/local/include -stdlib=libc++ -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1 -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include -internal-externc-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Library/Developer/CommandLineTools/usr/include -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -Wno-cast-function-type -Wno-bitwise-instead-of-logical -fdeprecated-macro -fdebug-compilation-dir=/Users/kthlke/Documents/GitHub/Discord-AIBot/build/CMakeFiles/CMakeScratch/TryCompile-wGO18s -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fno-cxx-modules -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+messageToSelfInClassMethodIdReturnType -clang-vendor-feature=+disableInferNewAvailabilityFromInit -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -mllvm -disable-aligned-alloc-awareness=1 -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_93527.dir/CMakeCXXCompilerABI.cpp.o -x c++ /usr/local/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [clang -cc1 version 14.0.0 (clang-1400.0.29.202) default target x86_64-apple-darwin21.6.0]
+        ignore line: [ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include"]
+        ignore line: [ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/Library/Frameworks"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /usr/local/include]
+        ignore line: [ /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1]
+        ignore line: [ /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/include]
+        ignore line: [ /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include]
+        ignore line: [ /Library/Developer/CommandLineTools/usr/include]
+        ignore line: [ /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks (framework directory)]
+        ignore line: [End of search list.]
+        ignore line: [[2/2] : && /usr/bin/clang++  -Wl -search_paths_first -Wl -headerpad_max_install_names  -v -Wl -v CMakeFiles/cmTC_93527.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_93527   && :]
+        ignore line: [Apple clang version 14.0.0 (clang-1400.0.29.202)]
+        ignore line: [Target: x86_64-apple-darwin21.6.0]
+        ignore line: [Thread model: posix]
+        ignore line: [InstalledDir: /Library/Developer/CommandLineTools/usr/bin]
+        link line: [ "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -lto_library /Library/Developer/CommandLineTools/usr/lib/libLTO.dylib -dynamic -arch x86_64 -platform_version macos 12.0.0 13.1 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -o cmTC_93527 -L/usr/local/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_93527.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/lib/darwin/libclang_rt.osx.a]
+          arg [/Library/Developer/CommandLineTools/usr/bin/ld] ==> ignore
+          arg [-demangle] ==> ignore
+          arg [-lto_library] ==> ignore, skip following value
+          arg [/Library/Developer/CommandLineTools/usr/lib/libLTO.dylib] ==> skip value of -lto_library
+          arg [-dynamic] ==> ignore
+          arg [-arch] ==> ignore
+          arg [x86_64] ==> ignore
+          arg [-platform_version] ==> ignore
+          arg [macos] ==> ignore
+          arg [12.0.0] ==> ignore
+          arg [13.1] ==> ignore
+          arg [-syslibroot] ==> ignore
+          arg [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk] ==> ignore
+          arg [-o] ==> ignore
+          arg [cmTC_93527] ==> ignore
+          arg [-L/usr/local/lib] ==> dir [/usr/local/lib]
+          arg [-search_paths_first] ==> ignore
+          arg [-headerpad_max_install_names] ==> ignore
+          arg [-v] ==> ignore
+          arg [CMakeFiles/cmTC_93527.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+          arg [-lc++] ==> lib [c++]
+          arg [-lSystem] ==> lib [System]
+          arg [/Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/lib/darwin/libclang_rt.osx.a] ==> lib [/Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/lib/darwin/libclang_rt.osx.a]
+        linker tool for 'CXX': /Library/Developer/CommandLineTools/usr/bin/ld
+        Library search paths: [;/usr/local/lib;/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib]
+        Framework search paths: [;/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/]
+        remove lib [System]
+        remove lib [/Library/Developer/CommandLineTools/usr/lib/clang/14.0.0/lib/darwin/libclang_rt.osx.a]
+        collapse library dir [/usr/local/lib] ==> [/usr/local/lib]
+        collapse library dir [/usr/local/lib] ==> [/usr/local/lib]
+        collapse library dir [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib] ==> [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib]
+        collapse framework dir [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/] ==> [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks]
+        implicit libs: [c++]
+        implicit objs: []
+        implicit dirs: [/usr/local/lib;/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib]
+        implicit fwks: [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/Internal/CMakeDetermineLinkerId.cmake:38 (message)"
+      - "/usr/local/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:299 (cmake_determine_linker_id)"
+      - "/usr/local/share/cmake/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Running the CXX compiler's linker: "/Library/Developer/CommandLineTools/usr/bin/ld" "-v"
+      @(#)PROGRAM:ld  PROJECT:ld64-820.1
+      BUILD 20:07:01 Nov  7 2022
+      configured to support archs: armv6 armv7 armv7s arm64 arm64e arm64_32 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em
+      LTO support using: LLVM version 14.0.0, (clang-1400.0.29.202) (static support for 29, runtime is 29)
+      TAPI support using: Apple TAPI version 14.0.0 (tapi-1400.0.11)
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/FindPython/Support.cmake:2144 (find_program)"
+      - "/usr/local/share/cmake/Modules/FindPython.cmake:721 (include)"
+      - "CMakeLists.txt:96 (find_package)"
+    mode: "program"
+    variable: "_Python_EXECUTABLE"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: false
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "python3.15mu"
+      - "python3.15m"
+      - "python3.15u"
+      - "python3.15"
+      - "python3.15dmu"
+      - "python3.15dm"
+      - "python3.15du"
+      - "python3.15d"
+      - "python3"
+      - "python"
+    candidate_directories:
+      - "/opt/anaconda3/bin/"
+      - "/opt/anaconda3/Scripts/"
+      - "/opt/anaconda3/"
+    searched_directories:
+      - "/opt/anaconda3/bin/python3.15mu"
+      - "/opt/anaconda3/bin/python3.15m"
+      - "/opt/anaconda3/bin/python3.15u"
+      - "/opt/anaconda3/bin/python3.15"
+      - "/opt/anaconda3/bin/python3.15dmu"
+      - "/opt/anaconda3/bin/python3.15dm"
+      - "/opt/anaconda3/bin/python3.15du"
+      - "/opt/anaconda3/bin/python3.15d"
+      - "/opt/anaconda3/bin/python3"
+      - "/opt/anaconda3/bin/python"
+      - "/opt/anaconda3/Scripts/python3.15mu"
+      - "/opt/anaconda3/Scripts/python3.15m"
+      - "/opt/anaconda3/Scripts/python3.15u"
+      - "/opt/anaconda3/Scripts/python3.15"
+      - "/opt/anaconda3/Scripts/python3.15dmu"
+      - "/opt/anaconda3/Scripts/python3.15dm"
+      - "/opt/anaconda3/Scripts/python3.15du"
+      - "/opt/anaconda3/Scripts/python3.15d"
+      - "/opt/anaconda3/Scripts/python3"
+      - "/opt/anaconda3/Scripts/python"
+      - "/opt/anaconda3/python3.15mu"
+      - "/opt/anaconda3/python3.15m"
+      - "/opt/anaconda3/python3.15u"
+      - "/opt/anaconda3/python3.15"
+      - "/opt/anaconda3/python3.15dmu"
+      - "/opt/anaconda3/python3.15dm"
+      - "/opt/anaconda3/python3.15du"
+      - "/opt/anaconda3/python3.15d"
+      - "/opt/anaconda3/python3"
+      - "/opt/anaconda3/python"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "/opt/anaconda3/bin"
+        - "/opt/anaconda3/condabin"
+        - "/usr/local/bin"
+        - "/usr/local/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/usr/local/go/bin"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr"
+        - "/usr/local"
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/usr/local"
+        - "/usr/local"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+        - "/sw"
+        - "/opt/local"
+      CMAKE_SYSTEM_APPBUNDLE_PATH:
+        - "/Applications"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/FindPython/Support.cmake:2165 (find_program)"
+      - "/usr/local/share/cmake/Modules/FindPython.cmake:721 (include)"
+      - "CMakeLists.txt:96 (find_package)"
+    mode: "program"
+    variable: "_Python_EXECUTABLE"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: false
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "python3.14mu"
+      - "python3.14m"
+      - "python3.14u"
+      - "python3.14"
+      - "python3.14dmu"
+      - "python3.14dm"
+      - "python3.14du"
+      - "python3.14d"
+      - "python3"
+      - "python"
+    candidate_directories:
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/Scripts/"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/"
+    searched_directories:
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3.14mu"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3.14m"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3.14u"
+    found: "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3.14"
+    search_context:
+      ENV{PATH}:
+        - "/opt/anaconda3/bin"
+        - "/opt/anaconda3/condabin"
+        - "/usr/local/bin"
+        - "/usr/local/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/usr/local/go/bin"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr"
+        - "/usr/local"
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/usr/local"
+        - "/usr/local"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+        - "/sw"
+        - "/opt/local"
+      CMAKE_SYSTEM_APPBUNDLE_PATH:
+        - "/Applications"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/FindPython/Support.cmake:3201 (find_library)"
+      - "/usr/local/share/cmake/Modules/FindPython.cmake:721 (include)"
+      - "CMakeLists.txt:96 (find_package)"
+    mode: "library"
+    variable: "_Python_LIBRARY_RELEASE"
+    description: "Path to a library."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: false
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "python314"
+      - "python3.14"
+    candidate_directories:
+      - "/Library/Frameworks/Python.framework/Versions/3.14/lib/"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/config-3.14-darwin/"
+    searched_directories:
+      - "/Library/Frameworks/Python.framework/Versions/3.14/lib/"
+    found: "/Library/Frameworks/Python.framework/Versions/3.14/lib/libpython3.14.dylib"
+    search_context:
+      ENV{PATH}:
+        - "/opt/anaconda3/bin"
+        - "/opt/anaconda3/condabin"
+        - "/usr/local/bin"
+        - "/usr/local/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/usr/local/go/bin"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr"
+        - "/usr/local"
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/usr/local"
+        - "/usr/local"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+        - "/sw"
+        - "/opt/local"
+      CMAKE_SYSTEM_LIBRARY_PATH:
+        - "/usr/lib/X11"
+      CMAKE_SYSTEM_FRAMEWORK_PATH:
+        - "~/Library/Frameworks"
+        - "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/Library/Frameworks"
+        - "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/Network/Library/Frameworks"
+        - "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks"
+        - "/Library/Developer/CommandLineTools/Library/Frameworks"
+        - "/Library/Developer/CommandLineTools/Library/Frameworks"
+        - "/Library/Frameworks"
+        - "/Network/Library/Frameworks"
+        - "/System/Library/Frameworks"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/usr/local/share/cmake/Modules/FindPython/Support.cmake:3716 (find_path)"
+      - "/usr/local/share/cmake/Modules/FindPython.cmake:721 (include)"
+      - "CMakeLists.txt:96 (find_package)"
+    mode: "path"
+    variable: "_Python_INCLUDE_DIR"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: false
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "Python.h"
+    candidate_directories:
+      - "/Library/Frameworks/Python.framework/Versions/3.14/include/python3.14/"
+    found: "/Library/Frameworks/Python.framework/Versions/3.14/include/python3.14/"
+    search_context:
+      ENV{PATH}:
+        - "/opt/anaconda3/bin"
+        - "/opt/anaconda3/condabin"
+        - "/usr/local/bin"
+        - "/usr/local/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/Library/Frameworks/Python.framework/Versions/3.12/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/usr/local/go/bin"
+        - "/usr/local/share/dotnet"
+        - "~/.dotnet/tools"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr"
+        - "/usr/local"
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/usr/local"
+        - "/usr/local"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+        - "/sw"
+        - "/opt/local"
+      CMAKE_SYSTEM_INCLUDE_PATH:
+        - "/usr/include/X11"
+      CMAKE_SYSTEM_FRAMEWORK_PATH:
+        - "~/Library/Frameworks"
+        - "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/Library/Frameworks"
+        - "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/Network/Library/Frameworks"
+        - "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks"
+        - "/Library/Developer/CommandLineTools/Library/Frameworks"
+        - "/Library/Developer/CommandLineTools/Library/Frameworks"
+        - "/Library/Frameworks"
+        - "/Network/Library/Frameworks"
+        - "/System/Library/Frameworks"
+...

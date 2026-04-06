@@ -1,0 +1,71 @@
+mkdir - p packages / overmoderator / src / Events / Interaction
+cat > packages / overmoderator / src / Events / Interaction / interactionCreate.js << 'EOL'
+const { Events } = require('discord.js');
+const LudoManager = fromRoot('src/Utils/Games/LudoManager');
+
+module.exports = {
+    name: Events.InteractionCreate,
+    async execute(interaction) {
+        if (!interaction.isButton()) return;
+
+        try {
+            // Handle Ludo game buttons
+            if (interaction.customId.startsWith('ludo_')) {
+                const [_, action, gameId, ...rest] = interaction.customId.split('_');
+                const game = await LudoGame.findById(gameId);
+
+                if (!game) {
+                    return interaction.update({
+                        content: 'Game not found or expired',
+                        components: []
+                    });
+                }
+
+                if (game.status !== 'playing') {
+                    return interaction.update({
+                        content: 'Game is not in progress',
+                        components: []
+                    });
+                }
+
+                const currentPlayer = game.players[game.currentPlayer];
+                if (currentPlayer.userId !== interaction.user.id) {
+                    return interaction.reply({
+                        content: 'Not your turn!',
+                        ephemeral: true
+                    });
+                }
+
+                if (action === 'roll') {
+                    await LudoManager.rollDice(gameId, interaction.user.id);
+                } else if (action === 'move') {
+                    const pieceIndex = parseInt(rest[0]);
+                    await LudoManager.makeMove(gameId, interaction.user.id, pieceIndex);
+                }
+
+                const updatedGame = await LudoGame.findById(gameId);
+                const embed = LudoManager.getGameEmbed(updatedGame, interaction.client);
+                const components = LudoManager.getGameComponents(updatedGame, interaction.user.id);
+
+                await interaction.update({
+                    embeds: [embed],
+                    components
+                });
+            }
+        } catch (error) {
+            console.error('Error handling interaction:', error);
+            if (interaction.replied || interaction.deferred) {
+                await interaction.followUp({
+                    content: `❌ Error: ${error.message}`,
+                    ephemeral: true
+                });
+            } else {
+                await interaction.reply({
+                    content: `❌ Error: ${error.message}`,
+                    ephemeral: true
+                });
+            }
+        }
+    }
+};
+EOL

@@ -1,0 +1,45 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "start",
+			"problemMatcher": [
+				"$tsc-watch"
+			],
+			"label": "npm: start",
+			"detail": "node --no-warnings index.js",
+			"isBackground": true
+		},
+		{
+			"type": "npm",
+			"script": "start",
+			"path": "packages/shared",
+			"problemMatcher": [
+				"$eslint-compact"
+			],
+			"label": "npm: start - packages/shared",
+			"detail": "node index.js"
+		},
+		{
+			"type": "npm",
+			"script": "start",
+			"path": "packages/overmoderator",
+			"problemMatcher": [
+				"$markdownlint"
+			],
+			"label": "npm: start - packages/overmoderator",
+			"detail": "node --no-warnings index.js"
+		},
+		{
+			"type": "npm",
+			"script": "start",
+			"path": "packages/calm-discord-bot",
+			"problemMatcher": [
+				"$markdownlint"
+			],
+			"label": "npm: start - packages/calm-discord-bot",
+			"detail": "node index.js"
+		}
+	]
+}

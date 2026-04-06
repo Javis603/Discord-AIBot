@@ -13,3 +13,9 @@ Procfile
 todo.txt
 rolesPlay.yaml
 roles-save.yaml
+
+# Coders in Flow
+.codersinflow
+.vscode
+node_modules
+.env.template

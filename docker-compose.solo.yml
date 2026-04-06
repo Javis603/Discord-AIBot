@@ -1,0 +1,83 @@
+# Solo dev compose — no database required (MongoDB service removed)
+# Works on PC (Windows) and Mac (ARM64/x86_64) with Docker Desktop
+#
+# Usage:
+#   docker compose -f docker-compose.solo.yml up
+#   docker compose -f docker-compose.solo.yml watch   # hot-reload
+#
+# Bot runs fully stateless or with in-memory storage — no Mongo connection needed
+
+version: '3.9'
+
+services:
+  discord-aibot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: discord-aibot
+    image: discord-aibot:latest
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: development
+      PYTHONUNBUFFERED: 1
+    volumes:
+      - ./logs:/app/logs
+    networks:
+      - discord-network
+    ports:
+      - "3000:3000"
+      - "8000:8000"
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000', (r) => {if (r.statusCode !== 200) throw new Error(r.statusCode)})"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+    develop:
+      watch:
+        - action: sync
+          path: ./src
+          target: /app/src
+        - action: rebuild
+          path: ./package.json
+
+  sequential-thinking-mcp:
+    build:
+      context: ./packages/sequential-thinking-mcp
+      dockerfile: Dockerfile
+    container_name: discord-aibot-mcp
+    image: sequential-thinking-mcp:latest
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+    environment:
+      DISCORD_BOT_TOKEN: ${DISCORD_TOKEN:-}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      WORKSPACE_ROOT: /workspace
+      NODE_ENV: development
+    volumes:
+      - mcp-sessions:/app/data
+      - ./:/workspace/discord-aibot:ro
+    networks:
+      - discord-network
+    healthcheck:
+      test: ["CMD-SHELL", "pgrep -f 'node dist/index.js' || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  discord-network:
+    driver: bridge
+
+volumes:
+  mcp-sessions:
+    driver: local

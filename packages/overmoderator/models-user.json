@@ -1,0 +1,11 @@
+{
+    "default": "gemini-2.0-flash",
+    "✧OpenAI✧": "gpt-4o-mini",
+    "GPT-4o mini": "gpt-4o-mini",
+    "✧Google AI✧": "gemini-2.0-flash",
+    "Gemini 2.0 Pro": "gemini-2.0-pro-exp",
+    "Gemini 2.0 Flash Thinking": "gemini-2.0-flash-thinking-exp",
+    "Gemini 2.0 Flash": "gemini-2.0-flash",
+    "Gemini 1.5 Flash": "gemini-1.5-flash",
+    "Gemini 1.5 Pro": "gemini-1.5-pro"
+  }

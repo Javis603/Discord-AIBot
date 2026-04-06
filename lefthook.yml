@@ -1,0 +1,20 @@
+# Lefthook git hooks — Discord-AIBot monorepo
+# Install: pnpm exec lefthook install
+# Requires: gitleaks binary in PATH (choco install gitleaks / brew install gitleaks)
+
+pre-commit:
+  parallel: true
+  commands:
+    lint:
+      run: pnpm -r run lint --if-present
+      fail_text: "ESLint errors detected. Run 'pnpm -r run lint:fix' to auto-fix."
+
+    gitleaks:
+      run: gitleaks detect --source . --no-banner --exit-code 1
+      fail_text: "Potential secrets detected by gitleaks. Remove them before committing."
+
+commit-msg:
+  commands:
+    commitlint:
+      run: pnpm exec commitlint --edit {1}
+      fail_text: "Commit message does not follow Conventional Commits format."

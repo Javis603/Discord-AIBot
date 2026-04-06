@@ -1,0 +1,110 @@
+mkdir - p packages / overmoderator / src / Commands / Games
+cat > packages / overmoderator / src / Commands / Games / ludo.js << 'EOL'
+const { SlashCommandBuilder } = require('@discordjs/builders');
+const { ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder } = require('discord.js');
+const LudoManager = fromRoot('src/Utils/Games/LudoManager');
+
+module.exports = {
+    data: new SlashCommandBuilder()
+        .setName('ludo')
+        .setDescription('Play a game of Ludo')
+        .addSubcommand(subcommand =>
+            subcommand
+                .setName('new')
+                .setDescription('Start a new Ludo game')
+        )
+        .addSubcommand(subcommand =>
+            subcommand
+                .setName('join')
+                .setDescription('Join a Ludo game')
+                .addStringOption(option =>
+                    option.setName('game_id')
+                        .setDescription('The game ID to join')
+                        .setRequired(true)
+                )
+                .addStringOption(option =>
+                    option.setName('color')
+                        .setDescription('Choose your color')
+                        .setRequired(true)
+                        .addChoices(
+                            { name: '🔴 Red', value: 'red' },
+                            { name: '🔵 Blue', value: 'blue' },
+                            { name: '🟢 Green', value: 'green' },
+                            { name: '🟡 Yellow', value: 'yellow' }
+                        )
+                )
+        )
+        .addSubcommand(subcommand =>
+            subcommand
+                .setName('start')
+                .setDescription('Start the Ludo game')
+                .addStringOption(option =>
+                    option.setName('game_id')
+                        .setDescription('The game ID to start')
+                        .setRequired(true)
+                )
+        ),
+
+    async execute(interaction) {
+        const subcommand = interaction.options.getSubcommand();
+
+        try {
+            if (subcommand === 'new') {
+                const game = await LudoManager.createGame(
+                    interaction.channelId,
+                    interaction.guildId,
+                    interaction.user.id
+                );
+
+                const embed = LudoManager.getGameEmbed(game, interaction.client);
+                const message = await interaction.reply({
+                    embeds: [embed],
+                    components: [
+                        new ActionRowBuilder().addComponents(
+                            new ButtonBuilder()
+                                .setLabel('Join Game')
+                                .setStyle(ButtonStyle.Link)
+                                .setURL(`https://discord.com/channels/${interaction.guildId}/${interaction.channelId}?game=ludo_join_${game._id}`)
+                        )
+                    ],
+                    fetchReply: true
+                });
+
+                // Update the game with the message ID
+                game.messageId = message.id;
+                await game.save();
+
+            } else if (subcommand === 'join') {
+                const gameId = interaction.options.getString('game_id');
+                const color = interaction.options.getString('color');
+
+                const game = await LudoManager.joinGame(gameId, interaction.user.id, color);
+                const embed = LudoManager.getGameEmbed(game, interaction.client);
+
+                await interaction.reply({
+                    content: `Joined game ${game._id} as ${color}`,
+                    embeds: [embed],
+                    ephemeral: true
+                });
+
+            } else if (subcommand === 'start') {
+                const gameId = interaction.options.getString('game_id');
+                const game = await LudoManager.startGame(gameId);
+                const embed = LudoManager.getGameEmbed(game, interaction.client);
+                const components = LudoManager.getGameComponents(game, interaction.user.id);
+
+                await interaction.reply({
+                    content: 'Game started!',
+                    embeds: [embed],
+                    components
+                });
+            }
+        } catch (error) {
+            await interaction.reply({
+                content: `❌ Error: ${error.message}`,
+                ephemeral: true
+            });
+        }
+    }
+};
+EOL

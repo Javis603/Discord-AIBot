@@ -1,0 +1,124 @@
+version: '3.8'
+
+services:
+  bot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: discord-aibot
+    restart: always
+    environment:
+      NODE_ENV: production
+      DB_USER_FILE: /run/secrets/db_user
+      DB_PASSWORD_FILE: /run/secrets/db_password
+      DB_NAME_FILE: /run/secrets/db_name
+      DISCORD_TOKEN_FILE: /run/secrets/discord_token
+      PORT: 3000
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - bot_logs:/app/logs
+      - bot_data:/app/data
+    # Security hardening
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    read_only: true
+    tmpfs:
+      - /tmp:noexec,nosuid,size=100m
+      - /app/.cache:noexec,nosuid,size=100m
+    # Resource limits
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000', (r) => {if (r.statusCode !== 200) throw new Error(r.statusCode)})"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - aibot_network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "5"
+    # Bind to localhost only for security
+    ports:
+      - "127.0.0.1:3000:3000"
+      - "127.0.0.1:8000:8000"
+    secrets:
+      - db_user
+      - db_password
+      - db_name
+      - discord_token
+
+
+  db:
+    image: mongo:7-alpine
+    container_name: discord-aibot-db
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: /run/secrets/db_user
+      MONGO_INITDB_ROOT_PASSWORD: /run/secrets/db_password
+      MONGO_INITDB_DATABASE: /run/secrets/db_name
+    volumes:
+      - db_data:/data/db
+      - db_config:/data/configdb
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    networks:
+      - aibot_network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "20m"
+        max-file: "3"
+    secrets:
+      - db_user
+      - db_password
+      - db_name
+
+
+volumes:
+  db_data:
+    driver: local
+  db_config:
+    driver: local
+  bot_logs:
+    driver: local
+  bot_data:
+    driver: local
+
+networks:
+  aibot_network:
+    driver: bridge
+
+# ==========================================================================
+# Secrets
+# ==========================================================================
+secrets:
+  # Database Credentials
+  db_user:
+    external: true
+  db_password:
+    external: true
+  db_name:
+    external: true
+
+  # API Keys & Tokens
+  discord_token:
+    external: true
+

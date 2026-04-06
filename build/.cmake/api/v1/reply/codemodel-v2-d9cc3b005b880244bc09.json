@@ -1,0 +1,132 @@
+{
+	"configurations" : 
+	[
+		{
+			"abstractTargets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "Python::Interpreter::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Python__Interpreter-Debug-fe3cedb80519be0b692d.json",
+					"name" : "Python::Interpreter",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Python::InterpreterMultiConfig::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Python__InterpreterMultiConfig-Debug-cc3539d96d133fe6f2d7.json",
+					"name" : "Python::InterpreterMultiConfig",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Python::Module::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Python__Module-Debug-60ee5a186e9798d1982c.json",
+					"name" : "Python::Module",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Python::Python::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Python__Python-Debug-9b3e03197049ac406055.json",
+					"name" : "Python::Python",
+					"projectIndex" : 0
+				}
+			],
+			"directories" : 
+			[
+				{
+					"abstractTargetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					],
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-9ad1a58d4644cf6543fa.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"abstractTargetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "nan",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "docs::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-docs-Debug-bede1aafa54ea1547482.json",
+					"name" : "docs",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "forcetest::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-forcetest-Debug-da9c35c1da60e42e771b.json",
+					"name" : "forcetest",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "lint::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-lint-Debug-1248cae6bdc7305104f7.json",
+					"name" : "lint",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "test::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-test-Debug-f302fb7e1a1d48d72c8b.json",
+					"name" : "test",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/Users/kthlke/Documents/GitHub/Discord-AIBot/build",
+		"source" : "/Users/kthlke/Documents/GitHub/Discord-AIBot/node_modules/nan"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 9
+	}
+}
