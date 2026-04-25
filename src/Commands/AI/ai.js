@@ -17,6 +17,7 @@ const UserSettings = require('../../Models/UserSettings');
 const { getText } = require('../../Functions/i18n');
 const { specialUsers, modelGroups, getModelGroup } = require('../../Events/AICore/models');
 const { webhookLog } = require('../../Events/AICore/utils');
+const { deleteUserImages } = require('../../utils/r2Uploader');
 
 const contextObj = {
     userId: 'system',
@@ -205,6 +206,8 @@ module.exports = {
                     delete client.userConversations[interaction.user.id];
         
                     client.userConversations[interaction.user.id] = initialConversation;
+        
+                    const deleteResult = await deleteUserImages(interaction.user.id);
         
                     const embed = new EmbedBuilder()
                         .setColor(interaction.member.displayHexColor)

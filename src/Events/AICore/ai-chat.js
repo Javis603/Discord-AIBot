@@ -41,6 +41,7 @@ const {
 } = require('./utils');
 
 const { getText } = require('../../Functions/i18n');
+const { processImageUrl } = require('../../utils/r2Uploader');
 
 const MAX_TOKENS = process.env.MAX_CONTEXT_TOKENS;
 const voiceApi = process.env.VOICE_API_KEY || process.env.DEFAULT_API_KEY;
@@ -203,10 +204,14 @@ async function handleImageAttachments(message, imageAttachments, conversationLog
         return true;
     }
     
-    const attachmentContents = imageAttachments.map(attachment => ({
+    const processedUrls = await Promise.all(
+        imageAttachments.map(attachment => processImageUrl(attachment.url, message.author.id))
+    );
+    
+    const attachmentContents = processedUrls.map(url => ({
         type: "image_url",
         image_url: {
-            "url": attachment.url,
+            "url": url,
             "detail": detail,
         },
     }));

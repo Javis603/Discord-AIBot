@@ -12,6 +12,7 @@ const { updateUserSystemPrompt, sendStreamingResponse, getModelForUser, handleCo
 const { encodeChat } = require('gpt-tokenizer');
 const config = require('../../../config.json');
 const { getText } = require('../../Functions/i18n');
+const { deleteUserImages } = require('../../utils/r2Uploader');
 
 const MAX_TOKENS = process.env.MAX_CONTEXT_TOKENS;
 
@@ -200,6 +201,8 @@ async function handleClearChat(interaction, client, userId) {
 
     if (client.userConversations[userId].length > initialConversation.length) {
         client.userConversations[userId] = initialConversation;
+
+        const deleteResult = await deleteUserImages(userId);
 
         await Conversation.findOneAndUpdate(
             { userId: userId },
@@ -505,6 +508,8 @@ async function handleNewChatConfirm(interaction, client, userId) {
         if (systemMessage) {
             client.userConversations[userId].push(systemMessage);
         }
+        
+        const deleteResult = await deleteUserImages(userId);
         
         const row = new ActionRowBuilder().addComponents(
             new ButtonBuilder()

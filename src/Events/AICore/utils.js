@@ -15,6 +15,7 @@ const roles = yaml.load(fs.readFileSync('./roles.yaml', 'utf8'));
 const { encode, encodeChat } = require('gpt-tokenizer');
 const config = require('../../../config.json');
 const { getText } = require('../../Functions/i18n');
+const { processImageUrl } = require('../../utils/r2Uploader');
 require('dotenv/config');
 const OpenAI = require('openai');
 const { tavily } = require("@tavily/core");
@@ -596,10 +597,14 @@ async function sendStreamingResponse(message1, channel, conversationLog, modelTo
             content: `${message1.content}\n\nPDF 內容:\n${pdfContent}`
         });
     } else if (pdfAttachments.length > 0 && imageAttachments.length > 0) {
-        const attachmentContents = imageAttachments.map(attachment => ({
+        const processedUrls = await Promise.all(
+            imageAttachments.map(attachment => processImageUrl(attachment.url, user.id))
+        );
+        
+        const attachmentContents = processedUrls.map(url => ({
             type: "image_url",
             image_url: {
-                "url": attachment.url,
+                "url": url,
                 "detail": detail,
             },
         }));
