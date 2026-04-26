@@ -138,7 +138,7 @@ module.exports = {
         components: components(false),
       });
   
-      const filter = (i) => i.user.id === interaction.user.id;
+      const filter = (i) => i.user.id === interaction.user.id && i.customId === 'help-menu';
   
       const collector = interaction.channel.createMessageComponentCollector({
         filter,

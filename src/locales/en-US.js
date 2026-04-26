@@ -561,7 +561,8 @@ module.exports = {
             imageProcessFailed: "Image processing failed, please try again later",
             messageProcessFailed: "Error processing message, please try again later",
             referencedUserImage: "{user}{mention}'s image",
-            referencedUserSaid: "{user}{mention} said"
+            referencedUserSaid: "{user}{mention} said",
+            modelFallback: "Model {from} doesn't support image input, automatically switched to {to}"
         }
     },
     

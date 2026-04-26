@@ -18,19 +18,12 @@ const fetch = require('node-fetch');
 require('dotenv/config');
 const OpenAI = require('openai');
 
-let models = JSON.parse(fs.readFileSync('./models.json', 'utf8'));
-if (process.env.DEFAULT_MODEL) {
-    models.default = process.env.DEFAULT_MODEL;
-}
-
 const replyChannels = process.env.REPLY_CHANNEL.split(',');
 
 const openai = new OpenAI({
     apiKey: process.env.DEFAULT_API_KEY,
     baseURL: process.env.DEFAULT_BASE_URL
 });
-
-const { specialModels } = require('./models');
 
 const {
     updateUserSystemPrompt,
@@ -47,19 +40,6 @@ const MAX_TOKENS = process.env.MAX_CONTEXT_TOKENS;
 const voiceApi = process.env.VOICE_API_KEY || process.env.DEFAULT_API_KEY;
 const voiceBase = process.env.VOICE_BASE_URL || process.env.DEFAULT_BASE_URL;
 const voiceModel = process.env.VOICE_MODEL;
-
-// image model
-const defaultModel = process.env.DEFAULT_MODEL;
-const imageModelEnv = process.env.IMAGE_MODEL;
-let imageModel = '';
-
-if (specialModels.includes(defaultModel)) {
-    imageModel = defaultModel;
-} 
-
-else if (imageModelEnv && specialModels.includes(imageModelEnv)) {
-    imageModel = imageModelEnv;
-}
 
 const detail = process.env.IMAGE_DETAIL;
 //const temperature = 0.7;
@@ -113,15 +93,13 @@ async function handleAudioAttachment(message, audioAttachment, conversationLog, 
 }
 
 async function handlePdfAndImageAttachments(message, pdfAttachments, imageAttachments, conversationLog, messageContent, typingInterval, client) {
-    if (process.env.PDF_INPUT !== 'true' || !imageModel || process.env.IMAGE_INPUT !== 'true') {
+    if (process.env.PDF_INPUT !== 'true' || process.env.IMAGE_INPUT !== 'true') {
         clearInterval(typingInterval);
         let errorMessage = '';
         if (process.env.PDF_INPUT !== 'true') {
             errorMessage += `❌ ${getText('events.AICore.pdfInputDisabled', message.author.id)}\n\`\`\`\nPDF_INPUT=${process.env.PDF_INPUT}\`\`\`\n`;
         }
-        if (!imageModel) {
-            errorMessage += `❌ ${getText('events.AICore.modelNotSupportImage', message.author.id)}\n\`\`\`\nIMAGE_MODEL=${process.env.IMAGE_MODEL || process.env.DEFAULT_MODEL}\`\`\`\n`;
-        } else if (process.env.IMAGE_INPUT !== 'true') {
+        if (process.env.IMAGE_INPUT !== 'true') {
             errorMessage += `❌ ${getText('events.AICore.imageInputDisabled', message.author.id)}\n\`\`\`\nIMAGE_INPUT=${process.env.IMAGE_INPUT}\`\`\`\n`;
         }
         await message.reply(errorMessage);
@@ -137,24 +115,9 @@ async function handlePdfAndImageAttachments(message, pdfAttachments, imageAttach
             conversationLog = await handleConversationSummary(conversationLog, message, null, message.author.id);
         }
 
-        await sendStreamingResponse(message, message.channel, conversationLog, imageModel, message.author, client, false, null, pdfAttachments, imageAttachments);
-        clearInterval(typingInterval);
-
         const modelToUse = getModelForUser(message.author.id, client);
-
-        if (!specialModels.includes(modelToUse)) {
-            conversationLog = client.userConversations[message.author.id].map(log => {
-                if (log.content && Array.isArray(log.content)) {
-                    const filteredContent = log.content.filter(content => content.type !== 'image_url' || (content.type === 'text' && content.text.trim() !== ''));
-                    if (filteredContent.length > 0) {
-                        log.content = filteredContent;
-                    } else {
-                        return null;
-                    }
-                }
-                return log;
-            }).filter(log => log !== null);
-        }
+        await sendStreamingResponse(message, message.channel, conversationLog, modelToUse, message.author, client, false, null, pdfAttachments, imageAttachments);
+        clearInterval(typingInterval);
         return true;
     } catch (error) {
         clearInterval(typingInterval);
@@ -194,13 +157,9 @@ async function handlePdfAttachmentsOnly(message, pdfAttachments, conversationLog
 }
 
 async function handleImageAttachments(message, imageAttachments, conversationLog, messageContent, typingInterval, client) {
-    if (!imageModel || process.env.IMAGE_INPUT !== 'true') {
+    if (process.env.IMAGE_INPUT !== 'true') {
         clearInterval(typingInterval);
-        if (!imageModel) {
-            await message.reply(`❌ ${getText('events.AICore.modelNotSupportImage', message.author.id)}\n\`\`\`\nIMAGE_MODEL=${process.env.IMAGE_MODEL || process.env.DEFAULT_MODEL}\`\`\``);
-        } else {
             await message.reply(`❌ ${getText('events.AICore.imageInputDisabled', message.author.id)}\n\`\`\`\nIMAGE_INPUT=${process.env.IMAGE_INPUT}\`\`\``);
-        }
         return true;
     }
     
@@ -233,24 +192,9 @@ async function handleImageAttachments(message, imageAttachments, conversationLog
             conversationLog = await handleConversationSummary(conversationLog, message, attachmentContents, message.author.id);
         }
 
-        await sendStreamingResponse(message, message.channel, conversationLog, imageModel, message.author, client);
-        clearInterval(typingInterval);
-
         const modelToUse = getModelForUser(message.author.id, client);
-
-        if (!specialModels.includes(modelToUse)) {
-            conversationLog = client.userConversations[message.author.id].map(log => {
-                if (log.content && Array.isArray(log.content)) {
-                    const filteredContent = log.content.filter(content => content.type !== 'image_url' || (content.type === 'text' && content.text.trim() !== ''));
-                    if (filteredContent.length > 0) {
-                        log.content = filteredContent;
-                    } else {
-                        return null;
-                    }
-                }
-                return log;
-            }).filter(log => log !== null);
-        }
+        await sendStreamingResponse(message, message.channel, conversationLog, modelToUse, message.author, client);
+        clearInterval(typingInterval);
         return true;
     } catch (error) {
         clearInterval(typingInterval);

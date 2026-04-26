@@ -13,12 +13,24 @@ async function loadEvents(client) {
     console.time("Events Loaded");
 
     const table = new ascii().setHeading("Events", "Status");
+    
+    if (client.events && client.events.size > 0) {
+        for (const [eventName, execute] of client.events) {
+            client.removeListener(eventName, execute);
+            if (client.rest) {
+                client.rest.removeListener(eventName, execute);
+            }
+        }
+    }
+    
     client.events = new Map();
 
     const files = await loadFiles("src/Events"); 
 
     for (const file of files) {
         try {
+            delete require.cache[require.resolve(file)];
+            
             const event = require(file);
             const execute = (...args) => event.execute(...args, client);
             const target = event.rest ? client.rest : client;

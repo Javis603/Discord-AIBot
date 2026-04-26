@@ -7,6 +7,14 @@
  * @copyright Copyright (c) 2025
  */
 
+// Global error handlers
+process.on('unhandledRejection', (reason, promise) => {
+    console.error('Unhandled Rejection:', reason);
+});
+process.on('uncaughtException', (err) => {
+    console.error('Uncaught Exception:', err);
+});
+
 require('dotenv/config');
 
 const { Client, GatewayIntentBits, Partials, Collection, TextInputStyle, AttachmentBuilder, EmbedBuilder, WebhookClient, ButtonBuilder, ActionRowBuilder, ButtonStyle } = require("discord.js");
@@ -18,8 +26,12 @@ const client = new Client({
     partials: [User, Message, GuildMember, ThreadMember]
 });
 
-require('events').EventEmitter.setMaxListeners(Infinity);
-client.ws.setMaxListeners(Infinity);
+require('events').EventEmitter.setMaxListeners(0);
+client.setMaxListeners(0);
+client.ws.setMaxListeners(0);
+if (client.rest) {
+    client.rest.setMaxListeners(0);
+}
 
 const { loadEvents } = require("./Handlers/eventHandlers");
 const { loadUserLanguagePreferences } = require('./Functions/i18n');
@@ -130,7 +142,7 @@ async function cleanupOldConversations() {
 connect(process.env.MONGODB_URI, {})
     .then(async () => {
         console.log("成功連接到數據庫");
-        setInterval(cleanupOldConversations, 3 * 24 * 60 * 60 * 1000);
+        //setInterval(cleanupOldConversations, 3 * 24 * 60 * 60 * 1000);
         
         // 先加載用戶語言偏好設置，然後再啟動機器人
         console.time("加載用戶設置");

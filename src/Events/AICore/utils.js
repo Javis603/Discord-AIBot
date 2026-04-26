@@ -35,6 +35,7 @@ const openai = new OpenAI({
 
 const { 
     specialUsers,
+    specialModels,
     modelGroups,
     getModelGroup
 } = require('./models');
@@ -49,11 +50,39 @@ const predictedModel = process.env.BUTTON_MODEL || process.env.DEFAULT_MODEL;
 const detail = process.env.IMAGE_DETAIL;
 //const temperature = 0.7;
 
+const modelsWithoutImageSupport = new Set();
+
 const analysisSearchModel = process.env.ALL_FUNCTION_MODEL || process.env.DEFAULT_MODEL;
 const analysisImagineModel = process.env.ALL_FUNCTION_MODEL || process.env.DEFAULT_MODEL;
 const imaginePromptModel = process.env.ALL_FUNCTION_MODEL || process.env.DEFAULT_MODEL;
 const summaryModel = process.env.SUMMARY_MODEL || process.env.DEFAULT_MODEL;
 const deepThinkingModel = process.env.DEEP_THINKING_MODEL;
+
+function resolveFallbackImageModel(client, currentModel) {
+    const imageModelEnv = process.env.IMAGE_MODEL;
+    const globalModel = client?.globalModel ? models[client.globalModel] : null;
+    const envDefaultModel = process.env.DEFAULT_MODEL;
+    const configuredDefaultModel = models.default;
+
+    const candidates = [
+        imageModelEnv,
+        globalModel,
+        envDefaultModel,
+        configuredDefaultModel
+    ].filter(Boolean);
+
+    for (const candidate of candidates) {
+        if (candidate !== currentModel && specialModels.includes(candidate)) {
+            return candidate;
+        }
+    }
+
+    if (imageModelEnv && imageModelEnv !== currentModel) {
+        return imageModelEnv;
+    }
+
+    return '';
+}
 
 async function webhookLog(logMessage, functionName) {
     //const webhookClient = new WebhookClient({url: process.env.USAGE_LOGS});
@@ -395,6 +424,7 @@ async function imagineCheck(conversationLog, userID) {
         response_format: {
             type: "json_schema",
             json_schema: {
+                name: "image_check_response",
                 strict: true,
                 schema: schema
             }
@@ -436,6 +466,20 @@ async function imagineGenerate(prompt, userID) {
         guildId: null
     };
 
+    const schema = {
+        type: "object",
+        properties: {
+            prompt: { type: "string", description: "Detailed English prompt for image generation" },
+            width: { type: "number", description: "Image width, default 1024" },
+            height: { type: "number", description: "Image height, default 1024" },
+            model: { type: "string", enum: ["flux", "flux-realism", "any-dark", "flux-anime", "flux-3d"], description: "Model to use" },
+            style: { type: "string", enum: ["photo-realistic", "artistic", "anime", "digital-art"], description: "Image style" },
+            description: { type: "string", description: "Chinese description" }
+        },
+        required: ["prompt", "width", "height", "model", "style", "description"],
+        additionalProperties: false
+    };
+
     const response = await openai.chat.completions.create({
         model: imaginePromptModel,
         messages: [
@@ -448,7 +492,15 @@ async function imagineGenerate(prompt, userID) {
                 content: prompt
             }
         ],
-        temperature: 0.8
+        temperature: 0.8,
+        response_format: {
+            type: "json_schema",
+            json_schema: {
+                name: "image_generation_response",
+                strict: true,
+                schema: schema
+            }
+        }
     });
 
     try {
@@ -473,6 +525,8 @@ async function imagineGenerate(prompt, userID) {
         
         const imageUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}?width=${result.width}&height=${result.height}&seed=${Math.floor(Math.random() * 1000000)}&model=${result.model}&nologo=true`;
         
+        //console.log('🖼️ Generated Image URL:', imageUrl);
+        
         return {
             ...result,
             imageUrl: imageUrl,
@@ -492,13 +546,21 @@ async function imagineResponse(result, message1, user, client, conversationLog, 
     
     if (!result) return null;
 
+    //console.log('⏳ Waiting for image to be generated...');
     try {
-        const response = await axios.head(result.imageUrl);
-        if (response.status !== 200) {
-            throw new Error('Image URL is not accessible');
+        const response = await axios.get(result.imageUrl, {
+            responseType: 'arraybuffer',
+            timeout: 60000,
+            maxRedirects: 5
+        });
+        
+        if (response.status !== 200 || !response.data || response.data.length === 0) {
+            throw new Error('Image generation failed or returned empty data');
         }
+        
+        //console.log('✅ Image generated successfully, size:', (response.data.length / 1024).toFixed(2), 'KB');
     } catch (error) {
-        console.error('Error checking image URL:', error);
+        console.error('❌ Error waiting for image generation:', error.message);
         
         return {
             content: `${config.emojis.cross.id ? `<a:cross:${config.emojis.cross.id}>` : config.emojis.cross.fallback} ${getText('events.AICore.imageGenerationFailed', contextObj, { default: '圖片生成失敗，請稍後再試' })}`,
@@ -637,14 +699,13 @@ async function sendStreamingResponse(message1, channel, conversationLog, modelTo
             await lastMessage.edit(response);
 
             imageEmbed = imageResult;
-            //console.log('Image URL:', imageURL);
+            console.log('🎨 Image generated successfully. URL:', imageResult.imageUrl);
             
             conversationLog.push({
                 role: 'assistant',
                 content: `[已生成圖片] ${imageResult.description}`
             });
             
-            await lastMessage.edit(`-# ${config.emojis.generating.id ? `<a:generating:${config.emojis.generating.id}>` : config.emojis.generating.fallback}⠀`);
             //return;
         } else {
             await lastMessage.edit({ content: `${config.emojis.cross.id ? `<a:cross:${config.emojis.cross.id}>` : config.emojis.cross.fallback} ${getText('events.AICore.imageGenerationFailed', contextObj, { default: '圖片生成失敗，請稍後再試' })}` });
@@ -656,7 +717,7 @@ async function sendStreamingResponse(message1, channel, conversationLog, modelTo
             if (searchQuery === 'NO_SEARCH') {
                 //await lastMessage.edit({ content: '-# 💭 這是一般性問題，無需網路搜尋 <a:generating:1240296442950582292>' });
             } else {                
-                await lastMessage.edit({ content: `-# ${config.emojis.search.id ? `<a:search:${config.emojis.search.id}>` : config.emojis.search.fallback} ${getText('events.AICore.searching', contextObj, { default: '正在搜尋網路資訊' })}` });
+                await lastMessage.edit({ content: `-# ${config.emojis.search.id ? `<a:search:${config.emojis.search.id}>` : config.emojis.search.fallback} ${getText('events.AICore.searching', contextObj, { default: '正在搜尋網路資訊' })}: ${searchQuery.query}` });
                 
                 searchResults = await searchWithTavily(searchQuery);
                 
@@ -694,12 +755,57 @@ async function sendStreamingResponse(message1, channel, conversationLog, modelTo
 
         const aiClient = new OpenAI(apiConfig);
     
-        const stream = await aiClient.chat.completions.create({
-            model: modelToUse,
-            messages: conversationLog,
-            temperature: 0.7,
-            stream: true,
-        });
+        let stream;
+        let usedFallbackModel = false;
+        const fallbackImageModel = resolveFallbackImageModel(client, modelToUse);
+        
+        const hasImageContent = conversationLog.some(log => 
+            Array.isArray(log.content) && 
+            log.content.some(item => item.type === 'image_url')
+        );
+        
+        if (hasImageContent && modelsWithoutImageSupport.has(modelToUse) && fallbackImageModel) {
+            //console.log(`Model ${modelToUse} is cached as not supporting images, using ${fallbackImageModel} directly`);
+            modelToUse = fallbackImageModel;
+            usedFallbackModel = true;
+        }
+        
+        try {
+            stream = await aiClient.chat.completions.create({
+                model: modelToUse,
+                messages: conversationLog,
+                temperature: 0.7,
+                stream: true,
+            });
+        } catch (error) {
+            if (hasImageContent && fallbackImageModel && !usedFallbackModel &&
+                (error.message?.includes('image_url') || 
+                 error.message?.includes('unknown variant') ||
+                 error.message?.includes('vision') ||
+                 error.status === 400)) {
+                
+                modelsWithoutImageSupport.add(modelToUse);
+                //console.log(`Model ${modelToUse} doesn't support images, added to cache. Falling back to ${fallbackImageModel}`);
+                
+                await lastMessage.edit({ content: `-# ⚠️ ${getText('events.AICore.modelFallback', contextObj, { 
+                    from: modelToUse, 
+                    to: fallbackImageModel,
+                    default: `模型 ${modelToUse} 不支援圖片輸入，自動切換到 ${fallbackImageModel}` 
+                })} ${config.emojis.generating.id ? `<a:generating:${config.emojis.generating.id}>` : config.emojis.generating.fallback}` });
+                
+                modelToUse = fallbackImageModel;
+                usedFallbackModel = true;
+                
+                stream = await aiClient.chat.completions.create({
+                    model: fallbackImageModel,
+                    messages: conversationLog,
+                    temperature: 0.7,
+                    stream: true,
+                });
+            } else {
+                throw error;
+            }
+        }
     
       let lastEdit = Date.now();
       const editInterval = 500;
@@ -926,16 +1032,23 @@ async function sendStreamingResponse(message1, channel, conversationLog, modelTo
 }
   
 function getModelForUser(userId, client) {
-  const userModelKey = client.userModels[userId];
-  if (userModelKey) {
-      if (models[userModelKey]) {
-          return models[userModelKey];
-      } else {
-          return models['default'];
-      }
-  } else {
-      return models[client.globalModel];
+  const globalModelKey = client?.globalModel;
+  const fallbackModel = models[globalModelKey] || models['default'];
+  const userModelEntry = client?.userModels?.[userId];
+
+  if (!userModelEntry) {
+      return fallbackModel;
   }
+
+  const userModelKey = typeof userModelEntry === 'string'
+      ? userModelEntry
+      : userModelEntry.model;
+
+  if (!userModelKey || userModelKey === 'default') {
+      return fallbackModel;
+  }
+
+  return models[userModelKey] || fallbackModel;
 }
 
 async function handleConversationSummary(conversationLog, message, attachmentContents = null, userID) {
@@ -983,7 +1096,7 @@ async function handleConversationSummary(conversationLog, message, attachmentCon
                 })
             }
         ],
-        max_tokens: 800
+        max_tokens: 2000
     });
 
     conversationLog.length = 0;

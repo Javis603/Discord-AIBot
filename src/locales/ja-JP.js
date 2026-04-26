@@ -561,7 +561,8 @@ module.exports = {
             imageProcessFailed: "画像処理に失敗しました。後でお試しください",
             messageProcessFailed: "メッセージ処理中にエラーが発生しました。後でお試しください",
             referencedUserImage: "{user}{mention}の画像",
-            referencedUserSaid: "{user}{mention}の発言"
+            referencedUserSaid: "{user}{mention}の発言",
+            modelFallback: "モデル {from} は画像入力をサポートしていません。{to} に自動切り替えしました"
         }
     },
     

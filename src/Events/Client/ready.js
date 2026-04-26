@@ -11,7 +11,7 @@ const { getText } = require('../../Functions/i18n');
 const fs = require('fs');
 
 module.exports = {
-    name: "ready",
+    name: "clientReady",
     once: true,
     execute(client) {        
         const defaultLanguage = process.env.BOT_LANG || 'zh-TW';
@@ -33,23 +33,28 @@ module.exports = {
         let activityIndex = 0;
 
         setInterval(() => {
-            let models = JSON.parse(fs.readFileSync('./models.json', 'utf8'));
-            if (process.env.DEFAULT_MODEL) {
-                models.default = process.env.DEFAULT_MODEL;
-            }
-            const modelName = client.globalModel;
-            const detailedName = models[modelName];
+            if (!client.isReady()) return;
+            try {
+                let models = JSON.parse(fs.readFileSync('./models.json', 'utf8'));
+                if (process.env.DEFAULT_MODEL) {
+                    models.default = process.env.DEFAULT_MODEL;
+                }
+                const modelName = client.globalModel;
+                const detailedName = models[modelName];
 
-            const actvs = [
-                `/help | Developed by Javis`,
-                `/help | ${client.channels.cache.size} channels`,
-                `/help | ${client.users.cache.size} users`,
-                `/help | ${client.guilds.cache.size} servers`,
-                `/help | Using ${detailedName}`,
-            ]
-            
-            client.user.setActivity(actvs[activityIndex], {type: ActivityType.Listening});
-            activityIndex = (activityIndex + 1) % actvs.length;
+                const actvs = [
+                    `/help | Developed by Javis`,
+                    `/help | ${client.channels.cache.size} channels`,
+                    `/help | ${client.users.cache.size} users`,
+                    `/help | ${client.guilds.cache.size} servers`,
+                    `/help | Using ${detailedName}`,
+                ]
+                
+                client.user.setActivity(actvs[activityIndex], {type: ActivityType.Listening});
+                activityIndex = (activityIndex + 1) % actvs.length;
+            } catch (error) {
+                // Ignore errors
+            }
         }, 5000);
         
         client.user.setStatus('idle')

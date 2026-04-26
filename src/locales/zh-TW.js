@@ -561,7 +561,8 @@ module.exports = {
             imageProcessFailed: "圖片處理失敗，請稍後再試",
             messageProcessFailed: "處理訊息時發生錯誤，請稍後再試",
             referencedUserImage: "{user}{mention} 的圖片",
-            referencedUserSaid: "{user}{mention} 說"
+            referencedUserSaid: "{user}{mention} 說",
+            modelFallback: "模型 {from} 不支援圖片輸入,自動切換到 {to}"
         }
     },
     

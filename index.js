@@ -235,16 +235,62 @@ function runChildProcess() {
     childProcess = exec('node src/main.js');
     let messageQueue = [];
     let isProcessing = false;
+    let messageBufferTimer = null;
+
+    function scheduleProcessQueue() {
+        if (messageBufferTimer) return;
+        messageBufferTimer = setTimeout(() => {
+            messageBufferTimer = null;
+            processMessageQueue();
+        }, 1000);
+    }
 
     async function processMessageQueue() {
         if (!webhookClient || isProcessing || messageQueue.length === 0) return;
         
         isProcessing = true;
-        while (messageQueue.length > 0) {
-            const { content, type } = messageQueue.shift();
-            await sendWebhookMessage(`\`\`\`${type === 'error' ? 'diff\n- ' : '\n'}${content}\`\`\``);
+        
+        try {
+            while (messageQueue.length > 0) {
+                let currentMessage = "```ansi\n";
+                const MAX_LENGTH = 1990; 
+                const currentBatchType = messageQueue[0].type;
+                
+                while (messageQueue.length > 0) {
+                    const nextMsg = messageQueue[0];
+
+                    if (nextMsg.type !== currentBatchType) {
+                        break;
+                    }
+
+                    const colorCode = nextMsg.type === 'error' ? '\u001b[0;31m' : '\u001b[0;37m';
+                    const resetCode = '\u001b[0m';
+                    const part = `${colorCode}${nextMsg.content}${resetCode}`;
+                    
+                    if (currentMessage.length + part.length + 3 > MAX_LENGTH) {
+                        if (currentMessage === "```ansi\n") {
+                        } else {
+                            break; 
+                        }
+                    }
+                    
+                    messageQueue.shift();
+                    currentMessage += part;
+                }
+                
+                currentMessage += "```";
+                if (currentMessage !== "```ansi\n```") {
+                    await sendWebhookMessage(currentMessage);
+                }
+            }
+        } catch (error) {
+            console.error(getText('events.webhookError', defaultLanguage, { error: error.message }));
+        } finally {
+            isProcessing = false;
+            if (messageQueue.length > 0) {
+                scheduleProcessQueue();
+            }
         }
-        isProcessing = false;
     }
 
     childProcess.stdout.on('data', (data) => {
@@ -252,11 +298,11 @@ function runChildProcess() {
         
         let message = data.toString();
         while (message.length > 0) {
-            const chunk = message.slice(0, 1990);
+            const chunk = message.slice(0, 1800);
             messageQueue.push({ content: chunk, type: 'info' });
-            message = message.slice(1990);
+            message = message.slice(1800);
         }
-        processMessageQueue();
+        scheduleProcessQueue();
     });
 
     childProcess.stderr.on('data', (data) => {
@@ -264,11 +310,11 @@ function runChildProcess() {
         
         let errorMessage = data.toString();
         while (errorMessage.length > 0) {
-            const chunk = errorMessage.slice(0, 1985);
+            const chunk = errorMessage.slice(0, 1800);
             messageQueue.push({ content: chunk, type: 'error' });
-            errorMessage = errorMessage.slice(1985);
+            errorMessage = errorMessage.slice(1800);
         }
-        processMessageQueue();
+        scheduleProcessQueue();
     });
 
     childProcess.on('exit', async (code) => {
@@ -277,10 +323,10 @@ function runChildProcess() {
             content: exitMessage,
             type: code === 0 ? 'info' : 'error'
         });
-        await processMessageQueue();
+        scheduleProcessQueue();
     
         // Restart logic
-        if (code === 990) {
+        if (code === 990 || code === 222) {
             console.log(getText('system.receivedRestartSignal', defaultLanguage));
             setTimeout(() => runChildProcess(), 1000);
         } else if (code !== 0 && code !== null) {
@@ -297,7 +343,7 @@ function runChildProcess() {
             content: getText('system.childProcessError', defaultLanguage, { message: error.message }),
             type: 'error'
         });
-        processMessageQueue();
+        scheduleProcessQueue();
     });
 }
 
