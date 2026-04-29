@@ -562,7 +562,8 @@ module.exports = {
             messageProcessFailed: "メッセージ処理中にエラーが発生しました。後でお試しください",
             referencedUserImage: "{user}{mention}の画像",
             referencedUserSaid: "{user}{mention}の発言",
-            modelFallback: "モデル {from} は画像入力をサポートしていません。{to} に自動切り替えしました"
+            modelFallback: "モデル {from} でエラーが発生したため、{to} に自動切り替えしました",
+            modelFallbackImage: "モデル {from} は画像入力をサポートしていません。{to} に自動切り替えしました"
         }
     },
     

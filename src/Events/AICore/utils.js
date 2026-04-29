@@ -21,8 +21,21 @@ const OpenAI = require('openai');
 const { tavily } = require("@tavily/core");
 
 let models = JSON.parse(fs.readFileSync('./models.json', 'utf8'));
-if (process.env.DEFAULT_MODEL) {
-    models.default = process.env.DEFAULT_MODEL;
+
+function parseModelList(value) {
+    if (!value) {
+        return [];
+    }
+    return value
+        .split(',')
+        .map((item) => item.trim())
+        .filter(Boolean);
+}
+
+const defaultModelList = parseModelList(process.env.DEFAULT_MODEL);
+const primaryDefaultModel = defaultModelList[0] || models.default;
+if (defaultModelList[0]) {
+    models.default = defaultModelList[0];
 }
 
 const GENERATE_IMAGE_ENABLED = process.env.GENERATE_IMAGE === 'true';
@@ -46,42 +59,143 @@ const Conversation = require('../../Models/Conversation');
 const MAX_TOKENS = process.env.MAX_CONTEXT_TOKENS;
 const PredictionApi = process.env.BUTTON_API_KEY || process.env.DEFAULT_API_KEY;
 const PredictionBase = process.env.BUTTON_BASE_URL || process.env.DEFAULT_BASE_URL;
-const predictedModel = process.env.BUTTON_MODEL || process.env.DEFAULT_MODEL;
+const predictedModel = process.env.BUTTON_MODEL || primaryDefaultModel;
 const detail = process.env.IMAGE_DETAIL;
 //const temperature = 0.7;
 
 const modelsWithoutImageSupport = new Set();
 
-const analysisSearchModel = process.env.ALL_FUNCTION_MODEL || process.env.DEFAULT_MODEL;
-const analysisImagineModel = process.env.ALL_FUNCTION_MODEL || process.env.DEFAULT_MODEL;
-const imaginePromptModel = process.env.ALL_FUNCTION_MODEL || process.env.DEFAULT_MODEL;
-const summaryModel = process.env.SUMMARY_MODEL || process.env.DEFAULT_MODEL;
+const analysisSearchModel = process.env.ALL_FUNCTION_MODEL || primaryDefaultModel;
+const analysisImagineModel = process.env.ALL_FUNCTION_MODEL || primaryDefaultModel;
+const imaginePromptModel = process.env.ALL_FUNCTION_MODEL || primaryDefaultModel;
+const summaryModel = process.env.SUMMARY_MODEL || primaryDefaultModel;
 const deepThinkingModel = process.env.DEEP_THINKING_MODEL;
 
-function resolveFallbackImageModel(client, currentModel) {
-    const imageModelEnv = process.env.IMAGE_MODEL;
-    const globalModel = client?.globalModel ? models[client.globalModel] : null;
-    const envDefaultModel = process.env.DEFAULT_MODEL;
-    const configuredDefaultModel = models.default;
+function getDefaultModelList() {
+    if (defaultModelList.length > 0) {
+        return defaultModelList;
+    }
+    return models.default ? [models.default] : [];
+}
 
-    const candidates = [
-        imageModelEnv,
-        globalModel,
-        envDefaultModel,
-        configuredDefaultModel
-    ].filter(Boolean);
+function resolveUserModelName(userId, client) {
+    const entry = client?.userModels?.[userId];
+    const key = typeof entry === 'string' ? entry : entry?.model;
+    if (!key || key === 'default') {
+        return null;
+    }
+    return models[key] || key;
+}
 
-    for (const candidate of candidates) {
-        if (candidate !== currentModel && specialModels.includes(candidate)) {
-            return candidate;
+function resolveGlobalModelName(client) {
+    const key = client?.globalModel;
+    if (!key) {
+        return null;
+    }
+    return models[key] || key;
+}
+
+function buildModelFallbackChain({ userId, client, currentModel, includeImageModel }) {
+    const chain = [];
+    const add = (model) => {
+        if (!model) {
+            return;
         }
+        const value = typeof model === 'string' ? model.trim() : '';
+        if (value && !chain.includes(value)) {
+            chain.push(value);
+        }
+    };
+
+    const userModelName = resolveUserModelName(userId, client);
+    const globalModelName = resolveGlobalModelName(client);
+    const defaults = getDefaultModelList();
+
+    add(currentModel);
+
+    if (includeImageModel) {
+        add(process.env.IMAGE_MODEL);
     }
 
-    if (imageModelEnv && imageModelEnv !== currentModel) {
-        return imageModelEnv;
+    const source = userModelName && userModelName === currentModel
+        ? 'user'
+        : globalModelName && globalModelName === currentModel
+            ? 'global'
+            : defaults.includes(currentModel)
+                ? 'default'
+                : 'other';
+
+    if (source === 'user' || source === 'other') {
+        add(globalModelName);
     }
 
-    return '';
+    for (const model of defaults) {
+        add(model);
+    }
+
+    add(models.default);
+
+    return chain;
+}
+
+function getErrorStatus(error) {
+    return error?.status || error?.response?.status;
+}
+
+function getErrorMessage(error) {
+    return (error?.message || '').toLowerCase();
+}
+
+function isAuthError(error) {
+    const status = getErrorStatus(error);
+    return status === 401 || status === 403;
+}
+
+function isContextLengthError(error) {
+    return getErrorMessage(error).includes('context length');
+}
+
+function isImageUnsupportedError(error, hasImageContent) {
+    if (!hasImageContent) {
+        return false;
+    }
+    const status = getErrorStatus(error);
+    const message = getErrorMessage(error);
+    return (
+        message.includes('image_url') ||
+        message.includes('unknown variant') ||
+        message.includes('vision') ||
+        (status === 400 && message.includes('image'))
+    );
+        }
+
+function isInvalidModelError(error) {
+    const message = getErrorMessage(error);
+    return message.includes('model') &&
+        (message.includes('not found') || message.includes('invalid') || message.includes('unknown'));
+}
+
+function isRetryableError(error) {
+    const status = getErrorStatus(error);
+    const code = error?.code;
+    if (status === 429) {
+        return true;
+    }
+    if (status && status >= 500 && status < 600) {
+        return true;
+    }
+    return [
+        'ETIMEDOUT',
+        'ECONNRESET',
+        'EAI_AGAIN',
+        'ENOTFOUND',
+        'ECONNREFUSED',
+        'EPIPE'
+    ].includes(code);
+    }
+
+function delay(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 async function webhookLog(logMessage, functionName) {
@@ -756,55 +870,130 @@ async function sendStreamingResponse(message1, channel, conversationLog, modelTo
         const aiClient = new OpenAI(apiConfig);
     
         let stream;
-        let usedFallbackModel = false;
-        const fallbackImageModel = resolveFallbackImageModel(client, modelToUse);
-        
         const hasImageContent = conversationLog.some(log => 
             Array.isArray(log.content) && 
             log.content.some(item => item.type === 'image_url')
         );
-        
-        if (hasImageContent && modelsWithoutImageSupport.has(modelToUse) && fallbackImageModel) {
-            //console.log(`Model ${modelToUse} is cached as not supporting images, using ${fallbackImageModel} directly`);
-            modelToUse = fallbackImageModel;
-            usedFallbackModel = true;
-        }
-        
-        try {
-            stream = await aiClient.chat.completions.create({
-                model: modelToUse,
+        const candidates = buildModelFallbackChain({
+            userId: user.id,
+            client,
+            currentModel: modelToUse,
+            includeImageModel: hasImageContent
+        });
+        let lastError = null;
+        let lastFallbackNotice = null;
+
+        const findNextCandidate = (startIndex) => {
+            for (let i = startIndex + 1; i < candidates.length; i++) {
+                const next = candidates[i];
+                if (hasImageContent && modelsWithoutImageSupport.has(next)) {
+                    continue;
+                }
+                return next;
+            }
+            return null;
+        };
+
+        const notifyFallback = async (from, to, reason) => {
+            if (!to || from === to) {
+                return;
+            }
+            const reasonKey = reason || 'generic';
+            const key = `${from}->${to}:${reasonKey}`;
+            if (lastFallbackNotice === key) {
+                return;
+            }
+            lastFallbackNotice = key;
+            const messageKey = reasonKey === 'image'
+                ? 'events.AICore.modelFallbackImage'
+                : 'events.AICore.modelFallback';
+            const defaultText = reasonKey === 'image'
+                ? `模型 ${from} 不支援圖片輸入，自動切換到 ${to}`
+                : `模型 ${from} 發生錯誤，自動切換到 ${to}`;
+            await lastMessage.edit({ content: `-# ⚠️ ${getText(messageKey, contextObj, { 
+                from,
+                to,
+                default: defaultText
+            })} ${config.emojis.generating.id ? `<a:generating:${config.emojis.generating.id}>` : config.emojis.generating.fallback}` });
+        };
+
+        const createStream = async (model) => aiClient.chat.completions.create({
+            model,
                 messages: conversationLog,
                 temperature: 0.7,
                 stream: true,
             });
-        } catch (error) {
-            if (hasImageContent && fallbackImageModel && !usedFallbackModel &&
-                (error.message?.includes('image_url') || 
-                 error.message?.includes('unknown variant') ||
-                 error.message?.includes('vision') ||
-                 error.status === 400)) {
-                
-                modelsWithoutImageSupport.add(modelToUse);
-                //console.log(`Model ${modelToUse} doesn't support images, added to cache. Falling back to ${fallbackImageModel}`);
-                
-                await lastMessage.edit({ content: `-# ⚠️ ${getText('events.AICore.modelFallback', contextObj, { 
-                    from: modelToUse, 
-                    to: fallbackImageModel,
-                    default: `模型 ${modelToUse} 不支援圖片輸入，自動切換到 ${fallbackImageModel}` 
-                })} ${config.emojis.generating.id ? `<a:generating:${config.emojis.generating.id}>` : config.emojis.generating.fallback}` });
-                
-                modelToUse = fallbackImageModel;
-                usedFallbackModel = true;
-                
-                stream = await aiClient.chat.completions.create({
-                    model: fallbackImageModel,
-                    messages: conversationLog,
-                    temperature: 0.7,
-                    stream: true,
-                });
-            } else {
-                throw error;
+
+        for (let index = 0; index < candidates.length; index++) {
+            const candidate = candidates[index];
+            if (hasImageContent && modelsWithoutImageSupport.has(candidate)) {
+                const nextModel = findNextCandidate(index);
+                if (nextModel) {
+                    await notifyFallback(candidate, nextModel, 'image');
+                }
+                lastError = lastError || new Error('Model does not support images');
+                continue;
             }
+
+            try {
+                stream = await createStream(candidate);
+                modelToUse = candidate;
+                break;
+        } catch (error) {
+                if (isAuthError(error) || isContextLengthError(error)) {
+                    throw error;
+                }
+
+                if (isImageUnsupportedError(error, hasImageContent)) {
+                    modelsWithoutImageSupport.add(candidate);
+
+                    const nextModel = findNextCandidate(index);
+                    if (nextModel) {
+                        await notifyFallback(candidate, nextModel, 'image');
+                    }
+
+                    lastError = error;
+                    continue;
+                }
+
+                if (isRetryableError(error)) {
+                    try {
+                        await delay(500);
+                        stream = await createStream(candidate);
+                        modelToUse = candidate;
+                        break;
+                    } catch (retryError) {
+                        if (isAuthError(retryError) || isContextLengthError(retryError)) {
+                            throw retryError;
+                        }
+                        const nextModel = findNextCandidate(index);
+                        if (nextModel) {
+                            await notifyFallback(candidate, nextModel, 'generic');
+                        }
+                        lastError = retryError;
+                        continue;
+                    }
+                }
+
+                if (isInvalidModelError(error)) {
+                    const nextModel = findNextCandidate(index);
+                    if (nextModel) {
+                        await notifyFallback(candidate, nextModel, 'generic');
+                    }
+                    lastError = error;
+                    continue;
+                }
+
+                const nextModel = findNextCandidate(index);
+                if (nextModel) {
+                    await notifyFallback(candidate, nextModel, 'generic');
+                }
+                lastError = error;
+            }
+        }
+
+        if (!stream) {
+            throw lastError || new Error('No available model');
         }
     
       let lastEdit = Date.now();

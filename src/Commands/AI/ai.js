@@ -10,7 +10,10 @@ const fs = require('fs');
 const { SlashCommandBuilder, EmbedBuilder, MessageFlags } = require('discord.js');
 let models = JSON.parse(fs.readFileSync('./models-user.json', 'utf8'));
 if (process.env.DEFAULT_MODEL) {
-    models.default = process.env.DEFAULT_MODEL;
+    const defaultModel = process.env.DEFAULT_MODEL.split(',')[0].trim();
+    if (defaultModel) {
+        models.default = defaultModel;
+    }
 }
 const roles = yaml.load(fs.readFileSync('./roles.yaml', 'utf8'));
 const UserSettings = require('../../Models/UserSettings');

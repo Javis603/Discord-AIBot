@@ -562,7 +562,8 @@ module.exports = {
             messageProcessFailed: "处理消息时发生错误，请稍后再试",
             referencedUserImage: "{user}{mention} 的图片",
             referencedUserSaid: "{user}{mention} 说",
-            modelFallback: "模型 {from} 不支持图片输入，自动切换到 {to}"
+            modelFallback: "模型 {from} 出现错误，自动切换到 {to}",
+            modelFallbackImage: "模型 {from} 不支持图片输入，自动切换到 {to}"
         }
     },
     

@@ -40,7 +40,7 @@
     "moment-duration-format": "^2.3.2",
     "mongoose": "^8.10.1",
     "node-fetch": "^2.7.0",
-    "openai": "^4.85.3",
+    "openai": "^6.34.0",
     "pdf-parse": "^1.1.1",
     "undici": "^7.3.0",
     "validator": "^13.11.0"
