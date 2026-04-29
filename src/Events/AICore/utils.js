@@ -167,7 +167,7 @@ function isImageUnsupportedError(error, hasImageContent) {
         message.includes('vision') ||
         (status === 400 && message.includes('image'))
     );
-        }
+}
 
 function isInvalidModelError(error) {
     const message = getErrorMessage(error);
@@ -192,7 +192,7 @@ function isRetryableError(error) {
         'ECONNREFUSED',
         'EPIPE'
     ].includes(code);
-    }
+}
 
 function delay(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -919,10 +919,10 @@ async function sendStreamingResponse(message1, channel, conversationLog, modelTo
 
         const createStream = async (model) => aiClient.chat.completions.create({
             model,
-                messages: conversationLog,
-                temperature: 0.7,
-                stream: true,
-            });
+            messages: conversationLog,
+            temperature: 0.7,
+            stream: true,
+        });
 
         for (let index = 0; index < candidates.length; index++) {
             const candidate = candidates[index];
@@ -939,7 +939,7 @@ async function sendStreamingResponse(message1, channel, conversationLog, modelTo
                 stream = await createStream(candidate);
                 modelToUse = candidate;
                 break;
-        } catch (error) {
+            } catch (error) {
                 if (isAuthError(error) || isContextLengthError(error)) {
                     throw error;
                 }
@@ -1198,18 +1198,36 @@ async function sendStreamingResponse(message1, channel, conversationLog, modelTo
             iconURL: client.user.avatarURL({ dynamic: true })
         });
 
+    let errorComponents = [];
+    if (user?.id) {
+        const row = new ActionRowBuilder();
+        row.addComponents(
+            new ButtonBuilder()
+                .setCustomId(`updateButton_${user.id}`)
+                .setLabel(getText('components.buttons.menu', contextObj, { default: '📋 多功能選單' }))
+                .setStyle(ButtonStyle.Primary),
+            new ButtonBuilder()
+                .setCustomId(`clearchat_${user.id}`)
+                .setLabel(getText('components.buttons.newChat', contextObj, { default: '新交談' }))
+                .setStyle(ButtonStyle.Success)
+                .setEmoji(`${config.emojis.newchat.id ? `<:newchat:${config.emojis.newchat.id}>` : config.emojis.newchat.fallback}`)
+        );
+        errorComponents = [row];
+    }
+
     try {
         await lastMessage.edit({ 
             content: errorMessage, 
             embeds: [errorEmbed],
-            components: []
+            components: errorComponents
         });
     } catch (editError) {
         console.error('Error editing message:', editError);
         try {
             await message1.channel.send({ 
                 content: errorMessage, 
-                embeds: [errorEmbed] 
+                embeds: [errorEmbed],
+                components: errorComponents
             });
         } catch (sendError) {
             console.error('Error sending error message:', sendError);
