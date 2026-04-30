@@ -13,7 +13,7 @@ const roles = yaml.load(fs.readFileSync('./roles.yaml', 'utf8'));
 const { encode, encodeChat } = require('gpt-tokenizer');
 const PDFParser = require('pdf-parse');
 const FormData = require('form-data');
-const fetch = require('node-fetch');
+const { fetch } = globalThis;
 
 require('dotenv/config');
 const OpenAI = require('openai');
@@ -52,7 +52,9 @@ async function handleAudioAttachment(message, audioAttachment, conversationLog, 
     }
     
     try {
-        const audioBuffer = await fetch(audioAttachment.url).then(res => res.buffer());
+        const audioBuffer = Buffer.from(
+            await fetch(audioAttachment.url).then(res => res.arrayBuffer())
+        );
         
         const audioOpenai = new OpenAI({
             apiKey: voiceApi,

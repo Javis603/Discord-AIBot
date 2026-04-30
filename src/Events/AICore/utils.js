@@ -9,7 +9,6 @@ const { Client, GatewayIntentBits, Partials, Collection, TextInputStyle, Attachm
 const yaml = require('js-yaml');
 const fs = require('fs');
 const axios = require('axios');
-const fetch = require('node-fetch');
 const PDFParser = require('pdf-parse');
 const roles = yaml.load(fs.readFileSync('./roles.yaml', 'utf8'));
 const { encode, encodeChat } = require('gpt-tokenizer');

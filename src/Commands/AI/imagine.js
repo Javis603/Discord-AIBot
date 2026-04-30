@@ -16,7 +16,7 @@ const {
   StringSelectMenuOptionBuilder,
   MessageFlags
 } = require("discord.js");
-const fetch = require('node-fetch');
+const { fetch } = globalThis;
 const { getText } = require('../../Functions/i18n');
 
 const contextObj = {
