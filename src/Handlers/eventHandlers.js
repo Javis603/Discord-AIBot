@@ -14,7 +14,11 @@ async function loadEvents(client) {
 
     const table = new ascii().setHeading("Events", "Status");
     
-    if (client.events && client.events.size > 0) {
+    if (Array.isArray(client.events) && client.events.length > 0) {
+        for (const { target, name, execute } of client.events) {
+            target.removeListener(name, execute);
+        }
+    } else if (client.events && client.events.size > 0) {
         for (const [eventName, execute] of client.events) {
             client.removeListener(eventName, execute);
             if (client.rest) {
@@ -23,7 +27,7 @@ async function loadEvents(client) {
         }
     }
     
-    client.events = new Map();
+    client.events = [];
 
     const files = await loadFiles("src/Events"); 
 
@@ -36,7 +40,7 @@ async function loadEvents(client) {
             const target = event.rest ? client.rest : client;
 
             target[event.once ? "once" : "on"](event.name, execute);
-            client.events.set(event.name, execute);
+            client.events.push({ target, name: event.name, execute });
 
             table.addRow(path.basename(file, '.js'), "🔸");
         } catch (error) {

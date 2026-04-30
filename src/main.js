@@ -36,7 +36,7 @@ if (client.rest) {
 const { loadEvents } = require("./Handlers/eventHandlers");
 const { loadUserLanguagePreferences } = require('./Functions/i18n');
 
-client.events = new Collection();
+client.events = [];
 client.commands = new Collection();
 
 // Connect MangoDB

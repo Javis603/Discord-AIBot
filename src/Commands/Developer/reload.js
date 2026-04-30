@@ -44,7 +44,6 @@ module.exports = {
                     flags: MessageFlags.Ephemeral 
                 });
             } else if (subcommand === 'events') {
-                clearEventCache(client);
                 await loadEvents(client);
                 await interaction.reply({ 
                     content: getText('commands.reload.messages.eventsSuccess', contextObj), 
@@ -80,15 +79,3 @@ function clearCommandCache() {
     }
 }
 
-function clearEventCache(client) {
-    client.removeAllListeners();
-    
-    const eventFiles = fs.readdirSync('./src/Events').filter(file => 
-        file.endsWith('.js')
-    );
-    
-    for (const file of eventFiles) {
-        const filePath = path.resolve(`./src/Events/${file}`);
-        delete require.cache[require.resolve(filePath)];
-    }
-}

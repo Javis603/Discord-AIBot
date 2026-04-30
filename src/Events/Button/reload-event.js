@@ -8,8 +8,6 @@
 const { EmbedBuilder, MessageFlags } = require('discord.js');
 const { loadEvents } = require("../../Handlers/eventHandlers");
 const { getText } = require('../../Functions/i18n');
-const fs = require('fs');
-const path = require('path');
 
 module.exports = {
     name: 'interactionCreate',
@@ -37,8 +35,6 @@ module.exports = {
             userLang: interaction.userLang
         };
         
-        clearEventCache(client);
-        // Then reload events
         await loadEvents(client);
         await interaction.reply({ 
             content: getText('events.eventReload', contextObj), 
@@ -47,13 +43,3 @@ module.exports = {
     }
     }
 };
-
-function clearEventCache(client) {
-    client.removeAllListeners();
-    
-    const eventFiles = fs.readdirSync('./src/Events').filter(file => file.endsWith('.js'));
-    for (const file of eventFiles) {
-        const filePath = path.resolve(`./src/Events/${file}`);
-        delete require.cache[require.resolve(filePath)];
-    }
-}
