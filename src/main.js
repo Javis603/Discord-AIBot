@@ -17,13 +17,26 @@ process.on('uncaughtException', (err) => {
 
 require('dotenv/config');
 
-const { Client, GatewayIntentBits, Partials, Collection, TextInputStyle, AttachmentBuilder, EmbedBuilder, WebhookClient, ButtonBuilder, ActionRowBuilder, ButtonStyle } = require("discord.js");
+const { Client, GatewayIntentBits, Partials, Collection, TextInputStyle, AttachmentBuilder, EmbedBuilder, WebhookClient, ButtonBuilder, ActionRowBuilder, ButtonStyle, SimpleShardingStrategy } = require("discord.js");
 const { Guilds, GuildMembers, GuildMessages, MessageContent, GuildPresences } = GatewayIntentBits;
 const { User, Message, GuildMember, ThreadMember } = Partials;
 
+class MaxListenersShardingStrategy extends SimpleShardingStrategy {
+    async spawn(shardIds) {
+        await super.spawn(shardIds);
+
+        for (const shard of this.shards.values()) {
+            shard.setMaxListeners(0);
+        }
+    }
+}
+
 const client = new Client({ 
     intents: [Guilds, GuildMembers, GuildMessages, MessageContent, GuildPresences], 
-    partials: [User, Message, GuildMember, ThreadMember]
+    partials: [User, Message, GuildMember, ThreadMember],
+    ws: {
+        buildStrategy: manager => new MaxListenersShardingStrategy(manager)
+    }
 });
 
 require('events').EventEmitter.setMaxListeners(0);
