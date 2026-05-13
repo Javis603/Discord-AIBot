@@ -48,6 +48,7 @@ if (client.rest) {
 
 const { loadEvents } = require("./Handlers/eventHandlers");
 const { loadUserLanguagePreferences } = require('./Functions/i18n');
+const { installSkills } = require('./Events/AICore/skills');
 
 client.events = [];
 client.commands = new Collection();
@@ -72,6 +73,9 @@ client.userModels = {};
 client.userConversations = {};
 client.userNetSearchEnabled = new Map();
 client.userDeepThinkingEnabled = new Map();
+client.userEnabledSkills = new Map();
+client.userDisabledSkills = new Map();
+installSkills(client);
 
 const {specialUsers} = require('./Events/AICore/models');
 
@@ -83,6 +87,8 @@ async function initializeUserSettings() {
             client.userModels[setting.userId] = setting.model;
             client.userNetSearchEnabled.set(setting.userId, setting.netSearchEnabled);
             client.userDeepThinkingEnabled.set(setting.userId, setting.deepThinkingEnabled);
+            client.userEnabledSkills.set(setting.userId, setting.enabledSkills || []);
+            client.userDisabledSkills.set(setting.userId, setting.disabledSkills || []);
         });
 
         // 載入所有對話記錄

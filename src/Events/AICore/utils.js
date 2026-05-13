@@ -18,6 +18,13 @@ const { processImageUrl } = require('../../utils/r2Uploader');
 require('dotenv/config');
 const OpenAI = require('openai');
 const { tavily } = require("@tavily/core");
+const {
+    routeSkills,
+    buildSkillSystemMessage,
+    injectSkillSystemMessage,
+    getSkillByCapability,
+    getAllSkills
+} = require('./skills');
 
 let models = JSON.parse(fs.readFileSync('./models.json', 'utf8'));
 
@@ -743,6 +750,23 @@ async function imagineResponse(result, message1, user, client, conversationLog, 
     };
 }
 
+function buildSkillUsageNotice(client, skillIds) {
+    if (!skillIds || skillIds.length === 0) return '';
+
+    const skills = getAllSkills(client);
+    const selectedSkills = [...new Set(skillIds)]
+        .map(skillId => skills.get(skillId))
+        .filter(Boolean);
+
+    if (selectedSkills.length === 0) return '';
+
+    const names = selectedSkills
+        .map(skill => skill.name || skill.id)
+        .join(', ');
+
+    return `> -# 🧩 使用 Skills：${names}\n`;
+}
+
 async function sendStreamingResponse(message1, channel, conversationLog, modelToUse, user, client, isButtonChat = false, question, pdfAttachments, imageAttachments) {
     let response = '';
     let originalContent = '';
@@ -797,13 +821,42 @@ async function sendStreamingResponse(message1, channel, conversationLog, modelTo
     }
     
     try {
-    const isSearchEnabled = client.userNetSearchEnabled.get(user.id);
+    const skillRouting = await routeSkills({
+        conversationLog,
+        userId: user.id,
+        client,
+        attachments: {
+            pdf: pdfAttachments?.length || 0,
+            images: imageAttachments?.length || 0
+        }
+    });
+    const selectedSkillIds = new Set(skillRouting.skills);
+    const webSearchSkill = getSkillByCapability(client, user.id, 'web-search');
+    const imageGenerationSkill = getSkillByCapability(client, user.id, 'image-generation');
+    const pdfAnalysisSkill = getSkillByCapability(client, user.id, 'pdf-analysis');
 
-    const imagineResult = await imagineCheck(conversationLog, user.id);
+    if ((pdfAttachments?.length || 0) > 0 && pdfAnalysisSkill) {
+        selectedSkillIds.add(pdfAnalysisSkill.id);
+    }
+
+    const isSearchEnabled = Boolean(
+        (webSearchSkill && selectedSkillIds.has(webSearchSkill.id)) ||
+        (webSearchSkill && client.userNetSearchEnabled.get(user.id))
+    );
+    const shouldCheckImageGeneration = Boolean(
+        imageGenerationSkill &&
+        (selectedSkillIds.has(imageGenerationSkill.id) || selectedSkillIds.size === 0)
+    );
+    const isDeepThinkingEnabled = Boolean(client.userDeepThinkingEnabled.get(user.id));
+
+    const imagineResult = shouldCheckImageGeneration
+        ? await imagineCheck(conversationLog, user.id)
+        : 'NO_IMAGINE';
     if (imagineResult === 'NO_IMAGINE') {
         //await lastMessage.edit({ content: getText('events.AICore.normalQuestion', contextObj) });
         
     } else {
+        selectedSkillIds.add(imageGenerationSkill.id);
         // 處理圖片生成
         await lastMessage.edit({ content: getText('events.AICore.generatingImage', contextObj) });
         const imageResult = await imagineGenerate(imagineResult, user.id);
@@ -825,6 +878,9 @@ async function sendStreamingResponse(message1, channel, conversationLog, modelTo
         }
     }
         if (isSearchEnabled) {
+            if (webSearchSkill) {
+                selectedSkillIds.add(webSearchSkill.id);
+            }
             const searchQuery = await extractSearchQuery(conversationLog, user.id);
         
             if (searchQuery === 'NO_SEARCH') {
@@ -856,7 +912,7 @@ async function sendStreamingResponse(message1, channel, conversationLog, modelTo
             baseURL: process.env.DEFAULT_BASE_URL
         };
     
-        if (client.userDeepThinkingEnabled.get(user.id)) {
+        if (isDeepThinkingEnabled) {
             apiConfig = {
                 apiKey: process.env.DEEP_THINKING_API_KEY || process.env.DEFAULT_API_KEY,
                 baseURL: process.env.DEEP_THINKING_BASE_URL || process.env.DEFAULT_BASE_URL
@@ -867,6 +923,12 @@ async function sendStreamingResponse(message1, channel, conversationLog, modelTo
         }
 
         const aiClient = new OpenAI(apiConfig);
+        const skillSystemMessage = buildSkillSystemMessage(client, [...selectedSkillIds]);
+        const modelConversationLog = injectSkillSystemMessage(conversationLog, skillSystemMessage);
+        const skillUsageNotice = buildSkillUsageNotice(client, [...selectedSkillIds]);
+        if (skillUsageNotice) {
+            response = `${skillUsageNotice}${response}`;
+        }
     
         let stream;
         const hasImageContent = conversationLog.some(log => 
@@ -918,7 +980,7 @@ async function sendStreamingResponse(message1, channel, conversationLog, modelTo
 
         const createStream = async (model) => aiClient.chat.completions.create({
             model,
-            messages: conversationLog,
+            messages: modelConversationLog,
             temperature: 0.7,
             stream: true,
         });

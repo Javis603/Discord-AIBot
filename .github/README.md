@@ -42,6 +42,7 @@ This is a multifunctional AI assistant designed for Discord, integrating top-tie
 - **Smart Predictions**: AI-driven conversation prediction system automatically provides three most relevant response suggestions.
 - **Multimodal Capabilities**: Supports text, image, PDF, voice inputs, and more for comprehensive interaction.
 - **Highly Customizable**: Flexible role settings and model switching features to create a personalized AI assistant.
+- **AI Skills**: Provides built-in skills for common AI workflows and can be extended as needed.
 
 ### 🌐 Multilingual Support
 - Full support for four languages:
@@ -56,6 +57,7 @@ This is a multifunctional AI assistant designed for Discord, integrating top-tie
 
 ### 🛠️ Technical Highlights
 - Modular architecture design for easy maintenance and expansion.
+- Extensible AI Skills structure.
 - Complete multilingual localization system.
 - MongoDB data persistence to ensure data security.
 - Real-time event monitoring and logging.
@@ -107,6 +109,7 @@ This is a multifunctional AI assistant designed for Discord, integrating top-tie
 - Detailed event logging.
 - Permission management system.
 - Channel management functions.
+- Personal AI Skills management.
 
 ## 🚀 Getting Started
 
@@ -155,6 +158,7 @@ npm run dev
 - roles.yaml: AI role settings (customizable)
 - models.json: Developer AI model configuration
 - models-user.json: User AI model configuration
+- src/Skills/: AI Skills folder (extensible)
 
 ### Custom Emoji Settings
 
@@ -184,6 +188,7 @@ Required emojis:
 | `/ai role` | Set AI role | General User |
 | `/ai model` | Switch AI model | General User |
 | `/ai chat clear` | Clear chat history | General User |
+| `/ai skill list`<br>`/ai skill enable`<br>`/ai skill disable` | Manage personal AI Skills | General User |
 | `/imagine` | Generate AI image | General User |
 | `/lang` | Personal language settings | General User |
 | `/snipe`<br>`.snipe` | View deleted messages | General User |

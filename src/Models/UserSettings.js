@@ -12,6 +12,8 @@ const userSettingsSchema = new mongoose.Schema({
     model: { type: String, default: 'default' },
     netSearchEnabled: { type: Boolean, default: false },
     deepThinkingEnabled: { type: Boolean, default: false },
+    enabledSkills: { type: [String], default: [] },
+    disabledSkills: { type: [String], default: [] },
     language: { type: String },
     lastUpdated: { type: Date, default: Date.now }
 });

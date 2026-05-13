@@ -1,4 +1,4 @@
-<p align="right">
+﻿<p align="right">
    <strong>繁</strong> | <a href="./README.zh-CN.md">简</a> | <a href="./README.md">EN</a>
 </p>
 <div align="center">
@@ -42,6 +42,7 @@
 - **智慧預測**：AI 驅動的對話預測系統，自動提供三個最相關的回應建議
 - **多模態能力**：支援文字、圖片、PDF、語音等多種輸入方式，全方位互動
 - **高度客製化**：彈性的角色設定和模型切換功能，打造專屬 AI 助手
+- **AI Skills**：預設提供常用 AI 工作流程，可依需求擴充
 
 ### 🌐 多語言支援
 - 完整支援四種語言：
@@ -56,6 +57,7 @@
 
 ### 🛠️ 技術特色
 - 模組化架構設計，易於維護和擴展
+- 可擴充的 AI Skills 架構
 - 完整的多語言本地化系統
 - MongoDB 資料持久化，確保資料安全
 - 即時事件監控和日誌記錄
@@ -107,6 +109,7 @@
 - 詳細的事件日誌記錄
 - 權限管理系統
 - 頻道管理功能
+- 個人 AI Skills 管理
 
 ## 🚀 開始使用
 
@@ -155,6 +158,7 @@ npm run dev
 - `roles.yaml`：AI 角色設定（可自定義）
 - `models.json`：開發人員用的AI模型配置
 - `models-user.json`：用戶使用的AI模型配置
+- `src/Skills/`：AI Skills 資料夾（可自行擴充）
 
 ### 自訂表情符號設定
 
@@ -184,6 +188,7 @@ npm run dev
 | `/ai role` | 設定 AI 角色 | 一般用戶 |
 | `/ai model` | 切換 AI 模型 | 一般用戶 |
 | `/ai chat clear` | 清除對話記錄 | 一般用戶 |
+| `/ai skill list`<br>`/ai skill enable`<br>`/ai skill disable` | 管理個人 AI Skills | 一般用戶 |
 | `/imagine` | 生成 AI 圖片 | 一般用戶 |
 | `/lang` | 個人語言設定 | 一般用戶 |
 | `/snipe`<br>`.snipe` | 查看刪除訊息 | 一般用戶 |

@@ -21,11 +21,13 @@ const { getText } = require('../../Functions/i18n');
 const { specialUsers, modelGroups, getModelGroup } = require('../../Events/AICore/models');
 const { webhookLog } = require('../../Events/AICore/utils');
 const { deleteUserImages } = require('../../utils/r2Uploader');
+const { loadSkills, getSkillStatusForUser } = require('../../Events/AICore/skills');
 
 const contextObj = {
     userId: 'system',
     guildId: null,
 };
+const skillChoices = [...loadSkills().values()].map(skill => ({ name: skill.name, value: skill.id })).slice(0, 25);
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -72,6 +74,42 @@ module.exports = {
                     subcommand
                         .setName(getText('commands.ai.options.chat.options.clear.name', contextObj))
                         .setDescription(getText('commands.ai.options.chat.options.clear.description', contextObj))
+                )
+        )
+
+        // skill subcommand group
+        .addSubcommandGroup(group =>
+            group
+                .setName('skill')
+                .setDescription('Manage your AI skills')
+                .addSubcommand(subcommand =>
+                    subcommand
+                        .setName('list')
+                        .setDescription('List available AI skills')
+                )
+                .addSubcommand(subcommand =>
+                    subcommand
+                        .setName('enable')
+                        .setDescription('Enable an AI skill for your account')
+                        .addStringOption(option =>
+                            option
+                                .setName('skill')
+                                .setDescription('Skill to enable')
+                                .setRequired(true)
+                                .addChoices(...skillChoices)
+                        )
+                )
+                .addSubcommand(subcommand =>
+                    subcommand
+                        .setName('disable')
+                        .setDescription('Disable an AI skill for your account')
+                        .addStringOption(option =>
+                            option
+                                .setName('skill')
+                                .setDescription('Skill to disable')
+                                .setRequired(true)
+                                .addChoices(...skillChoices)
+                        )
                 )
         ),
 
@@ -231,6 +269,81 @@ module.exports = {
                     flags: MessageFlags.Ephemeral 
                 });
             }
+        }
+
+        // for /ai skill list|enable|disable
+        else if (group === "skill") {
+            if (!client.userEnabledSkills) client.userEnabledSkills = new Map();
+            if (!client.userDisabledSkills) client.userDisabledSkills = new Map();
+
+            const userId = interaction.user.id;
+            const selectedSkillId = interaction.options.getString('skill');
+
+            if (subcommand === "list") {
+                const skillStatus = getSkillStatusForUser(client, userId);
+                const description = skillStatus.length
+                    ? skillStatus.map(skill => {
+                        const status = skill.available ? 'Enabled' : 'Disabled';
+                        const source = skill.userDisabled
+                            ? 'user disabled'
+                            : skill.userEnabled
+                                ? 'user enabled'
+                                : skill.enabled
+                                    ? 'global default'
+                                    : 'globally disabled';
+                        return `**${skill.name}** \`${skill.id}\`\n${status} - ${source}\n${skill.description}`;
+                    }).join('\n\n')
+                    : 'No skills are loaded.';
+
+                const embed = new EmbedBuilder()
+                    .setColor(interaction.member?.displayHexColor || 0x5865F2)
+                    .setTitle('AI Skills')
+                    .setDescription(description)
+                    .setTimestamp();
+
+                await interaction.reply({ embeds: [embed], flags: MessageFlags.Ephemeral });
+                return;
+            }
+
+            const allSkillIds = new Set([...loadSkills().keys()]);
+            if (!selectedSkillId || !allSkillIds.has(selectedSkillId)) {
+                await interaction.reply({
+                    content: `Unknown skill: ${selectedSkillId || 'none'}`,
+                    flags: MessageFlags.Ephemeral
+                });
+                return;
+            }
+
+            const enabledSkills = new Set(client.userEnabledSkills.get(userId) || []);
+            const disabledSkills = new Set(client.userDisabledSkills.get(userId) || []);
+
+            if (subcommand === "enable") {
+                disabledSkills.delete(selectedSkillId);
+                enabledSkills.add(selectedSkillId);
+            } else if (subcommand === "disable") {
+                enabledSkills.delete(selectedSkillId);
+                disabledSkills.add(selectedSkillId);
+            }
+
+            const enabledSkillsArray = [...enabledSkills];
+            const disabledSkillsArray = [...disabledSkills];
+            client.userEnabledSkills.set(userId, enabledSkillsArray);
+            client.userDisabledSkills.set(userId, disabledSkillsArray);
+
+            await UserSettings.findOneAndUpdate(
+                { userId },
+                {
+                    enabledSkills: enabledSkillsArray,
+                    disabledSkills: disabledSkillsArray,
+                    lastUpdated: new Date()
+                },
+                { upsert: true }
+            );
+
+            await interaction.reply({
+                content: `Skill \`${selectedSkillId}\` is now ${subcommand === 'enable' ? 'enabled' : 'disabled'} for you.`,
+                flags: MessageFlags.Ephemeral
+            });
         }
     }
 }
