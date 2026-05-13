@@ -831,7 +831,6 @@ async function sendStreamingResponse(message1, channel, conversationLog, modelTo
         }
     });
     const selectedSkillIds = new Set(skillRouting.skills);
-    const webSearchSkill = getSkillByCapability(client, user.id, 'web-search');
     const imageGenerationSkill = getSkillByCapability(client, user.id, 'image-generation');
     const pdfAnalysisSkill = getSkillByCapability(client, user.id, 'pdf-analysis');
 
@@ -839,10 +838,7 @@ async function sendStreamingResponse(message1, channel, conversationLog, modelTo
         selectedSkillIds.add(pdfAnalysisSkill.id);
     }
 
-    const isSearchEnabled = Boolean(
-        (webSearchSkill && selectedSkillIds.has(webSearchSkill.id)) ||
-        (webSearchSkill && client.userNetSearchEnabled.get(user.id))
-    );
+    const isSearchEnabled = Boolean(client.userNetSearchEnabled.get(user.id));
     const shouldCheckImageGeneration = Boolean(
         imageGenerationSkill &&
         (selectedSkillIds.has(imageGenerationSkill.id) || selectedSkillIds.size === 0)
@@ -878,9 +874,6 @@ async function sendStreamingResponse(message1, channel, conversationLog, modelTo
         }
     }
         if (isSearchEnabled) {
-            if (webSearchSkill) {
-                selectedSkillIds.add(webSearchSkill.id);
-            }
             const searchQuery = await extractSearchQuery(conversationLog, user.id);
         
             if (searchQuery === 'NO_SEARCH') {
