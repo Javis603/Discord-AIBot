@@ -245,7 +245,8 @@ module.exports = {
         
                 if (client.userConversations[interaction.user.id].length > initialConversation.length) {
                     delete client.userConversations[interaction.user.id];
-        
+                    client.userActiveSkills?.delete(interaction.user.id);
+
                     client.userConversations[interaction.user.id] = initialConversation;
         
                     const deleteResult = await deleteUserImages(interaction.user.id);
@@ -323,6 +324,13 @@ module.exports = {
             } else if (subcommand === "disable") {
                 enabledSkills.delete(selectedSkillId);
                 disabledSkills.add(selectedSkillId);
+                const activeSkills = client.userActiveSkills?.get(userId) || [];
+                const nextActiveSkills = activeSkills.filter(skillId => skillId !== selectedSkillId);
+                if (nextActiveSkills.length > 0) {
+                    client.userActiveSkills.set(userId, nextActiveSkills);
+                } else {
+                    client.userActiveSkills?.delete(userId);
+                }
             }
 
             const enabledSkillsArray = [...enabledSkills];

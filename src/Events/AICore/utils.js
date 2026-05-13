@@ -767,6 +767,93 @@ function buildSkillUsageNotice(client, skillIds) {
     return `> -# 🧩 使用 Skills：${names}\n`;
 }
 
+function contentToText(content) {
+    if (typeof content === 'string') return content;
+    if (!Array.isArray(content)) return '';
+
+    return content
+        .map(item => {
+            if (typeof item === 'string') return item;
+            if (item?.type === 'text') return item.text || '';
+            return '';
+        })
+        .filter(Boolean)
+        .join('\n');
+}
+
+function getLatestUserText(conversationLog) {
+    for (let index = conversationLog.length - 1; index >= 0; index--) {
+        if (conversationLog[index]?.role === 'user') {
+            return contentToText(conversationLog[index].content);
+        }
+    }
+
+    return '';
+}
+
+function shouldClearActiveSkills(text) {
+    return /(?:不要|不用|停止|取消|關掉|关闭|退出|離開|离开).{0,12}(?:skill|技能|角色|扮演|人設|人设|語氣|语气|風格|风格)|(?:正常|普通|一般).{0,8}(?:模式|回答)|(?:stop|disable|turn off|exit).{0,12}(?:skill|persona|role|style)/i.test(text || '');
+}
+
+function isAutoPersistentSkill(skill) {
+    if (!skill || skill.capabilities.length > 0) return false;
+
+    const signalText = [
+        skill.name,
+        skill.description,
+        skill.instructions
+    ].join('\n');
+
+    return /角色扮演|退出角色|第一人稱|第一人称|人設|人设|身份|視角|视角|語氣|语气|perspective|persona|roleplay|role play|in character/i.test(signalText);
+}
+
+function isConversationPersistentSkill(skill) {
+    if (!skill || skill.capabilities.length > 0) return false;
+    if (skill.discordPersistence === 'conversation') return true;
+    if (skill.discordPersistence === 'turn') return false;
+    return isAutoPersistentSkill(skill);
+}
+
+function getConversationPersistentSkillIds(client, skillIds) {
+    const skills = getAllSkills(client);
+    return [...new Set(skillIds)]
+        .filter(skillId => {
+            const skill = skills.get(skillId);
+            return isConversationPersistentSkill(skill);
+        });
+}
+
+function applyActivePromptSkills(client, userId, selectedSkillIds, latestUserText) {
+    if (!client.userActiveSkills) client.userActiveSkills = new Map();
+
+    const skills = getAllSkills(client);
+    const availableIds = new Set([...skills.keys()]);
+    const disabledIds = new Set(client.userDisabledSkills?.get(userId) || []);
+
+    if (shouldClearActiveSkills(latestUserText)) {
+        client.userActiveSkills.delete(userId);
+        return;
+    }
+
+    const routedPersistentSkillIds = getConversationPersistentSkillIds(client, [...selectedSkillIds]);
+    if (routedPersistentSkillIds.length > 0) {
+        client.userActiveSkills.set(userId, routedPersistentSkillIds);
+        return;
+    }
+
+    const activePersistentSkillIds = getConversationPersistentSkillIds(client, client.userActiveSkills.get(userId) || [])
+        .filter(skillId => availableIds.has(skillId) && !disabledIds.has(skillId));
+
+    if (activePersistentSkillIds.length === 0) {
+        client.userActiveSkills.delete(userId);
+        return;
+    }
+
+    for (const skillId of activePersistentSkillIds) {
+        selectedSkillIds.add(skillId);
+    }
+}
+
 async function sendStreamingResponse(message1, channel, conversationLog, modelToUse, user, client, isButtonChat = false, question, pdfAttachments, imageAttachments) {
     let response = '';
     let originalContent = '';
@@ -830,7 +917,9 @@ async function sendStreamingResponse(message1, channel, conversationLog, modelTo
             images: imageAttachments?.length || 0
         }
     });
-    const selectedSkillIds = new Set(skillRouting.skills);
+    const routedSkillIds = new Set(skillRouting.skills);
+    const selectedSkillIds = new Set(routedSkillIds);
+    applyActivePromptSkills(client, user.id, selectedSkillIds, getLatestUserText(conversationLog));
     const imageGenerationSkill = getSkillByCapability(client, user.id, 'image-generation');
     const pdfAnalysisSkill = getSkillByCapability(client, user.id, 'pdf-analysis');
 
@@ -841,7 +930,7 @@ async function sendStreamingResponse(message1, channel, conversationLog, modelTo
     const isSearchEnabled = Boolean(client.userNetSearchEnabled.get(user.id));
     const shouldCheckImageGeneration = Boolean(
         imageGenerationSkill &&
-        (selectedSkillIds.has(imageGenerationSkill.id) || selectedSkillIds.size === 0)
+        (routedSkillIds.has(imageGenerationSkill.id) || routedSkillIds.size === 0)
     );
     const isDeepThinkingEnabled = Boolean(client.userDeepThinkingEnabled.get(user.id));
 

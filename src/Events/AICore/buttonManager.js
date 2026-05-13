@@ -201,6 +201,7 @@ async function handleClearChat(interaction, client, userId) {
 
     if (client.userConversations[userId].length > initialConversation.length) {
         client.userConversations[userId] = initialConversation;
+        client.userActiveSkills?.delete(userId);
 
         const deleteResult = await deleteUserImages(userId);
 
@@ -503,7 +504,8 @@ async function handleNewChatConfirm(interaction, client, userId) {
         const systemMessage = client.userConversations[userId].find(msg => msg.role === 'system');
         
         delete client.userConversations[userId];
-        
+        client.userActiveSkills?.delete(userId);
+
         client.userConversations[userId] = [];
         if (systemMessage) {
             client.userConversations[userId].push(systemMessage);

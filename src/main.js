@@ -75,6 +75,7 @@ client.userNetSearchEnabled = new Map();
 client.userDeepThinkingEnabled = new Map();
 client.userEnabledSkills = new Map();
 client.userDisabledSkills = new Map();
+client.userActiveSkills = new Map();
 installSkills(client);
 
 const {specialUsers} = require('./Events/AICore/models');

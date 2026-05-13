@@ -28,6 +28,15 @@ function normalizeStringArray(value) {
         .filter(Boolean);
 }
 
+function normalizeDiscordPersistence(value) {
+    const discordPersistence = String(value || 'auto').trim().toLowerCase();
+    return ['auto', 'turn', 'conversation'].includes(discordPersistence) ? discordPersistence : 'auto';
+}
+
+function getDiscordPersistence(metadata) {
+    return normalizeDiscordPersistence(metadata['x-discord-persistence'] || 'auto');
+}
+
 function formatNameFromSource(sourceName) {
     const parsed = path.parse(sourceName);
     return (parsed.name || sourceName)
@@ -70,13 +79,15 @@ function buildSkillFromContent({ metadata, body, filePath, sourceName }) {
     const sourceDisplayName = formatNameFromSource(sourceName);
     const id = slugifyId(sourceName);
     const name = String(metadata.name || extractHeading(body) || sourceDisplayName).trim();
+    const capabilities = normalizeStringArray(metadata.capabilities);
 
     return {
         id,
         name,
         description: String(metadata.description || extractDescription(body, name)).trim(),
         enabled: metadata.enabled !== false,
-        capabilities: normalizeStringArray(metadata.capabilities),
+        capabilities,
+        discordPersistence: getDiscordPersistence(metadata),
         path: filePath,
         instructions: body
     };
@@ -142,6 +153,7 @@ function installSkills(client) {
     client.skills = loadSkills();
     if (!client.userEnabledSkills) client.userEnabledSkills = new Map();
     if (!client.userDisabledSkills) client.userDisabledSkills = new Map();
+    if (!client.userActiveSkills) client.userActiveSkills = new Map();
     console.log(`Loaded ${client.skills.size} AI skills`);
     return client.skills;
 }
@@ -198,18 +210,21 @@ function buildRouterPrompt(availableSkills, context) {
         name: skill.name,
         description: skill.description,
         capabilities: skill.capabilities,
-        kind: skill.capabilities.length > 0 ? 'tool-backed' : 'prompt-only'
+        kind: skill.capabilities.length > 0 ? 'tool-backed' : 'prompt-only',
+        discordPersistence: skill.discordPersistence
     }));
 
     return [
         'You route a Discord AI request to zero or more safe prompt skills.',
         'Return only compact JSON with this shape: {"skills":["skill-key"],"reason":"short reason"}.',
+        'Never answer the user, apologize, explain, or return plain text. If unsure, return {"skills":[],"reason":"uncertain"}.',
         'Only choose skill keys from the provided list.',
         'Choose no skill when the request is normal conversation or no skill materially helps.',
         'Use each skill name and description as the primary discovery signal.',
         'Tool-backed skills activate existing internal bot handlers; prompt-only skills only add temporary response guidance.',
         'Use prompt-only skills when the user asks for that persona, style, domain guidance, or workflow.',
-        'Do not choose web search for stable/common knowledge, PDF analysis without PDFs, or image generation unless the user wants a new image.',
+        'Discord runtime may carry persona or mode skills across the conversation; this does not change which skills you should choose for the current request.',
+        'Do not choose PDF analysis without PDFs or image generation unless the user wants a new image.',
         'If attachments are present, prefer the matching attachment skill.',
         `Attachment context: ${JSON.stringify(context.attachments || {})}`,
         `Available skills: ${JSON.stringify(skillList)}`
@@ -266,7 +281,8 @@ async function routeSkills({ conversationLog, userId, client, attachments = {} }
             max_tokens: 180
         });
 
-        const parsed = safeParseJson(response.choices[0].message.content);
+        const rawContent = response.choices[0].message.content;
+        const parsed = safeParseJson(rawContent);
         const selectedIds = resolveSelectedSkillIds(parsed.skills, availableSkills);
 
         return {
@@ -274,7 +290,10 @@ async function routeSkills({ conversationLog, userId, client, attachments = {} }
             reason: typeof parsed.reason === 'string' ? parsed.reason : ''
         };
     } catch (error) {
-        console.error('Skill routing failed:', error.message);
+        const message = error instanceof SyntaxError
+            ? 'Skill routing returned non-JSON; continuing without new skill selection.'
+            : `Skill routing failed: ${error.message}`;
+        console.warn(message);
         return { skills: [], reason: '' };
     }
 }
