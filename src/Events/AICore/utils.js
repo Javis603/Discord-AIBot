@@ -448,9 +448,9 @@ async function searchWithTavily(searchConfig) {
     if (searchConfig === 'NO_SEARCH') {
         return { results: [], answer: '' };
     }
-    
+
     try {
-        const tvly = tavily({ 
+        const tvly = tavily({
             apiKey: process.env.TAVILY_API_KEY
         });
 
@@ -473,6 +473,75 @@ async function searchWithTavily(searchConfig) {
         console.error('Tavily search error:', error);
         return { results: [], answer: '' };
     }
+}
+
+const YOUCOM_SEARCH_URL = 'https://ydc-index.io/v1/search';
+
+async function searchWithYoucom(searchConfig) {
+    if (searchConfig === 'NO_SEARCH') {
+        return { results: [], answer: '' };
+    }
+
+    const apiKey = process.env.YOUCOM_API_KEY;
+    if (!apiKey) {
+        console.warn('[YoucomSearch] YOUCOM_API_KEY is not configured');
+        return { results: [], answer: '' };
+    }
+
+    try {
+        const response = await axios.post(
+            YOUCOM_SEARCH_URL,
+            {
+                query: searchConfig.query,
+                count: 10,
+            },
+            {
+                headers: {
+                    'Accept': 'application/json',
+                    'X-API-Key': apiKey,
+                },
+                timeout: 15000,
+            },
+        );
+
+        if (response.status === 429) {
+            console.warn('[YoucomSearch] Rate limit exceeded (429)');
+            return { results: [], answer: '' };
+        }
+        if (response.status === 401) {
+            console.warn('[YoucomSearch] API key invalid or expired');
+            return { results: [], answer: '' };
+        }
+        if (response.status !== 200) {
+            console.warn(`[YoucomSearch] Search failed with status ${response.status}`);
+            return { results: [], answer: '' };
+        }
+
+        const results = response.data?.results || [];
+        return {
+            results: results.map((item, index) => ({
+                title: item.title || '',
+                url: item.url || '',
+                content: Array.isArray(item.snippets) ? item.snippets[0] : (item.description || ''),
+                score: 0,
+                published_date: null,
+                raw_content: null,
+            })),
+            answer: '',
+        };
+    } catch (error) {
+        console.error('[YoucomSearch] Search error:', error.message);
+        return { results: [], answer: '' };
+    }
+}
+
+const SEARCH_ENGINE = process.env.SEARCH_ENGINE || 'Tavily';
+
+async function searchWithEngine(searchConfig) {
+    if (SEARCH_ENGINE === 'Youcom') {
+        return searchWithYoucom(searchConfig);
+    }
+    return searchWithTavily(searchConfig);
 }
 
 async function formatSearchResults(searchResults, answer) {
@@ -970,7 +1039,7 @@ async function sendStreamingResponse(message1, channel, conversationLog, modelTo
             } else {                
                 await lastMessage.edit({ content: `-# ${config.emojis.search.id ? `<a:search:${config.emojis.search.id}>` : config.emojis.search.fallback} ${getText('events.AICore.searching', contextObj, { default: '正在搜尋網路資訊' })}: ${searchQuery.query}` });
                 
-                searchResults = await searchWithTavily(searchQuery);
+                searchResults = await searchWithEngine(searchQuery);
                 
                 if (searchResults.results && searchResults.results.length > 0) {
                     const formattedResults = await formatSearchResults(searchResults.results, searchResults.answer);
